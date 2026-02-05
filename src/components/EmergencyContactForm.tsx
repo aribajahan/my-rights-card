@@ -32,7 +32,7 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <h2 className="font-display text-2xl font-bold mb-2 text-center">
+      <h2 className="font-display text-2xl font-bold mb-2 text-center text-foreground">
         {t('emergencyContacts')}
       </h2>
       <p className="text-muted-foreground text-center mb-6">
@@ -44,19 +44,18 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
         {contacts.map((contact) => (
           <div
             key={contact.id}
-            className="flex items-center justify-between p-4 bg-muted border-4 border-foreground"
-            style={{ boxShadow: '4px 4px 0px hsl(var(--pure-black))' }}
+            className="flex items-center justify-between p-4 bg-card border-2 border-foreground/20 rounded-sm"
           >
             <div>
-              <p className="font-bold">{contact.name}</p>
+              <p className="font-semibold text-foreground">{contact.name}</p>
               <p className="text-muted-foreground">{contact.phone}</p>
             </div>
             <button
               onClick={() => removeContact(contact.id)}
-              className="p-2 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors"
+              className="p-2 text-muted-foreground hover:text-destructive transition-colors"
               aria-label={t('removeContact')}
             >
-              <X size={24} />
+              <X size={20} />
             </button>
           </div>
         ))}
@@ -70,24 +69,21 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
             placeholder={t('contactName')}
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            className="w-full p-4 text-lg border-4 border-foreground bg-background focus:outline-none focus:ring-4 focus:ring-primary"
-            style={{ boxShadow: '4px 4px 0px hsl(var(--pure-black))' }}
+            className="w-full p-4 text-base border-2 border-foreground/20 rounded-sm bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20"
           />
           <input
             type="tel"
             placeholder={t('contactPhone')}
             value={newPhone}
             onChange={(e) => setNewPhone(e.target.value)}
-            className="w-full p-4 text-lg border-4 border-foreground bg-background focus:outline-none focus:ring-4 focus:ring-primary"
-            style={{ boxShadow: '4px 4px 0px hsl(var(--pure-black))' }}
+            className="w-full p-4 text-base border-2 border-foreground/20 rounded-sm bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20"
           />
           <button
             onClick={addContact}
             disabled={!newName.trim() || !newPhone.trim()}
-            className="w-full flex items-center justify-center gap-2 p-4 text-lg font-bold bg-secondary text-secondary-foreground border-4 border-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5"
-            style={{ boxShadow: '6px 6px 0px hsl(var(--pure-black))' }}
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-semibold bg-secondary text-secondary-foreground rounded-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-warm"
           >
-            <Plus size={24} />
+            <Plus size={20} />
             {t('addContact')}
           </button>
         </div>

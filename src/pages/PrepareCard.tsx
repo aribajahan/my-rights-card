@@ -48,7 +48,6 @@ export default function PrepareCard() {
 
   const generateCard = async () => {
     setIsGenerating(true);
-    // Short delay to ensure card is rendered
     await new Promise(resolve => setTimeout(resolve, 100));
     setStep('card');
     setIsGenerating(false);
@@ -58,7 +57,6 @@ export default function PrepareCard() {
     if (!cardRef.current) return;
 
     try {
-      // Scale up for better quality
       const dataUrl = await toPng(cardRef.current, {
         quality: 1,
         pixelRatio: 2,
@@ -85,7 +83,6 @@ export default function PrepareCard() {
         pixelRatio: 2,
       });
 
-      // Convert data URL to blob
       const response = await fetch(dataUrl);
       const blob = await response.blob();
       const file = new File([blob], 'know-your-rights-card.png', { type: 'image/png' });
@@ -97,7 +94,6 @@ export default function PrepareCard() {
           text: 'My rights card from Know Your Rights app',
         });
       } else {
-        // Fallback to download
         toast.info(t('shareFailed'));
         saveCard();
       }
@@ -127,7 +123,7 @@ export default function PrepareCard() {
       case 'card':
         return (
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-sm overflow-hidden border-4 border-foreground shadow-bold">
+            <div className="w-full max-w-sm overflow-hidden border-2 border-foreground/20 rounded-sm shadow-warm-md">
               <div className="transform scale-[0.5] origin-top-left w-[200%]">
                 <RightsCard ref={cardRef} status={status} contacts={contacts} />
               </div>
@@ -145,26 +141,23 @@ export default function PrepareCard() {
         <div className="space-y-3">
           <button
             onClick={saveCard}
-            className="w-full flex items-center justify-center gap-3 p-4 text-lg font-bold bg-primary text-primary-foreground border-4 border-foreground transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5"
-            style={{ boxShadow: '6px 6px 0px hsl(var(--pure-black))' }}
+            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-primary text-primary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md"
           >
-            <Download size={24} />
+            <Download size={20} />
             {t('saveCard')}
           </button>
           <button
             onClick={shareCard}
-            className="w-full flex items-center justify-center gap-3 p-4 text-lg font-bold bg-secondary text-secondary-foreground border-4 border-foreground transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5"
-            style={{ boxShadow: '6px 6px 0px hsl(var(--pure-black))' }}
+            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-secondary text-secondary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md"
           >
-            <Share2 size={24} />
+            <Share2 size={20} />
             {t('shareCard')}
           </button>
           <button
             onClick={startOver}
-            className="w-full flex items-center justify-center gap-3 p-4 text-lg font-bold bg-background text-foreground border-4 border-foreground transition-all duration-150 hover:bg-muted"
-            style={{ boxShadow: '6px 6px 0px hsl(var(--pure-black))' }}
+            className="w-full flex items-center justify-center gap-3 p-4 text-base font-medium bg-card text-foreground border-2 border-foreground/20 rounded-sm transition-all duration-200 hover:bg-muted"
           >
-            <RotateCcw size={24} />
+            <RotateCcw size={20} />
             {t('startOver')}
           </button>
         </div>
@@ -181,10 +174,9 @@ export default function PrepareCard() {
           <button
             onClick={generateCard}
             disabled={isGenerating}
-            className="w-full flex items-center justify-center gap-3 p-4 text-lg font-bold bg-primary text-primary-foreground border-4 border-foreground transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5 disabled:opacity-50"
-            style={{ boxShadow: '6px 6px 0px hsl(var(--pure-black))' }}
+            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-primary text-primary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md disabled:opacity-50"
           >
-            <Check size={24} />
+            <Check size={20} />
             {t('generateCard')}
           </button>
         )}
@@ -192,11 +184,10 @@ export default function PrepareCard() {
         {showNext && (
           <button
             onClick={goNext}
-            className="w-full flex items-center justify-center gap-3 p-4 text-lg font-bold bg-primary text-primary-foreground border-4 border-foreground transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5"
-            style={{ boxShadow: '6px 6px 0px hsl(var(--pure-black))' }}
+            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-primary text-primary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md"
           >
             {t('next')}
-            <ArrowRight size={24} />
+            <ArrowRight size={20} />
           </button>
         )}
 
@@ -215,13 +206,13 @@ export default function PrepareCard() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background border-b-4 border-foreground">
+      <header className="sticky top-0 z-10 bg-background border-b border-foreground/10">
         <div className="container flex items-center justify-between p-4">
           <button
             onClick={goBack}
-            className="flex items-center gap-2 font-bold hover:text-primary transition-colors"
+            className="flex items-center gap-2 font-medium text-foreground hover:text-secondary transition-colors"
           >
-            <ArrowLeft size={24} />
+            <ArrowLeft size={20} />
             {t('back')}
           </button>
 
@@ -230,8 +221,8 @@ export default function PrepareCard() {
             {steps.map((s, i) => (
               <div
                 key={s}
-                className={`w-3 h-3 transition-colors ${
-                  i <= currentStepIndex ? 'bg-primary' : 'bg-muted'
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  i <= currentStepIndex ? 'bg-secondary' : 'bg-muted'
                 }`}
               />
             ))}
@@ -240,14 +231,14 @@ export default function PrepareCard() {
       </header>
 
       {/* Content */}
-      <main className="container py-8 px-4">
+      <main className="container py-8 px-4 pb-48">
         <div className="animate-fade-in">
           {renderStepContent()}
         </div>
       </main>
 
       {/* Footer with navigation */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-background border-t-4 border-foreground p-4">
+      <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-foreground/10 p-4">
         <div className="container max-w-md mx-auto">
           {renderNavButtons()}
         </div>

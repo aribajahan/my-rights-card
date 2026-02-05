@@ -35,40 +35,39 @@ export default function Hotlines() {
 
   return (
     <InfoPageLayout title={t('hotlinesResources')}>
-      <div className="p-4 bg-primary text-primary-foreground mb-6">
-        <p className="text-lg font-bold">
+      <div className="p-4 bg-accent/30 border-l-4 border-accent rounded-sm mb-6">
+        <p className="text-base font-medium text-foreground">
           Save these numbers. They can help in an emergency.
         </p>
       </div>
 
       <section>
-        <h2 className="text-2xl font-bold mb-4 font-display">Emergency Hotlines</h2>
-        <div className="space-y-4">
+        <h2 className="text-xl font-bold mb-4 font-display text-foreground">Emergency Hotlines</h2>
+        <div className="space-y-3">
           {hotlines.map((hotline, index) => (
             <div 
               key={index}
-              className="p-4 border-4 border-foreground bg-card"
-              style={{ boxShadow: '6px 6px 0px hsl(var(--pure-black))' }}
+              className="p-4 border-2 border-foreground/15 bg-card rounded-sm"
             >
-              <h3 className="font-bold text-xl mb-1">{hotline.name}</h3>
+              <h3 className="font-semibold text-lg mb-1 text-foreground">{hotline.name}</h3>
               <a 
                 href={`tel:${hotline.phone.replace(/-/g, '')}`}
-                className="flex items-center gap-2 text-primary font-bold text-lg mb-2 hover:underline"
+                className="flex items-center gap-2 text-secondary font-semibold mb-2 hover:underline"
               >
-                <Phone size={20} />
+                <Phone size={18} />
                 {hotline.phone}
               </a>
-              <p className="text-muted-foreground">{hotline.description}</p>
+              <p className="text-muted-foreground text-sm">{hotline.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="mt-8">
-        <h2 className="text-2xl font-bold mb-4 font-display">Online Resources</h2>
+        <h2 className="text-xl font-bold mb-4 font-display text-foreground">Online Resources</h2>
         <ul className="list-none space-y-3">
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-center gap-3 text-base">
+            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
             <a 
               href="https://www.unitedwedream.org" 
               target="_blank" 
@@ -77,10 +76,10 @@ export default function Hotlines() {
             >
               unitedwedream.org
             </a>
-            <span>— United We Dream</span>
+            <span className="text-foreground">— United We Dream</span>
           </li>
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-center gap-3 text-base">
+            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
             <a 
               href="https://www.aclu.org/know-your-rights/immigrants-rights" 
               target="_blank" 
@@ -89,10 +88,10 @@ export default function Hotlines() {
             >
               aclu.org/know-your-rights
             </a>
-            <span>— ACLU Rights Guide</span>
+            <span className="text-foreground">— ACLU Rights Guide</span>
           </li>
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-center gap-3 text-base">
+            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
             <a 
               href="https://www.nilc.org" 
               target="_blank" 
@@ -101,10 +100,10 @@ export default function Hotlines() {
             >
               nilc.org
             </a>
-            <span>— National Immigration Law Center</span>
+            <span className="text-foreground">— National Immigration Law Center</span>
           </li>
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-center gap-3 text-base">
+            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
             <a 
               href="https://www.ilrc.org" 
               target="_blank" 
@@ -113,35 +112,35 @@ export default function Hotlines() {
             >
               ilrc.org
             </a>
-            <span>— Immigrant Legal Resource Center</span>
+            <span className="text-foreground">— Immigrant Legal Resource Center</span>
           </li>
         </ul>
       </section>
 
       <section className="mt-8">
-        <h2 className="text-2xl font-bold mb-4 font-display">What to Do Right Now</h2>
+        <h2 className="text-xl font-bold mb-4 font-display text-foreground">What to Do Right Now</h2>
         <ul className="list-none space-y-2 mb-4">
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-start gap-3 text-base text-foreground">
+            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
             Save these numbers in your phone
           </li>
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-start gap-3 text-base text-foreground">
+            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
             Share this page with family and friends
           </li>
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-start gap-3 text-base text-foreground">
+            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
             Create your rights card and save it to your phone
           </li>
-          <li className="flex items-start gap-3 text-lg">
-            <span className="text-primary font-bold text-2xl leading-none">•</span>
+          <li className="flex items-start gap-3 text-base text-foreground">
+            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
             Make a family safety plan
           </li>
         </ul>
       </section>
 
-      <div className="p-4 bg-secondary text-secondary-foreground mt-8">
-        <p className="text-lg font-bold text-center">
+      <div className="p-4 bg-accent/20 rounded-sm mt-8 border-l-4 border-accent">
+        <p className="text-base font-medium text-center text-foreground">
           You are not alone. Help is available.
         </p>
       </div>

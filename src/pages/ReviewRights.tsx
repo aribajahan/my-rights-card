@@ -30,13 +30,13 @@ export default function ReviewRights() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background border-b-4 border-foreground">
+      <header className="sticky top-0 z-10 bg-background border-b border-foreground/10">
         <div className="container flex items-center justify-between p-4">
           <Link
             to="/"
-            className="flex items-center gap-2 font-bold hover:text-primary transition-colors"
+            className="flex items-center gap-2 font-medium text-foreground hover:text-secondary transition-colors"
           >
-            <ArrowLeft size={24} />
+            <ArrowLeft size={20} />
             {t('home')}
           </Link>
         </div>
@@ -44,28 +44,28 @@ export default function ReviewRights() {
 
       {/* Content */}
       <main className="container py-8 px-4 pb-24">
-        <h1 className="font-display text-3xl font-bold mb-8 text-center">
+        <h1 className="font-display text-3xl font-bold mb-2 text-center text-foreground">
           {t('reviewRights')}
         </h1>
+        <div className="h-1 w-12 bg-accent mx-auto mb-8" />
 
         <div className="max-w-md mx-auto space-y-3">
           {topics.map((topic, index) => (
             <Link
               key={topic.key}
               to={topic.path}
-              className="flex items-center gap-4 p-4 bg-card border-4 border-foreground transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5 animate-slide-up"
+              className="flex items-center gap-4 p-4 bg-card border-2 border-foreground/15 rounded-sm transition-all duration-200 hover:border-foreground/30 hover:shadow-warm animate-slide-up"
               style={{ 
-                boxShadow: '6px 6px 0px hsl(var(--pure-black))',
                 animationDelay: `${index * 50}ms`,
               }}
             >
-              <div className="p-2 bg-primary text-primary-foreground">
-                <topic.icon size={24} />
+              <div className="p-2 bg-accent/30 rounded-sm text-foreground">
+                <topic.icon size={22} />
               </div>
-              <span className="flex-1 font-bold text-lg">
+              <span className="flex-1 font-semibold text-foreground">
                 {t(topic.key as any)}
               </span>
-              <ChevronRight size={24} className="text-muted-foreground" />
+              <ChevronRight size={20} className="text-muted-foreground" />
             </Link>
           ))}
         </div>

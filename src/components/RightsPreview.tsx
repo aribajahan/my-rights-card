@@ -29,26 +29,25 @@ export function RightsPreview() {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <h2 className="font-display text-2xl font-bold mb-6 text-center">
+      <h2 className="font-display text-2xl font-bold mb-6 text-center text-foreground">
         {t('previewRights')}
       </h2>
       <div className="space-y-4">
         {rights.map((right, index) => (
           <div
             key={index}
-            className="p-4 bg-card border-4 border-foreground animate-slide-up"
+            className="p-4 bg-card border-2 border-foreground/15 rounded-sm animate-slide-up"
             style={{ 
-              boxShadow: '6px 6px 0px hsl(var(--pure-black))',
               animationDelay: `${index * 100}ms`,
             }}
           >
             <div className="flex items-start gap-3">
-              <div className="p-2 bg-primary text-primary-foreground">
-                <right.icon size={24} />
+              <div className="p-2 bg-accent/30 rounded-sm text-foreground">
+                <right.icon size={20} />
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2">{right.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="font-semibold text-base mb-2 text-foreground">{right.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {right.explanation}
                 </p>
               </div>

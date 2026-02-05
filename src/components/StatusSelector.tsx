@@ -21,30 +21,24 @@ export function StatusSelector({ value, onChange }: StatusSelectorProps) {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <h2 className="font-display text-2xl font-bold mb-2 text-center">
+      <h2 className="font-display text-2xl font-bold mb-2 text-center text-foreground">
         {t('selectStatus')}
       </h2>
       <p className="text-muted-foreground text-center mb-6">
         {t('statusOptional')}
       </p>
-      <div className="space-y-3">
+      <div className="space-y-2">
         {statusOptions.map((option) => (
           <button
             key={option.key}
             onClick={() => onChange(option.key)}
             className={`
-              w-full p-4 text-left text-lg font-medium border-4 transition-all duration-150
+              w-full p-4 text-left text-base font-medium border-2 rounded-sm transition-all duration-200
               ${value === option.key 
-                ? 'bg-primary text-primary-foreground border-foreground' 
-                : 'bg-background text-foreground border-foreground hover:bg-muted'
+                ? 'bg-secondary text-secondary-foreground border-secondary' 
+                : 'bg-card text-foreground border-foreground/20 hover:border-foreground/40'
               }
             `}
-            style={{
-              boxShadow: value === option.key 
-                ? '4px 4px 0px hsl(var(--pure-black))' 
-                : '6px 6px 0px hsl(var(--pure-black))',
-              transform: value === option.key ? 'translate(2px, 2px)' : 'none',
-            }}
           >
             {t(option.translationKey as any)}
           </button>
