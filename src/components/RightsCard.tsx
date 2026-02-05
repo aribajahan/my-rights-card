@@ -13,86 +13,61 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
     return (
       <div
         ref={ref}
-        className="font-body"
         style={{
           width: '540px',
           minHeight: '960px',
           aspectRatio: '9/16',
-          backgroundColor: '#EFE9C8',
-          color: '#0F2A3F',
-          padding: '48px',
-          fontFamily: "'Inter', system-ui, sans-serif",
+          backgroundColor: '#FAFAF7',
+          color: '#1A2B3C',
+          padding: '40px',
+          fontFamily: "'DM Sans', system-ui, sans-serif",
         }}
       >
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-8">
           <h1 
-            className="text-4xl leading-tight tracking-tight mb-3"
+            className="text-3xl leading-tight mb-2"
             style={{ 
               color: '#0F2A3F',
-              fontFamily: "'Source Serif 4', Georgia, serif",
-              fontWeight: 700,
+              fontWeight: 600,
             }}
           >
             Know Your Rights
           </h1>
           {/* Golden accent line */}
           <div 
-            className="h-1 w-20"
-            style={{ backgroundColor: '#F7C86A' }}
+            className="h-1 w-16 rounded-full"
+            style={{ backgroundColor: '#FFD666' }}
           />
         </div>
 
-        {/* Rights */}
-        <div className="space-y-5 mb-8">
-          <div className="flex items-start gap-4">
-            <div 
-              className="w-2 h-2 mt-2.5 flex-shrink-0 rounded-full"
-              style={{ backgroundColor: '#0F2A3F' }}
-            />
-            <p className="text-lg font-medium leading-snug">
-              You have the right to remain silent.
-            </p>
-          </div>
-          
-          <div className="flex items-start gap-4">
-            <div 
-              className="w-2 h-2 mt-2.5 flex-shrink-0 rounded-full"
-              style={{ backgroundColor: '#0F2A3F' }}
-            />
-            <p className="text-lg font-medium leading-snug">
-              You do not have to open your door without a warrant signed by a judge.
-            </p>
-          </div>
-          
-          <div className="flex items-start gap-4">
-            <div 
-              className="w-2 h-2 mt-2.5 flex-shrink-0 rounded-full"
-              style={{ backgroundColor: '#0F2A3F' }}
-            />
-            <p className="text-lg font-medium leading-snug">
-              You do not have to consent to a search.
-            </p>
-          </div>
-          
-          <div className="flex items-start gap-4">
-            <div 
-              className="w-2 h-2 mt-2.5 flex-shrink-0 rounded-full"
-              style={{ backgroundColor: '#0F2A3F' }}
-            />
-            <p className="text-lg font-medium leading-snug">
-              You have the right to a lawyer.
-            </p>
-          </div>
+        {/* Rights - clean list */}
+        <div className="space-y-4 mb-8">
+          {[
+            'You have the right to remain silent.',
+            'You do not have to open your door without a warrant signed by a judge.',
+            'You do not have to consent to a search.',
+            'You have the right to a lawyer.',
+          ].map((right, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <div 
+                className="w-1.5 h-1.5 mt-2 rounded-full flex-shrink-0"
+                style={{ backgroundColor: '#1A2B3C', opacity: 0.3 }}
+              />
+              <p className="text-base leading-relaxed" style={{ fontWeight: 500 }}>
+                {right}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* Calm reminder - subtle golden background */}
+        {/* Calm reminder */}
         <div 
-          className="p-4 mb-6 rounded-sm"
-          style={{ backgroundColor: '#F7C86A' }}
+          className="p-4 rounded-xl mb-6"
+          style={{ backgroundColor: '#FFD666' }}
         >
           <p 
-            className="text-base font-semibold text-center"
+            className="text-sm font-medium text-center"
             style={{ color: '#0F2A3F' }}
           >
             Stay calm. Do not run. Do not lie.
@@ -102,13 +77,10 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
         {/* Status-specific guidance */}
         {showGuidance && (
           <div 
-            className="mb-6 p-4 rounded-sm"
-            style={{ 
-              borderLeft: '3px solid #F7C86A',
-              backgroundColor: 'rgba(247, 200, 106, 0.15)',
-            }}
+            className="mb-6 p-4 rounded-xl"
+            style={{ backgroundColor: 'rgba(255, 214, 102, 0.2)' }}
           >
-            <p className="text-base" style={{ color: '#0F2A3F' }}>
+            <p className="text-sm" style={{ color: '#1A2B3C' }}>
               {statusGuidance[status]}
             </p>
           </div>
@@ -118,14 +90,14 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
         {contacts.length > 0 && (
           <div className="mb-6">
             <p 
-              className="text-xs font-semibold uppercase tracking-wider mb-2"
-              style={{ color: '#0F2A3F', opacity: 0.6 }}
+              className="text-xs font-medium uppercase tracking-wider mb-2"
+              style={{ color: '#1A2B3C', opacity: 0.5 }}
             >
               Emergency Contacts
             </p>
             <div className="space-y-1">
               {contacts.map((contact) => (
-                <p key={contact.id} className="text-base">
+                <p key={contact.id} className="text-sm" style={{ fontWeight: 500 }}>
                   {contact.name}: {contact.phone}
                 </p>
               ))}
@@ -133,29 +105,28 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
           </div>
         )}
 
-        {/* Divider */}
-        <div 
-          className="h-px w-full mb-6"
-          style={{ backgroundColor: '#0F2A3F', opacity: 0.2 }}
-        />
-
         {/* Hotline */}
-        <div className="mb-6">
-          <p 
-            className="text-xs font-semibold uppercase tracking-wider mb-1"
-            style={{ color: '#0F2A3F', opacity: 0.6 }}
-          >
-            24/7 Hotline
-          </p>
-          <p className="text-lg font-semibold" style={{ color: '#0F2A3F' }}>
-            United We Dream: 1-844-363-1423
+        <div 
+          className="p-4 rounded-xl mb-6"
+          style={{ backgroundColor: '#E07830' }}
+        >
+          <p className="text-center" style={{ color: 'white' }}>
+            <span className="text-xs font-medium uppercase tracking-wide block mb-1" style={{ opacity: 0.8 }}>
+              24/7 Hotline
+            </span>
+            <span className="text-lg font-semibold">
+              1-844-363-1423
+            </span>
+            <span className="text-xs block mt-0.5" style={{ opacity: 0.8 }}>
+              United We Dream
+            </span>
           </p>
         </div>
 
         {/* Disclaimer */}
         <p 
-          className="text-xs text-center mt-auto"
-          style={{ color: '#0F2A3F', opacity: 0.5 }}
+          className="text-xs text-center"
+          style={{ color: '#1A2B3C', opacity: 0.4 }}
         >
           This card asserts your constitutional rights. It is not legal advice.
         </p>

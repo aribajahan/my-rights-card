@@ -23,11 +23,6 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        "deep-navy": "hsl(var(--deep-navy))",
-        "burnt-orange": "hsl(var(--burnt-orange))",
-        "golden-yellow": "hsl(var(--golden-yellow))",
-        "warm-cream": "hsl(var(--warm-cream))",
-        "charcoal": "hsl(var(--charcoal))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -68,13 +63,19 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Source Serif 4", "Georgia", "serif"],
-        body: ["Inter", "system-ui", "sans-serif"],
+        sans: ["DM Sans", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 8px)",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+      },
+      boxShadow: {
+        card: "0 2px 8px rgba(0, 0, 0, 0.06)",
+        "card-hover": "0 4px 16px rgba(0, 0, 0, 0.08)",
+        button: "0 2px 4px rgba(224, 120, 48, 0.2)",
       },
       keyframes: {
         "accordion-down": {
@@ -86,7 +87,7 @@ export default {
           to: { height: "0" },
         },
         "slide-up": {
-          from: { transform: "translateY(10px)", opacity: "0" },
+          from: { transform: "translateY(8px)", opacity: "0" },
           to: { transform: "translateY(0)", opacity: "1" },
         },
         "fade-in": {
@@ -97,12 +98,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide-up": "slide-up 0.3s ease-out",
+        "slide-up": "slide-up 0.25s ease-out",
         "fade-in": "fade-in 0.2s ease-out",
-      },
-      boxShadow: {
-        warm: "4px 4px 0px hsl(207 61% 15% / 0.15)",
-        "warm-md": "6px 6px 0px hsl(207 61% 15% / 0.2)",
       },
     },
   },

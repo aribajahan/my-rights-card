@@ -1,6 +1,5 @@
 import { InfoPageLayout } from '@/components/InfoPageLayout';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Phone } from 'lucide-react';
 
 export default function Hotlines() {
   const { t } = useLanguage();
@@ -9,138 +8,133 @@ export default function Hotlines() {
     {
       name: 'United We Dream',
       phone: '1-844-363-1423',
-      description: '24/7 hotline for immigrants and allies. Report raids, get support, and connect with local resources.',
+      description: '24/7 hotline for immigrants and allies.',
     },
     {
       name: 'ACLU',
       phone: '212-549-2500',
-      description: 'American Civil Liberties Union. Defends constitutional rights and civil liberties.',
+      description: 'American Civil Liberties Union.',
     },
     {
       name: 'National Immigration Law Center',
       phone: '213-639-3900',
-      description: 'Advocates for the rights of low-income immigrants.',
+      description: 'Advocates for low-income immigrants.',
     },
     {
       name: 'RAICES Texas',
       phone: '210-787-3365',
-      description: 'Provides free and low-cost legal services to immigrant families.',
+      description: 'Free and low-cost legal services.',
     },
     {
       name: 'Immigrant Legal Resource Center',
       phone: '415-255-9499',
-      description: 'Training and resources for immigrant communities and advocates.',
+      description: 'Resources for immigrant communities.',
     },
   ];
 
   return (
     <InfoPageLayout title={t('hotlinesResources')}>
-      <div className="p-4 bg-accent/30 border-l-4 border-accent rounded-sm mb-6">
-        <p className="text-base font-medium text-foreground">
+      <div className="p-4 bg-accent/30 rounded-2xl mb-6">
+        <p className="text-sm font-medium text-headline">
           Save these numbers. They can help in an emergency.
         </p>
       </div>
 
       <section>
-        <h2 className="text-xl font-bold mb-4 font-display text-foreground">Emergency Hotlines</h2>
-        <div className="space-y-3">
+        <h2>Emergency Hotlines</h2>
+        <div className="space-y-3 mt-4">
           {hotlines.map((hotline, index) => (
             <div 
               key={index}
-              className="p-4 border-2 border-foreground/15 bg-card rounded-sm"
+              className="p-4 bg-card rounded-2xl shadow-card"
             >
-              <h3 className="font-semibold text-lg mb-1 text-foreground">{hotline.name}</h3>
+              <h3 className="font-medium text-headline mb-1">{hotline.name}</h3>
               <a 
                 href={`tel:${hotline.phone.replace(/-/g, '')}`}
-                className="flex items-center gap-2 text-secondary font-semibold mb-2 hover:underline"
+                className="text-primary font-medium text-sm hover:opacity-80 transition-opacity"
               >
-                <Phone size={18} />
                 {hotline.phone}
               </a>
-              <p className="text-muted-foreground text-sm">{hotline.description}</p>
+              <p className="text-xs text-muted-foreground mt-1">{hotline.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="mt-8">
-        <h2 className="text-xl font-bold mb-4 font-display text-foreground">Online Resources</h2>
-        <ul className="list-none space-y-3">
-          <li className="flex items-center gap-3 text-base">
-            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
+        <h2>Online Resources</h2>
+        <ul className="list-none space-y-2 mt-4">
+          <li className="text-sm">
             <a 
               href="https://www.unitedwedream.org" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-secondary underline hover:no-underline"
+              className="text-primary hover:opacity-80 transition-opacity"
             >
               unitedwedream.org
             </a>
-            <span className="text-foreground">— United We Dream</span>
+            <span className="text-muted-foreground"> — United We Dream</span>
           </li>
-          <li className="flex items-center gap-3 text-base">
-            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
+          <li className="text-sm">
             <a 
               href="https://www.aclu.org/know-your-rights/immigrants-rights" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-secondary underline hover:no-underline"
+              className="text-primary hover:opacity-80 transition-opacity"
             >
               aclu.org/know-your-rights
             </a>
-            <span className="text-foreground">— ACLU Rights Guide</span>
+            <span className="text-muted-foreground"> — ACLU Rights Guide</span>
           </li>
-          <li className="flex items-center gap-3 text-base">
-            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
+          <li className="text-sm">
             <a 
               href="https://www.nilc.org" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-secondary underline hover:no-underline"
+              className="text-primary hover:opacity-80 transition-opacity"
             >
               nilc.org
             </a>
-            <span className="text-foreground">— National Immigration Law Center</span>
+            <span className="text-muted-foreground"> — National Immigration Law Center</span>
           </li>
-          <li className="flex items-center gap-3 text-base">
-            <span className="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
+          <li className="text-sm">
             <a 
               href="https://www.ilrc.org" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-secondary underline hover:no-underline"
+              className="text-primary hover:opacity-80 transition-opacity"
             >
               ilrc.org
             </a>
-            <span className="text-foreground">— Immigrant Legal Resource Center</span>
+            <span className="text-muted-foreground"> — Immigrant Legal Resource Center</span>
           </li>
         </ul>
       </section>
 
       <section className="mt-8">
-        <h2 className="text-xl font-bold mb-4 font-display text-foreground">What to Do Right Now</h2>
-        <ul className="list-none space-y-2 mb-4">
-          <li className="flex items-start gap-3 text-base text-foreground">
-            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
+        <h2>What to Do Right Now</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
             Save these numbers in your phone
           </li>
-          <li className="flex items-start gap-3 text-base text-foreground">
-            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
             Share this page with family and friends
           </li>
-          <li className="flex items-start gap-3 text-base text-foreground">
-            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
             Create your rights card and save it to your phone
           </li>
-          <li className="flex items-start gap-3 text-base text-foreground">
-            <span className="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></span>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
             Make a family safety plan
           </li>
         </ul>
       </section>
 
-      <div className="p-4 bg-accent/20 rounded-sm mt-8 border-l-4 border-accent">
-        <p className="text-base font-medium text-center text-foreground">
+      <div className="p-4 bg-accent/20 rounded-2xl mt-8">
+        <p className="text-sm font-medium text-center text-headline">
           You are not alone. Help is available.
         </p>
       </div>
