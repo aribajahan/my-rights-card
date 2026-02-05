@@ -2,7 +2,6 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toPng } from 'html-to-image';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { LanguageSelector } from '@/components/LanguageSelector';
 import { StatusSelector } from '@/components/StatusSelector';
 import { DocumentForm } from '@/components/DocumentForm';
 import { EmergencyContactForm } from '@/components/EmergencyContactForm';
@@ -12,20 +11,20 @@ import { ImmigrationStatus, EmergencyContact, DocumentInfo } from '@/types/card'
 import { ArrowLeft, Download, Share2, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
 
-type Step = 'language' | 'status' | 'documents' | 'contacts' | 'preview' | 'card';
+type Step = 'status' | 'documents' | 'contacts' | 'preview' | 'card';
 
 export default function PrepareCard() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const [step, setStep] = useState<Step>('language');
+  const [step, setStep] = useState<Step>('status');
   const [status, setStatus] = useState<ImmigrationStatus>(null);
   const [documentInfo, setDocumentInfo] = useState<DocumentInfo>({ type: null, number: '' });
   const [contacts, setContacts] = useState<EmergencyContact[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const steps: Step[] = ['language', 'status', 'documents', 'contacts', 'preview', 'card'];
+  const steps: Step[] = ['status', 'documents', 'contacts', 'preview', 'card'];
   const currentStepIndex = steps.indexOf(step);
 
   const goNext = () => {
@@ -107,7 +106,7 @@ export default function PrepareCard() {
   };
 
   const startOver = () => {
-    setStep('language');
+    setStep('status');
     setStatus(null);
     setDocumentInfo({ type: null, number: '' });
     setContacts([]);
@@ -115,8 +114,6 @@ export default function PrepareCard() {
 
   const renderStepContent = () => {
     switch (step) {
-      case 'language':
-        return <LanguageSelector onSelect={() => goNext()} />;
       case 'status':
         return <StatusSelector value={status} onChange={setStatus} onSelect={() => goNext()} />;
       case 'documents':
