@@ -31,8 +31,11 @@ export function DocumentForm({ value, onChange }: DocumentFormProps) {
       <h2 className="text-xl font-semibold mb-2 text-center text-headline">
         {t('documentType')}
       </h2>
-      <p className="text-muted-foreground text-center text-sm mb-6">
+      <p className="text-muted-foreground text-center text-sm mb-2">
         {t('documentOptional')}
+      </p>
+      <p className="text-muted-foreground/70 text-center text-xs mb-6">
+        This will be added to your card for your reference.
       </p>
 
       {/* Document type selection */}

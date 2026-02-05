@@ -8,21 +8,54 @@ interface EmergencyContactFormProps {
   onChange: (contacts: EmergencyContact[]) => void;
 }
 
+// Simple phone validation - allows common formats
+const isValidPhone = (phone: string): boolean => {
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '');
+  // Must have at least 10 digits (US numbers)
+  const digitCount = cleaned.replace(/\D/g, '').length;
+  return digitCount >= 10 && digitCount <= 15;
+};
+
+const formatPhoneDisplay = (phone: string): string => {
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length === 10) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+  return phone;
+};
+
 export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFormProps) {
   const { t } = useLanguage();
   const [newName, setNewName] = useState('');
   const [newPhone, setNewPhone] = useState('');
+  const [phoneError, setPhoneError] = useState('');
 
   const addContact = () => {
-    if (newName.trim() && newPhone.trim() && contacts.length < 3) {
+    const trimmedPhone = newPhone.trim();
+    
+    if (!isValidPhone(trimmedPhone)) {
+      setPhoneError('Please enter a valid phone number (at least 10 digits)');
+      return;
+    }
+    
+    if (newName.trim() && trimmedPhone && contacts.length < 3) {
       const newContact: EmergencyContact = {
         id: Date.now().toString(),
         name: newName.trim(),
-        phone: newPhone.trim(),
+        phone: formatPhoneDisplay(trimmedPhone),
       };
       onChange([...contacts, newContact]);
       setNewName('');
       setNewPhone('');
+      setPhoneError('');
+    }
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setNewPhone(value);
+    if (phoneError && value.trim()) {
+      setPhoneError('');
     }
   };
 
@@ -35,8 +68,11 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
       <h2 className="text-xl font-semibold mb-2 text-center text-headline">
         {t('emergencyContacts')}
       </h2>
-      <p className="text-muted-foreground text-center text-sm mb-6">
+      <p className="text-muted-foreground text-center text-sm mb-2">
         {t('contactsOptional')}
+      </p>
+      <p className="text-muted-foreground/70 text-center text-xs mb-6">
+        This will be added to your card for your reference.
       </p>
 
       {/* Existing contacts */}
@@ -71,13 +107,20 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
             onChange={(e) => setNewName(e.target.value)}
             className="w-full p-4 text-base rounded-2xl bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
-          <input
-            type="tel"
-            placeholder={t('contactPhone')}
-            value={newPhone}
-            onChange={(e) => setNewPhone(e.target.value)}
-            className="w-full p-4 text-base rounded-2xl bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
-          />
+          <div>
+            <input
+              type="tel"
+              placeholder={t('contactPhone')}
+              value={newPhone}
+              onChange={(e) => handlePhoneChange(e.target.value)}
+              className={`w-full p-4 text-base rounded-2xl bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 ${
+                phoneError ? 'ring-2 ring-destructive/50' : 'focus:ring-primary/20'
+              }`}
+            />
+            {phoneError && (
+              <p className="text-destructive text-xs mt-1 pl-1">{phoneError}</p>
+            )}
+          </div>
           <button
             onClick={addContact}
             disabled={!newName.trim() || !newPhone.trim()}
