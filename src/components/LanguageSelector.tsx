@@ -14,8 +14,8 @@ export function LanguageSelector({ onSelect }: LanguageSelectorProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <h2 className="font-display text-2xl font-bold mb-6 text-center text-foreground">
+    <div className="w-full max-w-sm mx-auto">
+      <h2 className="text-xl font-semibold mb-6 text-center text-headline">
         {t('selectLanguage')}
       </h2>
       <div className="grid grid-cols-2 gap-3">
@@ -24,10 +24,10 @@ export function LanguageSelector({ onSelect }: LanguageSelectorProps) {
             key={lang}
             onClick={() => handleSelect(lang)}
             className={`
-              p-4 text-lg font-semibold border-2 rounded-sm transition-all duration-200
+              p-4 text-base font-medium rounded-2xl transition-all duration-200
               ${language === lang 
-                ? 'bg-secondary text-secondary-foreground border-secondary shadow-warm-md' 
-                : 'bg-card text-foreground border-foreground/20 hover:border-foreground/40 hover:shadow-warm'
+                ? 'bg-primary text-primary-foreground shadow-button' 
+                : 'bg-card text-foreground shadow-card hover:shadow-card-hover'
               }
             `}
           >

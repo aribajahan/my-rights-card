@@ -2,106 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Know Your Rights - Warm, Grounded Design System */
+/* Know Your Rights - Light, Modern Design System */
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Core palette - Warm and Trustworthy */
-    --deep-navy: 207 61% 15%;
-    --burnt-orange: 29 87% 57%;
-    --golden-yellow: 42 90% 69%;
-    --warm-cream: 48 52% 86%;
-    --charcoal: 0 0% 10%;
-    --pure-white: 0 0% 100%;
+    /* Core palette - Light and Airy */
+    --page-bg: 60 20% 97%;
+    --card-white: 0 0% 100%;
+    --text-primary: 208 39% 17%;
+    --text-headline: 207 61% 15%;
+    --accent-orange: 24 76% 53%;
+    --highlight-gold: 44 100% 70%;
+    --text-muted: 210 15% 50%;
     
     /* Semantic tokens */
-    --background: 48 52% 86%;
-    --foreground: 207 61% 15%;
+    --background: 60 20% 97%;
+    --foreground: 208 39% 17%;
 
-    --card: 48 52% 90%;
-    --card-foreground: 207 61% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 208 39% 17%;
 
-    --popover: 48 52% 90%;
-    --popover-foreground: 207 61% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 208 39% 17%;
 
-    --primary: 207 61% 15%;
-    --primary-foreground: 48 52% 86%;
+    --primary: 24 76% 53%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 29 87% 57%;
+    --secondary: 207 61% 15%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 48 40% 80%;
-    --muted-foreground: 207 40% 35%;
+    --muted: 60 10% 94%;
+    --muted-foreground: 210 15% 50%;
 
-    --accent: 42 90% 69%;
+    --accent: 44 100% 70%;
     --accent-foreground: 207 61% 15%;
 
     --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 207 30% 30%;
-    --input: 207 30% 30%;
-    --ring: 29 87% 57%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 24 76% 53%;
 
-    --radius: 0.25rem;
+    --radius: 1rem;
 
     /* Typography */
-    --font-display: 'Source Serif 4', Georgia, serif;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
 
-    /* Shadows - softer, warmer */
-    --shadow-soft: 4px 4px 0px hsl(var(--deep-navy) / 0.15);
-    --shadow-medium: 6px 6px 0px hsl(var(--deep-navy) / 0.2);
+    /* Shadows */
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-button: 0 2px 4px rgba(224, 120, 48, 0.2);
 
-    --sidebar-background: 48 52% 88%;
-    --sidebar-foreground: 207 61% 15%;
-    --sidebar-primary: 207 61% 15%;
-    --sidebar-primary-foreground: 48 52% 86%;
-    --sidebar-accent: 48 40% 82%;
-    --sidebar-accent-foreground: 207 61% 15%;
-    --sidebar-border: 207 30% 70%;
-    --sidebar-ring: 29 87% 57%;
+    --sidebar-background: 60 20% 97%;
+    --sidebar-foreground: 208 39% 17%;
+    --sidebar-primary: 24 76% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 60 10% 94%;
+    --sidebar-accent-foreground: 208 39% 17%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 24 76% 53%;
   }
 
   .dark {
-    --background: 207 61% 12%;
-    --foreground: 48 52% 86%;
+    --background: 220 20% 10%;
+    --foreground: 60 10% 94%;
 
-    --card: 207 50% 15%;
-    --card-foreground: 48 52% 86%;
+    --card: 220 20% 13%;
+    --card-foreground: 60 10% 94%;
 
-    --popover: 207 50% 15%;
-    --popover-foreground: 48 52% 86%;
+    --popover: 220 20% 13%;
+    --popover-foreground: 60 10% 94%;
 
-    --primary: 48 52% 86%;
-    --primary-foreground: 207 61% 15%;
+    --primary: 24 76% 53%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 29 87% 57%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 60 10% 94%;
+    --secondary-foreground: 207 61% 15%;
 
-    --muted: 207 40% 20%;
-    --muted-foreground: 48 40% 70%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 210 15% 60%;
 
-    --accent: 42 90% 69%;
+    --accent: 44 100% 70%;
     --accent-foreground: 207 61% 15%;
 
     --destructive: 0 50% 40%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 207 30% 25%;
-    --input: 207 30% 25%;
-    --ring: 29 87% 57%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 24 76% 53%;
 
-    --sidebar-background: 207 61% 10%;
-    --sidebar-foreground: 48 52% 86%;
-    --sidebar-primary: 29 87% 57%;
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 60 10% 94%;
+    --sidebar-primary: 24 76% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 207 40% 18%;
-    --sidebar-accent-foreground: 48 52% 86%;
-    --sidebar-border: 207 30% 20%;
-    --sidebar-ring: 29 87% 57%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 60 10% 94%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 24 76% 53%;
   }
 }
 
@@ -111,65 +112,74 @@
   }
 
   html {
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
   }
 
   body {
     @apply bg-background text-foreground antialiased;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    @apply font-bold tracking-tight;
+    font-family: var(--font-sans);
+    @apply font-semibold tracking-tight;
+    color: hsl(var(--text-headline));
+  }
+
+  p {
+    @apply leading-relaxed;
   }
 }
 
 @layer components {
-  /* Warm button styles */
-  .btn-warm {
-    @apply relative inline-flex items-center justify-center px-6 py-3 text-base font-semibold transition-all duration-200 rounded-sm;
-    font-family: var(--font-body);
+  /* Modern card - white, floating, no borders */
+  .card-modern {
+    @apply bg-card p-6 rounded-2xl;
+    box-shadow: var(--shadow-card);
   }
 
-  .btn-warm:hover {
-    transform: translateY(-1px);
+  .card-modern:hover {
+    box-shadow: var(--shadow-card-hover);
   }
 
-  .btn-warm:active {
-    transform: translateY(0);
-  }
-
+  /* Primary button - orange */
   .btn-primary {
-    @apply btn-warm bg-primary text-primary-foreground border-2 border-primary;
-    box-shadow: var(--shadow-soft);
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-xl bg-primary text-primary-foreground transition-all duration-200;
+    box-shadow: var(--shadow-button);
   }
 
   .btn-primary:hover {
-    box-shadow: var(--shadow-medium);
+    @apply opacity-90;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(224, 120, 48, 0.25);
   }
 
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-primary:disabled {
+    @apply opacity-50 cursor-not-allowed;
+    transform: none;
+  }
+
+  /* Secondary button - outline style */
   .btn-secondary {
-    @apply btn-warm bg-secondary text-secondary-foreground border-2 border-secondary;
-    box-shadow: var(--shadow-soft);
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-xl bg-card text-foreground transition-all duration-200;
+    box-shadow: var(--shadow-card);
   }
 
-  .btn-outline {
-    @apply btn-warm bg-transparent border-2 border-foreground text-foreground;
+  .btn-secondary:hover {
+    box-shadow: var(--shadow-card-hover);
   }
 
-  .btn-outline:hover {
-    @apply bg-foreground text-background;
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 text-base font-medium rounded-xl text-muted-foreground transition-colors;
   }
 
-  /* Card with subtle shadow */
-  .card-warm {
-    @apply bg-card border-2 border-foreground/20 p-6 rounded-sm;
-    box-shadow: var(--shadow-soft);
-  }
-
-  /* Golden accent line */
-  .accent-line {
-    @apply h-1 bg-accent;
+  .btn-ghost:hover {
+    @apply text-foreground bg-muted;
   }
 
   /* Info page content */
@@ -178,81 +188,47 @@
   }
 
   .info-content h2 {
-    @apply text-2xl mb-4 text-foreground;
-    font-family: var(--font-display);
+    @apply text-xl font-semibold mb-4;
+    color: hsl(var(--text-headline));
   }
 
   .info-content p {
-    @apply text-lg leading-relaxed mb-4 text-foreground;
+    @apply text-base leading-relaxed mb-4;
+    color: hsl(var(--text-primary));
   }
 
   .info-content ul {
-    @apply space-y-2 mb-6;
+    @apply space-y-3 mb-6;
   }
 
   .info-content li {
-    @apply text-lg;
+    @apply text-base;
+    color: hsl(var(--text-primary));
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-display);
+  .font-sans {
+    font-family: var(--font-sans);
   }
 
-  .font-body {
-    font-family: var(--font-body);
+  .text-headline {
+    color: hsl(var(--text-headline));
   }
 
-  .text-deep-navy {
-    color: hsl(var(--deep-navy));
+  .text-body {
+    color: hsl(var(--text-primary));
   }
 
-  .text-burnt-orange {
-    color: hsl(var(--burnt-orange));
+  .bg-page {
+    background-color: hsl(var(--page-bg));
   }
 
-  .text-golden-yellow {
-    color: hsl(var(--golden-yellow));
+  .shadow-card {
+    box-shadow: var(--shadow-card);
   }
 
-  .bg-deep-navy {
-    background-color: hsl(var(--deep-navy));
-  }
-
-  .bg-burnt-orange {
-    background-color: hsl(var(--burnt-orange));
-  }
-
-  .bg-golden-yellow {
-    background-color: hsl(var(--golden-yellow));
-  }
-
-  .bg-warm-cream {
-    background-color: hsl(var(--warm-cream));
-  }
-
-  .bg-charcoal {
-    background-color: hsl(var(--charcoal));
-  }
-
-  .border-deep-navy {
-    border-color: hsl(var(--deep-navy));
-  }
-
-  .border-burnt-orange {
-    border-color: hsl(var(--burnt-orange));
-  }
-
-  .border-golden-yellow {
-    border-color: hsl(var(--golden-yellow));
-  }
-
-  .shadow-warm {
-    box-shadow: var(--shadow-soft);
-  }
-
-  .shadow-warm-md {
-    box-shadow: var(--shadow-medium);
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
   }
 }

@@ -8,7 +8,7 @@ import { EmergencyContactForm } from '@/components/EmergencyContactForm';
 import { RightsPreview } from '@/components/RightsPreview';
 import { RightsCard } from '@/components/RightsCard';
 import { ImmigrationStatus, EmergencyContact } from '@/types/card';
-import { ArrowLeft, ArrowRight, Download, Share2, RotateCcw, Check } from 'lucide-react';
+import { ArrowLeft, Download, Share2, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
 
 type Step = 'language' | 'status' | 'contacts' | 'preview' | 'card';
@@ -123,7 +123,7 @@ export default function PrepareCard() {
       case 'card':
         return (
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-sm overflow-hidden border-2 border-foreground/20 rounded-sm shadow-warm-md">
+            <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-card-hover">
               <div className="transform scale-[0.5] origin-top-left w-[200%]">
                 <RightsCard ref={cardRef} status={status} contacts={contacts} />
               </div>
@@ -138,26 +138,26 @@ export default function PrepareCard() {
   const renderNavButtons = () => {
     if (step === 'card') {
       return (
-        <div className="space-y-3">
+        <div className="space-y-2">
           <button
             onClick={saveCard}
-            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-primary text-primary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
           >
-            <Download size={20} />
+            <Download size={18} />
             {t('saveCard')}
           </button>
           <button
             onClick={shareCard}
-            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-secondary text-secondary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground rounded-xl shadow-card hover:shadow-card-hover transition-all duration-200"
           >
-            <Share2 size={20} />
+            <Share2 size={18} className="opacity-50" />
             {t('shareCard')}
           </button>
           <button
             onClick={startOver}
-            className="w-full flex items-center justify-center gap-3 p-4 text-base font-medium bg-card text-foreground border-2 border-foreground/20 rounded-sm transition-all duration-200 hover:bg-muted"
+            className="w-full flex items-center justify-center gap-2 p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <RotateCcw size={20} />
+            <RotateCcw size={16} />
             {t('startOver')}
           </button>
         </div>
@@ -169,14 +169,13 @@ export default function PrepareCard() {
     const showGenerate = step === 'preview';
 
     return (
-      <div className="space-y-3">
+      <div className="space-y-2">
         {showGenerate && (
           <button
             onClick={generateCard}
             disabled={isGenerating}
-            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-primary text-primary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90 disabled:opacity-50"
           >
-            <Check size={20} />
             {t('generateCard')}
           </button>
         )}
@@ -184,17 +183,16 @@ export default function PrepareCard() {
         {showNext && (
           <button
             onClick={goNext}
-            className="w-full flex items-center justify-center gap-3 p-4 text-base font-semibold bg-primary text-primary-foreground rounded-sm transition-all duration-200 hover:shadow-warm-md"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
           >
             {t('next')}
-            <ArrowRight size={20} />
           </button>
         )}
 
         {showSkip && (
           <button
             onClick={skipStep}
-            className="w-full p-3 text-muted-foreground font-medium hover:text-foreground transition-colors"
+            className="w-full p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             {t('skip')}
           </button>
@@ -206,23 +204,23 @@ export default function PrepareCard() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background border-b border-foreground/10">
+      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
         <div className="container flex items-center justify-between p-4">
           <button
             onClick={goBack}
-            className="flex items-center gap-2 font-medium text-foreground hover:text-secondary transition-colors"
+            className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={18} />
             {t('back')}
           </button>
 
-          {/* Progress indicator */}
-          <div className="flex gap-2">
+          {/* Progress dots */}
+          <div className="flex gap-1.5">
             {steps.map((s, i) => (
               <div
                 key={s}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                  i <= currentStepIndex ? 'bg-secondary' : 'bg-muted'
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  i <= currentStepIndex ? 'bg-primary' : 'bg-muted'
                 }`}
               />
             ))}
@@ -231,15 +229,15 @@ export default function PrepareCard() {
       </header>
 
       {/* Content */}
-      <main className="container py-8 px-4 pb-48">
+      <main className="container py-6 px-4 pb-40">
         <div className="animate-fade-in">
           {renderStepContent()}
         </div>
       </main>
 
-      {/* Footer with navigation */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-foreground/10 p-4">
-        <div className="container max-w-md mx-auto">
+      {/* Footer */}
+      <footer className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm p-4">
+        <div className="container max-w-sm mx-auto">
           {renderNavButtons()}
         </div>
       </footer>

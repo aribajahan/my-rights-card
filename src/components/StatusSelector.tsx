@@ -20,11 +20,11 @@ export function StatusSelector({ value, onChange }: StatusSelectorProps) {
   const { t } = useLanguage();
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <h2 className="font-display text-2xl font-bold mb-2 text-center text-foreground">
+    <div className="w-full max-w-sm mx-auto">
+      <h2 className="text-xl font-semibold mb-2 text-center text-headline">
         {t('selectStatus')}
       </h2>
-      <p className="text-muted-foreground text-center mb-6">
+      <p className="text-muted-foreground text-center text-sm mb-6">
         {t('statusOptional')}
       </p>
       <div className="space-y-2">
@@ -33,10 +33,10 @@ export function StatusSelector({ value, onChange }: StatusSelectorProps) {
             key={option.key}
             onClick={() => onChange(option.key)}
             className={`
-              w-full p-4 text-left text-base font-medium border-2 rounded-sm transition-all duration-200
+              w-full p-4 text-left text-base font-medium rounded-2xl transition-all duration-200
               ${value === option.key 
-                ? 'bg-secondary text-secondary-foreground border-secondary' 
-                : 'bg-card text-foreground border-foreground/20 hover:border-foreground/40'
+                ? 'bg-primary text-primary-foreground shadow-button' 
+                : 'bg-card text-foreground shadow-card hover:shadow-card-hover'
               }
             `}
           >

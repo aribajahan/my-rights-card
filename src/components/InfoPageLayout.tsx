@@ -15,32 +15,31 @@ export function InfoPageLayout({ title, children }: InfoPageLayoutProps) {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background border-b border-foreground/10">
+      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
         <div className="container flex items-center justify-between p-4">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 font-medium text-foreground hover:text-secondary transition-colors"
+            className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={18} />
             {t('back')}
           </button>
           <Link
             to="/"
-            className="p-2 text-foreground hover:text-secondary transition-colors"
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label={t('home')}
           >
-            <Home size={20} />
+            <Home size={18} />
           </Link>
         </div>
       </header>
 
       {/* Content */}
-      <main className="container py-8 px-4 pb-24">
-        <article className="max-w-2xl mx-auto">
-          <h1 className="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight text-foreground">
+      <main className="container py-6 px-4 pb-24">
+        <article className="max-w-lg mx-auto">
+          <h1 className="text-2xl font-semibold mb-6 text-headline leading-tight">
             {title}
           </h1>
-          <div className="h-1 w-12 bg-accent mb-8" />
           <div className="info-content space-y-6">
             {children}
           </div>
