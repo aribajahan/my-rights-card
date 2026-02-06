@@ -6,21 +6,22 @@ export default function Index() {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-        <div className="w-full max-w-sm text-center">
+        <div className="w-full max-w-md text-center">
           {/* Headline with overlapping brush script accent */}
-          <div className="mb-10 relative">
+          <div className="mb-14 relative">
             <p 
-              className="text-muted-foreground/40 text-4xl uppercase -mb-4 relative z-0"
+              className="text-muted-foreground/40 text-5xl uppercase -mb-6 relative z-0"
               style={{ fontFamily: 'Caveat, cursive' }}
             >
               know your rights
             </p>
-            <h1 className="text-6xl tracking-wide text-headline mb-4 relative z-10">
+            <h1 className="text-7xl tracking-wide text-headline mb-4 relative z-10">
               Stay Ready
             </h1>
-            <p className="text-foreground text-lg font-medium">
+            <p className="text-foreground text-xl font-medium">
               Know what to say if ICE comes to your door, car, or workplace.
             </p>
+            <div className="w-12 h-1 bg-primary mx-auto mt-4" />
           </div>
 
           {/* Action cards - simplified */}
