@@ -19,62 +19,56 @@ const getStatusBadge = (status: ImmigrationStatus): string => {
   }
 };
 
-// Bold graphic icons with human figures and brick red accents
+// Bold linocut/woodcut style icons - white on red, thick strokes, solid fills
 const DoorIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Door frame */}
-    <rect x="6" y="4" width="14" height="24" rx="1" stroke="#1A1A1A" strokeWidth="2.5"/>
-    <circle cx="17" cy="16" r="1.2" fill="#1A1A1A"/>
-    {/* Person silhouette behind door */}
-    <circle cx="24" cy="10" r="3" stroke="#1A1A1A" strokeWidth="2"/>
-    <path d="M24 13V20" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
-    {/* Stop hand - brick red accent */}
-    <path d="M26 15L28 13M26 15L28 17M26 15H30" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
-    <circle cx="27" cy="15" r="3" fill="#B8352E"/>
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Bold door shape */}
+    <rect x="8" y="4" width="18" height="32" rx="2" fill="white"/>
+    {/* Door panel detail */}
+    <rect x="12" y="8" width="10" height="12" rx="1" stroke="#B91C1C" strokeWidth="2"/>
+    <rect x="12" y="24" width="10" height="8" rx="1" stroke="#B91C1C" strokeWidth="2"/>
+    {/* Door handle */}
+    <circle cx="20" cy="20" r="2" fill="#B91C1C"/>
+    {/* Bold X blocking */}
+    <path d="M26 8L38 20M38 8L26 20" stroke="white" strokeWidth="4" strokeLinecap="round"/>
   </svg>
 );
 
 const SilenceIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Head profile */}
-    <ellipse cx="14" cy="14" rx="8" ry="10" stroke="#1A1A1A" strokeWidth="2.5"/>
-    {/* Eye */}
-    <circle cx="11" cy="12" r="1.5" fill="#1A1A1A"/>
-    {/* Mouth line */}
-    <path d="M9 18H15" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round"/>
-    {/* Finger over lips - brick red accent */}
-    <rect x="18" y="10" width="4" height="14" rx="2" fill="#B8352E"/>
-    <path d="M20 8V24" stroke="#B8352E" strokeWidth="4" strokeLinecap="round"/>
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Bold lips shape */}
+    <ellipse cx="20" cy="20" rx="16" ry="10" fill="white"/>
+    {/* Mouth line sealed */}
+    <path d="M8 20H32" stroke="#B91C1C" strokeWidth="4" strokeLinecap="round"/>
+    {/* Bold strike-through */}
+    <path d="M6 32L34 8" stroke="white" strokeWidth="4" strokeLinecap="round"/>
   </svg>
 );
 
 const HandIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Reaching hand (left) */}
-    <path d="M4 16H10" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M6 13L10 16L6 19" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    {/* Blocking palm (right) - brick red accent */}
-    <path d="M20 8V12" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M24 10V14" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M28 10V14" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M16 12V18" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M14 16C14 16 14 24 22 24C30 24 30 16 30 16V14C30 14 30 10 26 10" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
-    {/* X block indicator */}
-    <path d="M12 12L16 16M16 12L12 16" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Bold open palm - stop gesture */}
+    <path d="M20 4V14" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+    <path d="M12 8V16" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+    <path d="M28 8V16" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+    <path d="M6 14V20" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+    <path d="M34 14V20" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+    {/* Palm base */}
+    <path d="M6 20C6 20 6 36 20 36C34 36 34 20 34 20" stroke="white" strokeWidth="5" strokeLinecap="round"/>
   </svg>
 );
 
 const PhoneIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Person silhouette */}
-    <circle cx="10" cy="8" r="4" stroke="#1A1A1A" strokeWidth="2.5"/>
-    <path d="M10 12V22" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M6 26L10 22L14 26" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    {/* Phone at ear */}
-    <rect x="12" y="6" width="3" height="8" rx="1" stroke="#1A1A1A" strokeWidth="2"/>
-    {/* Speech bubble - brick red accent (lawyer) */}
-    <path d="M20 6H28C29 6 30 7 30 8V14C30 15 29 16 28 16H24L22 19V16H20C19 16 18 15 18 14V8C18 7 19 6 20 6Z" fill="#B8352E"/>
-    <path d="M21 10H27M21 13H25" stroke="#F5F2E8" strokeWidth="1.5" strokeLinecap="round"/>
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Bold phone handset */}
+    <path d="M8 8C8 8 6 8 6 12V16C6 18 8 18 8 18" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+    <path d="M8 18L12 22L16 18" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M16 18C16 18 18 18 18 22V26C18 28 16 28 16 28" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+    {/* Cord/connection */}
+    <path d="M8 12C12 12 12 24 16 24" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    {/* Signal waves */}
+    <path d="M24 10C26 10 28 12 28 16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M26 6C30 6 34 10 34 18" stroke="white" strokeWidth="3" strokeLinecap="round"/>
   </svg>
 );
 
@@ -176,13 +170,12 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                   overflow: 'hidden',
                 }}
               >
-                {/* Icon box - cream with black border */}
+                {/* Icon box - white on red background */}
                 <div
                   style={{
                     width: '88px',
                     height: '88px',
-                    backgroundColor: '#F5F2E8',
-                    border: '3px solid #1A1A1A',
+                    backgroundColor: '#B91C1C',
                     borderRadius: '12px 0 0 12px',
                     display: 'flex',
                     alignItems: 'center',
