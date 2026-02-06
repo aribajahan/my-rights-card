@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 export default function Index() {
   return <div className="min-h-screen bg-background flex flex-col">
@@ -22,19 +21,17 @@ export default function Index() {
             </p>
           </div>
 
-          {/* Action buttons - minimal corner bracket style */}
+          {/* Action buttons */}
           <div className="space-y-6 mb-16">
-            <Link to="/prepare" className="btn-bracket w-full text-center group">
-              <span className="flex items-center justify-center gap-3">
-                PREPARE MY CARD
-                <ArrowRight size={18} className="opacity-50 group-hover:translate-x-1 transition-transform" />
-              </span>
+            <Link to="/prepare" className="btn-primary">
+              PREPARE MY CARD
             </Link>
 
-            <Link to="/rights" className="btn-text w-full text-center group flex items-center justify-center gap-2">
-              REVIEW MY RIGHTS
-              <ArrowRight size={16} className="opacity-40 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="text-center">
+              <Link to="/rights" className="btn-link">
+                REVIEW MY RIGHTS
+              </Link>
+            </div>
           </div>
 
           {/* Hotline - bracket button style */}
