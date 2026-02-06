@@ -80,7 +80,7 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
         {contacts.map((contact) => (
           <div
             key={contact.id}
-            className="flex items-center justify-between p-4 bg-card rounded-2xl shadow-card"
+            className="flex items-center justify-between p-4 bg-card shadow-card"
           >
             <div>
               <p className="font-medium text-foreground">{contact.name}</p>
@@ -88,7 +88,7 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
             </div>
             <button
               onClick={() => removeContact(contact.id)}
-              className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-xl hover:bg-muted"
+              className="p-2 text-muted-foreground hover:text-foreground transition-colors hover:bg-muted"
               aria-label={t('removeContact')}
             >
               <X size={18} />
@@ -105,7 +105,7 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
             placeholder={t('contactName')}
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            className="w-full p-4 text-base rounded-2xl bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="w-full p-4 text-base bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-b-4 focus:border-foreground transition-all"
           />
           <div>
             <input
@@ -113,8 +113,8 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
               placeholder={t('contactPhone')}
               value={newPhone}
               onChange={(e) => handlePhoneChange(e.target.value)}
-              className={`w-full p-4 text-base rounded-2xl bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 ${
-                phoneError ? 'ring-2 ring-destructive/50' : 'focus:ring-primary/20'
+              className={`w-full p-4 text-base bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none transition-all ${
+                phoneError ? 'border-b-4 border-destructive' : 'focus:border-b-4 focus:border-foreground'
               }`}
             />
             {phoneError && (
@@ -124,7 +124,7 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
           <button
             onClick={addContact}
             disabled={!newName.trim() || !newPhone.trim()}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground rounded-2xl shadow-card hover:shadow-card-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground shadow-card hover:shadow-card-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
           >
             <Plus size={18} className="opacity-50" />
             {t('addContact')}

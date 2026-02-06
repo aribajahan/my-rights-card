@@ -43,7 +43,7 @@ export function DocumentForm({ value, onChange }: DocumentFormProps) {
             key={option.key}
             onClick={() => handleTypeSelect(option.key)}
             className={`
-              w-full p-4 text-left text-base font-medium rounded-2xl transition-all duration-200
+              w-full p-4 text-left text-base font-medium transition-all duration-200
               ${value.type === option.key 
                 ? 'bg-primary text-primary-foreground shadow-button' 
                 : 'bg-card text-foreground shadow-card hover:shadow-card-hover'
@@ -66,7 +66,7 @@ export function DocumentForm({ value, onChange }: DocumentFormProps) {
             placeholder="A-number or document ID"
             value={value.number}
             onChange={(e) => handleNumberChange(e.target.value)}
-            className="w-full p-4 text-base rounded-2xl bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="w-full p-4 text-base bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-b-4 focus:border-foreground transition-all"
           />
           <p className="text-xs text-muted-foreground text-center">
             This is only stored on your phone, never shared.

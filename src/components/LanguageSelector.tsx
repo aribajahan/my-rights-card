@@ -24,7 +24,7 @@ export function LanguageSelector({ onSelect }: LanguageSelectorProps) {
             key={lang}
             onClick={() => handleSelect(lang)}
             className={`
-              p-4 text-base font-medium rounded-2xl transition-all duration-200
+              p-4 text-base font-medium transition-all duration-200
               ${language === lang 
                 ? 'bg-primary text-primary-foreground shadow-button' 
                 : 'bg-card text-foreground shadow-card hover:shadow-card-hover'

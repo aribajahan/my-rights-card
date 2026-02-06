@@ -131,14 +131,32 @@
     @apply bg-card shadow-card;
   }
   
-  /* Primary button with shadow - no rounded corners */
+  /* Primary button with underline hover effect */
   .btn-primary {
-    @apply bg-primary text-primary-foreground font-semibold px-5 py-3 shadow-button hover:opacity-90 transition-all duration-200;
+    @apply bg-primary text-primary-foreground font-semibold px-5 py-3 shadow-button transition-all duration-200 relative;
+  }
+  
+  .btn-primary::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[3px] bg-primary-foreground scale-x-0 origin-left transition-transform duration-200;
+  }
+  
+  .btn-primary:hover::after {
+    @apply scale-x-100;
   }
   
   /* Secondary/outline button - no rounded corners */
   .btn-secondary {
-    @apply bg-card text-foreground font-medium px-5 py-3 shadow-card hover:shadow-card-hover transition-all duration-200;
+    @apply bg-card text-foreground font-medium px-5 py-3 shadow-card transition-all duration-200 relative;
+  }
+  
+  .btn-secondary::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[3px] bg-foreground scale-x-0 origin-left transition-transform duration-200;
+  }
+  
+  .btn-secondary:hover::after {
+    @apply scale-x-100;
   }
   
   /* Headline color */
@@ -149,6 +167,42 @@
   /* Hotline accent color - brick red for phone numbers only */
   .text-hotline {
     color: hsl(var(--hotline));
+  }
+  
+  /* Oversized pull quote styling */
+  .pull-quote {
+    @apply relative pl-10;
+  }
+  
+  .pull-quote::before {
+    content: '"';
+    @apply absolute left-0 top-0 text-5xl leading-none text-muted-foreground/30 font-serif;
+  }
+  
+  /* Numbered list with bold oversized numbers */
+  .numbered-list {
+    counter-reset: item;
+    @apply space-y-2;
+  }
+  
+  .numbered-list li {
+    counter-increment: item;
+    @apply flex gap-3 items-start;
+  }
+  
+  .numbered-list li::before {
+    content: counter(item, decimal-leading-zero);
+    @apply text-lg font-bold text-foreground min-w-[2rem];
+  }
+  
+  /* Section divider */
+  .section-divider {
+    @apply w-full h-px bg-border my-6;
+  }
+  
+  /* Section marker - small black square */
+  .section-marker {
+    @apply inline-block w-2 h-2 bg-foreground mr-2;
   }
   
   /* Info page content styles */

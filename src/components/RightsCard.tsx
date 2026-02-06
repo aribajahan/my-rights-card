@@ -144,7 +144,7 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                   backgroundColor: '#F5F2E8',
                   color: '#1A1A1A',
                   padding: '8px 16px',
-                  borderRadius: '4px',
+                  borderRadius: '0',
                   fontSize: '11px',
                   fontWeight: 600,
                   letterSpacing: '0.05em',
@@ -180,7 +180,7 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                 style={{
                   display: 'flex',
                   height: '88px',
-                  borderRadius: '12px',
+                  borderRadius: '0',
                   overflow: 'hidden',
                 }}
               >
@@ -190,7 +190,7 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                     width: '88px',
                     height: '88px',
                     backgroundColor: '#B91C1C',
-                    borderRadius: '12px 0 0 12px',
+                    borderRadius: '0',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -204,9 +204,9 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                   style={{
                     flex: 1,
                     backgroundColor: '#F5F2E8',
-                    border: '3px solid #B8352E',
+                    border: '4px solid #1A1A1A',
                     borderLeft: 'none',
-                    borderRadius: '0 12px 12px 0',
+                    borderRadius: '0',
                     display: 'flex',
                     alignItems: 'center',
                     padding: '0 20px',
@@ -231,8 +231,8 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
           {/* Calm bar - black */}
           <div
             style={{
-              backgroundColor: '#B8352E',
-              borderRadius: '12px',
+              backgroundColor: '#1A1A1A',
+              borderRadius: '0',
               padding: '16px 24px',
               marginBottom: '16px',
             }}
@@ -289,8 +289,8 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
           {/* Hotline bar - black, at bottom */}
           <div
             style={{
-              backgroundColor: '#B8352E',
-              borderRadius: '12px',
+              backgroundColor: '#1A1A1A',
+              borderRadius: '0',
               padding: '16px 24px',
               display: 'flex',
               justifyContent: 'space-between',
