@@ -136,42 +136,66 @@
     color: hsl(var(--hotline));
   }
   
-  /* Corner bracket button - minimal, gallery-style */
+  /* Corner bracket button - gallery-style with prominent corners */
   .btn-bracket {
-    @apply relative inline-flex items-center justify-center px-8 py-4 font-bold text-foreground bg-transparent transition-all duration-200;
+    @apply relative inline-flex items-center justify-center px-10 py-5 font-bold text-foreground bg-transparent transition-all duration-300;
   }
   
   .btn-bracket::before,
   .btn-bracket::after {
     content: '';
-    @apply absolute w-4 h-4 border-foreground transition-all duration-200;
+    @apply absolute w-6 h-6 transition-all duration-300;
+    border-color: hsl(var(--foreground));
   }
   
   .btn-bracket::before {
-    @apply top-0 left-0 border-t-2 border-l-2;
+    @apply top-0 left-0;
+    border-top: 3px solid;
+    border-left: 3px solid;
   }
   
   .btn-bracket::after {
-    @apply bottom-0 right-0 border-b-2 border-r-2;
+    @apply bottom-0 right-0;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
   }
   
+  /* On hover: brackets extend to full border */
   .btn-bracket:hover::before,
   .btn-bracket:hover::after {
-    @apply w-6 h-6;
+    @apply w-full h-full;
   }
   
-  /* Secondary button - text only with underline on hover */
+  .btn-bracket:hover {
+    @apply bg-accent/50;
+  }
+  
+  /* Active/selected state - red brackets */
+  .btn-bracket.active::before,
+  .btn-bracket.active::after {
+    border-color: hsl(var(--hotline));
+  }
+  
+  .btn-bracket.active {
+    color: hsl(var(--hotline));
+  }
+  
+  /* Secondary button - text with thin underline */
   .btn-text {
     @apply relative inline-flex items-center justify-center py-3 font-semibold text-foreground bg-transparent transition-all duration-200;
   }
   
   .btn-text::after {
     content: '';
-    @apply absolute bottom-2 left-0 w-full h-[1px] bg-foreground scale-x-0 origin-left transition-transform duration-200;
+    @apply absolute bottom-1 left-0 w-full h-[1px] bg-foreground/40 transition-all duration-200;
   }
   
   .btn-text:hover::after {
-    @apply scale-x-100;
+    @apply h-[2px] bg-foreground;
+  }
+  
+  .btn-text:hover {
+    @apply font-bold;
   }
   
   /* Minimal callout - just left border, no background */
