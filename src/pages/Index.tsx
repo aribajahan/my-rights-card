@@ -8,22 +8,21 @@ export default function Index() {
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-sm text-center">
-          {/* Headline with background image */}
-          <div className="relative mb-10">
-            <img 
-              src={heroFist} 
-              alt="" 
-              className="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none"
-              aria-hidden="true"
-            />
-            <div className="relative py-8">
-              <h1 className="text-5xl tracking-wide text-headline mb-3">
-                Know Your Rights
-              </h1>
-              <p className="text-foreground text-lg font-medium">
-                Be prepared. Stay calm. Know your rights.
-              </p>
-            </div>
+          {/* Hero image */}
+          <img 
+            src={heroFist} 
+            alt="Raised fist symbol of solidarity" 
+            className="h-36 w-auto object-contain mb-6"
+          />
+
+          {/* Headline */}
+          <div className="mb-10">
+            <h1 className="text-5xl tracking-wide text-headline mb-3">
+              Know Your Rights
+            </h1>
+            <p className="text-foreground text-lg font-medium">
+              Be prepared. Stay calm. Know your rights.
+            </p>
           </div>
 
           {/* Action cards */}
