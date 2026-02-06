@@ -98,7 +98,7 @@
   }
   
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-semibold;
     font-family: 'DM Sans', system-ui, sans-serif;
   }
   
@@ -110,8 +110,16 @@
   }
   
   h4, h5, h6 {
-    @apply font-semibold;
+    @apply font-bold;
     color: hsl(var(--headline));
+  }
+  
+  p, span, li, label {
+    @apply font-semibold;
+  }
+  
+  button {
+    @apply font-bold;
   }
 }
 
