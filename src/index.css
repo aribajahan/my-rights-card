@@ -258,17 +258,41 @@
     font-family: Georgia, serif;
   }
   
-  /* Menu item - minimal with subtle separator */
+  /* Menu item - minimal with bracket hover */
   .menu-item {
-    @apply flex items-center justify-between py-5 border-b border-border/50 transition-colors duration-200;
+    @apply relative flex items-center justify-between py-5 border-b border-border/50 transition-all duration-300;
+  }
+  
+  .menu-item::before,
+  .menu-item::after {
+    content: '';
+    @apply absolute w-3 h-3 transition-all duration-300 opacity-0;
+    border-color: hsl(var(--foreground));
+  }
+  
+  .menu-item::before {
+    @apply top-2 left-0;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  
+  .menu-item::after {
+    @apply bottom-2 right-0;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
   }
   
   .menu-item:last-child {
     @apply border-b-0;
   }
   
+  .menu-item:hover::before,
+  .menu-item:hover::after {
+    @apply opacity-100 w-4 h-4;
+  }
+  
   .menu-item:hover {
-    @apply text-muted-foreground;
+    @apply bg-accent/30;
   }
   
   /* Section divider */
