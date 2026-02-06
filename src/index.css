@@ -126,39 +126,6 @@
 }
 
 @layer components {
-  /* Card styling with subtle shadow - no rounded corners */
-  .card-elevated {
-    @apply bg-card shadow-card;
-  }
-  
-  /* Primary button with underline hover effect */
-  .btn-primary {
-    @apply bg-primary text-primary-foreground font-semibold px-5 py-3 shadow-button transition-all duration-200 relative;
-  }
-  
-  .btn-primary::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-full h-[3px] bg-primary-foreground scale-x-0 origin-left transition-transform duration-200;
-  }
-  
-  .btn-primary:hover::after {
-    @apply scale-x-100;
-  }
-  
-  /* Secondary/outline button - no rounded corners */
-  .btn-secondary {
-    @apply bg-card text-foreground font-medium px-5 py-3 shadow-card transition-all duration-200 relative;
-  }
-  
-  .btn-secondary::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-full h-[3px] bg-foreground scale-x-0 origin-left transition-transform duration-200;
-  }
-  
-  .btn-secondary:hover::after {
-    @apply scale-x-100;
-  }
-  
   /* Headline color */
   .text-headline {
     color: hsl(var(--headline));
@@ -169,45 +136,81 @@
     color: hsl(var(--hotline));
   }
   
-  /* Oversized pull quote styling */
+  /* Corner bracket button - minimal, gallery-style */
+  .btn-bracket {
+    @apply relative inline-flex items-center justify-center px-8 py-4 font-bold text-foreground bg-transparent transition-all duration-200;
+  }
+  
+  .btn-bracket::before,
+  .btn-bracket::after {
+    content: '';
+    @apply absolute w-4 h-4 border-foreground transition-all duration-200;
+  }
+  
+  .btn-bracket::before {
+    @apply top-0 left-0 border-t-2 border-l-2;
+  }
+  
+  .btn-bracket::after {
+    @apply bottom-0 right-0 border-b-2 border-r-2;
+  }
+  
+  .btn-bracket:hover::before,
+  .btn-bracket:hover::after {
+    @apply w-6 h-6;
+  }
+  
+  /* Secondary button - text only with underline on hover */
+  .btn-text {
+    @apply relative inline-flex items-center justify-center py-3 font-semibold text-foreground bg-transparent transition-all duration-200;
+  }
+  
+  .btn-text::after {
+    content: '';
+    @apply absolute bottom-2 left-0 w-full h-[1px] bg-foreground scale-x-0 origin-left transition-transform duration-200;
+  }
+  
+  .btn-text:hover::after {
+    @apply scale-x-100;
+  }
+  
+  /* Minimal callout - just left border, no background */
+  .callout-minimal {
+    @apply pl-4 border-l-2 border-foreground;
+  }
+  
+  /* Pull quote with large quotation mark */
   .pull-quote {
-    @apply relative pl-10;
+    @apply relative pl-8;
   }
   
   .pull-quote::before {
     content: '"';
-    @apply absolute left-0 top-0 text-5xl leading-none text-muted-foreground/30 font-serif;
+    @apply absolute left-0 -top-2 text-4xl leading-none text-muted-foreground/40;
+    font-family: Georgia, serif;
   }
   
-  /* Numbered list with bold oversized numbers */
-  .numbered-list {
-    counter-reset: item;
-    @apply space-y-2;
+  /* Menu item - minimal with subtle separator */
+  .menu-item {
+    @apply flex items-center justify-between py-5 border-b border-border/50 transition-colors duration-200;
   }
   
-  .numbered-list li {
-    counter-increment: item;
-    @apply flex gap-3 items-start;
+  .menu-item:last-child {
+    @apply border-b-0;
   }
   
-  .numbered-list li::before {
-    content: counter(item, decimal-leading-zero);
-    @apply text-lg font-bold text-foreground min-w-[2rem];
+  .menu-item:hover {
+    @apply text-muted-foreground;
   }
   
   /* Section divider */
   .section-divider {
-    @apply w-full h-px bg-border my-6;
-  }
-  
-  /* Section marker - small black square */
-  .section-marker {
-    @apply inline-block w-2 h-2 bg-foreground mr-2;
+    @apply w-full h-px bg-border/50 my-8;
   }
   
   /* Info page content styles */
   .info-content h2 {
-    @apply text-xl font-semibold mb-4;
+    @apply text-lg font-semibold mb-3 mt-8 first:mt-0;
     color: hsl(var(--headline));
   }
 
@@ -216,11 +219,15 @@
   }
 
   .info-content ul {
-    @apply space-y-2 mb-6;
+    @apply space-y-3 mb-6;
   }
 
   .info-content li {
     @apply text-base;
+  }
+  
+  .info-content section {
+    @apply mb-8;
   }
 }
 

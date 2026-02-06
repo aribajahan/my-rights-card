@@ -18,7 +18,7 @@ export default function ReviewRights() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="px-4 py-4">
+      <header className="px-6 py-6">
         <Link
           to="/"
           className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -29,30 +29,30 @@ export default function ReviewRights() {
       </header>
 
       {/* Main content */}
-      <main className="px-4 pb-8">
+      <main className="px-6 pb-12">
         <div className="max-w-md mx-auto">
-          <h1 className="text-3xl tracking-wide text-headline mb-6">
+          <h1 className="text-3xl tracking-wide text-headline mb-10">
             Review My Rights
           </h1>
 
-          {/* Section list */}
-          <div className="bg-card shadow-card overflow-hidden divide-y divide-border">
+          {/* Section list - minimal, no card */}
+          <nav>
             {sections.map((section) => (
               <Link
                 key={section.key}
                 to={section.path}
-                className="flex items-center justify-between px-4 py-4 hover:bg-muted/30 transition-colors"
+                className="menu-item group"
               >
-                <span className="font-medium">{section.label}</span>
-                <ChevronRight size={20} className="text-muted-foreground" />
+                <span className="font-medium group-hover:text-foreground transition-colors">{section.label}</span>
+                <ChevronRight size={18} className="text-muted-foreground/40" />
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="px-4 pb-6 space-y-2">
+      <footer className="px-6 pb-8 space-y-3">
         <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
           This tool provides general information about your constitutional rights. 
           It is not legal advice.

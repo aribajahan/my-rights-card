@@ -1,119 +1,70 @@
 import { InfoPageLayout } from '@/components/InfoPageLayout';
-import { CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
 
 export default function Warrants() {
   return (
     <InfoPageLayout title="Warrants: Know the Difference">
-      <div className="p-3 bg-accent border-l-4 border-foreground mb-6">
-        <p className="text-sm font-semibold text-foreground">
-          Not all warrants are the same. Understanding the difference can protect your rights.
-        </p>
-      </div>
+      <p className="text-lg text-muted-foreground mb-8">
+        Not all warrants are the same. Only a judicial warrant signed by a judge allows officers to enter your home.
+      </p>
 
       <section>
-        <div className="flex items-start gap-3 mb-3">
-          <CheckCircle className="w-6 h-6 text-foreground flex-shrink-0 mt-0.5" />
-          <h2 className="m-0">Judicial Search Warrant</h2>
-        </div>
-        <p>
-          A judicial warrant is signed by a judge and allows officers to enter your home.
-        </p>
-        <div className="p-3 bg-accent border-l-4 border-foreground mb-4">
-          <p className="text-sm font-semibold text-foreground mb-3">A valid judicial warrant must have:</p>
-          <ul className="list-none space-y-2">
-            <li className="flex items-start gap-3 text-sm">
-              <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
-              The correct address
-            </li>
-            <li className="flex items-start gap-3 text-sm">
-              <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
-              A judge's signature
-            </li>
-            <li className="flex items-start gap-3 text-sm">
-              <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
-              A recent date
-            </li>
-          </ul>
-        </div>
+        <h2>Judicial Warrant</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Signed by a judge
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Lists your name and address
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Allows officers to enter
+          </li>
+        </ul>
       </section>
 
       <section>
-        <div className="flex items-start gap-3 mb-3">
-          <AlertTriangle className="w-6 h-6 text-foreground flex-shrink-0 mt-0.5" />
-          <h2 className="m-0">Judicial Arrest Warrant</h2>
-        </div>
-        <p>
-          A judicial arrest warrant is signed by a judge and allows officers to arrest a specific person. It does <strong>not</strong> allow them to enter a third party's home without permission.
-        </p>
-        <p className="text-sm text-muted-foreground mt-2">
-          <span className="font-semibold">Note:</span> If the warrant is for someone else in your home, you do not have to let them in.
-        </p>
+        <h2>ICE Administrative Warrant (Form I-200 or I-205)</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Signed by an immigration officer, not a judge
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Does not allow officers to enter your home
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            You do not have to open the door
+          </li>
+        </ul>
       </section>
 
       <section>
-        <div className="flex items-start gap-3 mb-3">
-          <XCircle className="w-6 h-6 text-destructive flex-shrink-0 mt-0.5" />
-          <h2 className="m-0">ICE Administrative Warrant</h2>
-        </div>
-        <p>
-          An ICE administrative warrant is signed by an immigration officer, <strong>not a judge</strong>. This type of warrant does NOT give ICE the right to enter your home.
-        </p>
-        <div className="p-3 bg-accent border-l-4 border-foreground mb-4">
-          <p className="text-sm font-semibold text-foreground mb-3">Common ICE forms (NOT judicial warrants):</p>
-          <ul className="list-none space-y-2">
-            <li className="flex items-start gap-3 text-sm">
-              <span className="w-1.5 h-1.5 mt-2 bg-destructive flex-shrink-0"></span>
-              Form I-200 (Warrant for Arrest of Alien)
-            </li>
-            <li className="flex items-start gap-3 text-sm">
-              <span className="w-1.5 h-1.5 mt-2 bg-destructive flex-shrink-0"></span>
-              Form I-205 (Warrant of Removal/Deportation)
-            </li>
-          </ul>
-        </div>
-        <p className="text-sm font-semibold text-destructive">
-          If they only have an ICE administrative warrant, you do not have to open your door.
-        </p>
-      </section>
-
-      <section>
-        <h2>How to Check a Warrant</h2>
-        <ol className="list-none space-y-3 my-4">
+        <h2>What to Do</h2>
+        <p>Ask to see the warrant. If they claim to have one, ask them to slide it under the door. Check for:</p>
+        <ul className="list-none space-y-2 my-4">
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">1</span>
-            <span>Ask officers to slip the warrant under the door.</span>
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            A judge's signature (not just an immigration officer's)
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
-            <span>Look for a judge's signature.</span>
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Your correct name and address
           </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
-            <span>Check that the name and address are correct.</span>
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">4</span>
-            <span>Look for the issuing court's name.</span>
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">5</span>
-            <span>If it's not a judicial warrant, you can refuse entry.</span>
-          </li>
-        </ol>
-      </section>
-
-      <section>
-        <div className="p-3 bg-accent border-l-4 border-foreground mb-4">
-          <p className="text-sm font-semibold text-foreground mb-1">What to say:</p>
-          <p className="text-sm text-muted-foreground italic">"Please slip the warrant under the door. I need to verify it is signed by a judge."</p>
+        </ul>
+        <div className="callout-minimal my-4">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What to say</p>
+          <p className="text-base italic">"Please slide the warrant under the door so I can review it."</p>
         </div>
       </section>
 
-      <div className="p-3 bg-accent border-l-4 border-foreground mt-8">
-        <p className="text-sm font-semibold text-center text-foreground">
-          Know the difference. It can protect your home.
-        </p>
-      </div>
+      <p className="text-center text-muted-foreground mt-12 pt-8 border-t border-border/50">
+        Know the difference. A valid warrant has a judge's signature.
+      </p>
     </InfoPageLayout>
   );
 }

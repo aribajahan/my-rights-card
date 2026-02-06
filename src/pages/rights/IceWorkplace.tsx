@@ -3,87 +3,67 @@ import { InfoPageLayout } from '@/components/InfoPageLayout';
 export default function IceWorkplace() {
   return (
     <InfoPageLayout title="ICE at Your Workplace">
-      <div className="p-3 bg-accent border-l-4 border-foreground mb-6">
-        <p className="text-sm font-semibold text-foreground">
-          If ICE comes to your workplace, stay calm. Do not run.
-        </p>
-      </div>
-
-      <section>
-        <h2>What to Do</h2>
-        <ol className="list-none space-y-3 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">1</span>
-            <span>Stay calm. Do not run or hide.</span>
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
-            <span>Ask if you are free to leave. If yes, leave calmly.</span>
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
-            <span>If not, exercise your right to remain silent.</span>
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">4</span>
-            <span>Do not sign any documents without a lawyer.</span>
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-6 h-6 bg-foreground text-background flex items-center justify-center flex-shrink-0 text-xs font-bold">5</span>
-            <span>Try to remember badge numbers, names, and what was said.</span>
-          </li>
-        </ol>
-      </section>
-
-      <section>
-        <h2>What NOT to Do</h2>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-destructive flex-shrink-0"></span>
-            Do not run or hide
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-destructive flex-shrink-0"></span>
-            Do not lie or give false documents
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-destructive flex-shrink-0"></span>
-            Do not resist physically
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-destructive flex-shrink-0"></span>
-            Do not sign anything you don't understand
-          </li>
-        </ul>
-      </section>
+      <p className="text-lg text-muted-foreground mb-8">
+        You have rights at work. ICE cannot enter non-public areas without consent or a valid warrant.
+      </p>
 
       <section>
         <h2>Know Your Workplace Rights</h2>
         <ul className="list-none space-y-2 my-4">
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
-            ICE cannot enter private areas (like back offices or break rooms) without a judicial warrant or your employer's consent.
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            ICE cannot enter private workspaces (like back rooms or offices) without a warrant or employer consent.
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
-            Your employer cannot retaliate against you for exercising your rights.
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            You have the right to remain silent and do not have to answer questions about your immigration status.
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
-            You can ask for a lawyer before answering questions.
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
-            You can refuse to sign voluntary departure forms.
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            You can ask if you are free to leave.
           </li>
         </ul>
       </section>
 
-      <div className="p-3 bg-accent border-l-4 border-foreground mt-8">
-        <p className="text-sm font-semibold text-center text-foreground">
-          Stay calm. Exercise your rights. Know who to call.
-        </p>
-      </div>
+      <section>
+        <h2>If ICE Arrives</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Stay calm.
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Do not run.
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            If possible, alert a supervisor or coworker.
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            If you can, record the encounter.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What Employers Should Know</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Employers can ask to see a warrant before allowing entry to private areas.
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            Employers should not share private employee records without a valid subpoena.
+          </li>
+        </ul>
+      </section>
+
+      <p className="text-center text-muted-foreground mt-12 pt-8 border-t border-border/50">
+        Know your rights. Stay calm. Ask for a warrant.
+      </p>
     </InfoPageLayout>
   );
 }
