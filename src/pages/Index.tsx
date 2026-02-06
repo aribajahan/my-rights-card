@@ -1,108 +1,92 @@
 import { Link } from 'react-router-dom';
-import { useLanguage, languageNames, Language } from '@/contexts/LanguageContext';
-import { Globe, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { FileText, BookOpen, Phone } from 'lucide-react';
 
 export default function Index() {
-  const { t, language, setLanguage } = useLanguage();
-  const [showLanguages, setShowLanguages] = useState(false);
-  const languages: Language[] = ['en', 'es', 'bn', 'zh', 'ko', 'hi'];
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Language selector */}
-      <header className="p-4">
-        <div className="container flex justify-end">
-          <div className="relative">
-            <button
-              onClick={() => setShowLanguages(!showLanguages)}
-              className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-xl"
-            >
-              <Globe size={16} className="opacity-50" />
-              {languageNames[language]}
-              <ChevronDown size={14} className="opacity-50" />
-            </button>
-            {showLanguages && (
-              <div className="absolute right-0 mt-1 bg-card rounded-2xl shadow-card-hover z-50 overflow-hidden min-w-[140px]">
-                {languages.map((lang) => (
-                  <button
-                    key={lang}
-                    onClick={() => {
-                      setLanguage(lang);
-                      setShowLanguages(false);
-                    }}
-                    className={`block w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                      language === lang 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'text-foreground hover:bg-muted'
-                    }`}
-                  >
-                    {languageNames[lang]}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
-
       {/* Main content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 pb-12">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-sm text-center">
-          {/* Title */}
-          <h1 className="text-3xl font-semibold mb-3 text-headline leading-tight">
+          {/* Headline */}
+          <h1 className="text-4xl font-bold text-headline mb-2">
             Know Your Rights
           </h1>
-
-          {/* Tagline */}
-          <p className="text-base text-muted-foreground mb-10">
-            {t('tagline')}
+          <p className="text-foreground text-lg mb-10">
+            Be prepared. Stay calm. Know your rights.
           </p>
 
           {/* Action cards */}
-          <div className="space-y-3">
+          <div className="space-y-4 mb-8">
             <Link
               to="/prepare"
-              className="block w-full p-5 bg-card rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-200"
+              className="block bg-primary text-primary-foreground rounded-2xl p-5 shadow-button hover:opacity-90 transition-all duration-200"
             >
-              <h2 className="text-lg font-semibold text-headline mb-1">
-                {t('prepareCard')}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {t('prepareCardDesc')}
-              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
+                  <FileText size={24} />
+                </div>
+                <div className="text-left">
+                  <h2 className="text-lg font-semibold text-primary-foreground">Prepare My Card</h2>
+                  <p className="text-sm opacity-90">
+                    Create a digital rights card to save on your phone
+                  </p>
+                </div>
+              </div>
             </Link>
 
             <Link
-              to="/rights"
-              className="block w-full p-5 bg-card rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-200"
+              to="/review"
+              className="block bg-card text-foreground rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all duration-200"
             >
-              <h2 className="text-lg font-semibold text-headline mb-1">
-                {t('reviewRights')}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {t('reviewRightsDesc')}
-              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                  <BookOpen size={24} className="text-secondary" />
+                </div>
+                <div className="text-left">
+                  <h2 className="text-lg font-semibold text-headline">Review My Rights</h2>
+                  <p className="text-sm text-muted-foreground">
+                    Learn what to do in different situations
+                  </p>
+                </div>
+              </div>
             </Link>
           </div>
 
-          {/* Hotline */}
-          <div className="mt-10 p-4 bg-card rounded-2xl shadow-card">
-            <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">24/7 Hotline</p>
-            <a 
-              href="tel:18443631423" 
-              className="text-base font-semibold text-primary hover:opacity-80 transition-opacity"
-            >
-              1-844-363-1423
-            </a>
-            <p className="text-xs text-muted-foreground mt-1">United We Dream</p>
+          {/* Hotline box */}
+          <div className="bg-card rounded-2xl p-4 shadow-card mb-8">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-coral/10 flex items-center justify-center">
+                  <Phone size={20} className="text-coral" />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    24/7 Hotline
+                  </p>
+                  <p className="text-sm font-medium">United We Dream</p>
+                </div>
+              </div>
+              <a
+                href="tel:1-844-363-1423"
+                className="text-lg font-bold text-headline"
+              >
+                1-844-363-1423
+              </a>
+            </div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="p-4 text-center text-xs text-muted-foreground">
-        <p>This app asserts your constitutional rights. It is not legal advice.</p>
+      <footer className="px-4 pb-6">
+        <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
+          This tool provides general information about your constitutional rights. 
+          It is not legal advice. For advice about your specific situation, consult 
+          a qualified immigration attorney.
+        </p>
+        <p className="text-xs text-muted-foreground/70 text-center mt-2">
+          This tool does not collect or store any personal information.
+        </p>
       </footer>
     </div>
   );

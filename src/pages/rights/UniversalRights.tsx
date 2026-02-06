@@ -1,12 +1,9 @@
 import { InfoPageLayout } from '@/components/InfoPageLayout';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function UniversalRights() {
-  const { t } = useLanguage();
-
   return (
-    <InfoPageLayout title={t('universalRights')}>
-      <div className="p-4 bg-accent/30 rounded-2xl mb-6">
+    <InfoPageLayout title="Your Universal Rights">
+      <div className="p-4 bg-secondary/10 rounded-2xl mb-6">
         <p className="text-sm font-medium text-headline">
           Everyone in the United States has constitutional rights—regardless of immigration status.
         </p>
@@ -56,7 +53,32 @@ export default function UniversalRights() {
         </div>
       </section>
 
-      <div className="p-4 bg-accent/20 rounded-2xl mt-8">
+      <section>
+        <h2>Do Not Sign Anything You Don't Understand</h2>
+        <p>
+          Signing certain documents (like a voluntary departure form) can waive your rights. Do not sign anything unless your lawyer tells you to.
+        </p>
+        <div className="p-4 bg-card rounded-2xl shadow-card mb-4">
+          <p className="text-sm font-medium text-headline mb-1">What to say:</p>
+          <p className="text-sm text-muted-foreground italic">"I do not wish to sign anything without speaking to a lawyer."</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Do Not Lie or Present False Documents</h2>
+        <p>
+          Lying to an officer or providing false documents is a crime and can hurt your case. If you don't want to answer, exercise your right to remain silent.
+        </p>
+      </section>
+
+      <section>
+        <h2>Stay Calm. Do Not Run.</h2>
+        <p>
+          Running or resisting can result in arrest or injury. Stay calm and assert your rights clearly.
+        </p>
+      </section>
+
+      <div className="p-4 bg-secondary/10 rounded-2xl mt-8">
         <p className="text-sm font-medium text-center text-headline">
           These rights belong to everyone. Use them calmly and clearly.
         </p>

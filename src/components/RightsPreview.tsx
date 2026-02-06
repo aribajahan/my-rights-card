@@ -1,42 +1,51 @@
-import { useLanguage } from '@/contexts/LanguageContext';
-
 export function RightsPreview() {
-  const { t } = useLanguage();
-
   const rights = [
     {
-      title: t('rightSilent'),
-      explanation: t('rightSilentExplain'),
+      title: 'Right to remain silent',
+      description: 'You do not have to answer questions about where you were born or your immigration status.',
+      quote: '"I am exercising my right to remain silent."',
     },
     {
-      title: t('rightDoor'),
-      explanation: t('rightDoorExplain'),
+      title: 'Right to refuse entry without warrant',
+      description: 'You do not have to open your door without a warrant signed by a judge.',
+      quote: '"I do not consent to your entry. Please slip the warrant under the door."',
     },
     {
-      title: t('rightSearch'),
-      explanation: t('rightSearchExplain'),
+      title: 'Right to refuse search',
+      description: 'You can refuse to consent to a search of yourself, your belongings, your car, or your home.',
+      quote: '"I do not consent to a search."',
     },
     {
-      title: t('rightLawyer'),
-      explanation: t('rightLawyerExplain'),
+      title: 'Right to a lawyer',
+      description: 'If you are detained or arrested, you have the right to speak to a lawyer.',
+      quote: '"I want to speak to a lawyer before answering any questions."',
     },
   ];
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <h2 className="text-xl font-semibold mb-6 text-center text-headline">
-        {t('previewRights')}
+      <h2 className="text-xl font-semibold mb-2 text-center text-headline">
+        Your Rights
       </h2>
-      <div className="space-y-3">
+      <p className="text-muted-foreground text-center text-sm mb-6">
+        These rights belong to everyone in the United States.
+      </p>
+
+      <div className="space-y-4">
         {rights.map((right, index) => (
           <div
             key={index}
             className="p-4 bg-card rounded-2xl shadow-card animate-slide-up"
             style={{ animationDelay: `${index * 75}ms` }}
           >
-            <h3 className="font-medium text-base mb-2 text-headline">{right.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {right.explanation}
+            <h3 className="font-semibold text-headline mb-2">
+              {right.title}
+            </h3>
+            <p className="text-sm text-muted-foreground mb-3">
+              {right.description}
+            </p>
+            <p className="text-sm italic text-foreground bg-secondary/5 p-3 rounded-xl">
+              {right.quote}
             </p>
           </div>
         ))}

@@ -1,12 +1,9 @@
 import { InfoPageLayout } from '@/components/InfoPageLayout';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function IceAtDoor() {
-  const { t } = useLanguage();
-
   return (
-    <InfoPageLayout title={t('iceAtDoor')}>
-      <div className="p-4 bg-accent/30 rounded-2xl mb-6">
+    <InfoPageLayout title="ICE at Your Door">
+      <div className="p-4 bg-secondary/10 rounded-2xl mb-6">
         <p className="text-sm font-medium text-headline">
           If someone knocks on your door and says they are from ICE, you do not have to open it.
         </p>
@@ -46,16 +43,20 @@ export default function IceAtDoor() {
         <p>Look at the warrant carefully. A real judicial warrant will:</p>
         <ul className="list-none space-y-2 my-4">
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
             Be signed by a judge (not an immigration officer)
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
             Have the correct address
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
             Have the correct name (if it names someone specific)
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+            Be issued by a court (not DHS or ICE)
           </li>
         </ul>
         <p>
@@ -64,7 +65,7 @@ export default function IceAtDoor() {
       </section>
 
       <section>
-        <h2>Step 5: If There Is No Valid Warrant</h2>
+        <h2>Step 5: If They Don't Have a Valid Warrant</h2>
         <p>You can tell them you are exercising your right not to open the door.</p>
         <div className="p-4 bg-card rounded-2xl shadow-card mb-4">
           <p className="text-sm font-medium text-headline mb-1">What to say:</p>
@@ -72,7 +73,75 @@ export default function IceAtDoor() {
         </div>
       </section>
 
-      <div className="p-4 bg-accent/20 rounded-2xl mt-8">
+      <section>
+        <h2>Step 6: Document Everything</h2>
+        <p>Write down as much as you can:</p>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            Badge numbers
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            Agency names
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            What was said
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            Time and date
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            Whether they entered without consent
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Do Not:</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Open the door
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Run or hide
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Lie or give false documents
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Sign anything you don't understand
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Prepare Your Household</h2>
+        <p>Talk to everyone in your home about what to do if ICE comes:</p>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            Practice staying silent
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            Post the Know Your Rights card near the door
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
+            Know who to call (lawyer, family member)
+          </li>
+        </ul>
+      </section>
+
+      <div className="p-4 bg-secondary/10 rounded-2xl mt-8">
         <p className="text-sm font-medium text-center text-headline">
           Remember: You have rights even if you are not a citizen. Stay calm and exercise them.
         </p>

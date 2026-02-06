@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 import { ImmigrationStatus, EmergencyContact, DocumentInfo, statusLabels, documentLabels } from '@/types/card';
-import { DoorClosed, CircleSlash, SearchX, Scale } from 'lucide-react';
 
 interface RightsCardProps {
   status: ImmigrationStatus;
@@ -20,17 +19,50 @@ const getStatusBadge = (status: ImmigrationStatus): string => {
   }
 };
 
+// Bold, stencil-style SVG icons for the card
+const DoorIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="4" width="16" height="24" rx="2" stroke="white" strokeWidth="3"/>
+    <circle cx="20" cy="16" r="1.5" fill="white"/>
+    <path d="M6 4L26 28" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+  </svg>
+);
+
+const SilenceIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="18" r="10" stroke="white" strokeWidth="3"/>
+    <path d="M16 4V8" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M12 15C12 15 13 18 16 18C19 18 20 15 20 15" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M6 6L26 26" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+  </svg>
+);
+
+const HandIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 4V18" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M12 8V16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M20 8V16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M8 12V18C8 24 12 28 16 28C20 28 24 24 24 18V12" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+  </svg>
+);
+
+const PhoneIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 5C7 5 9 4 11 6C13 8 12 10 12 10L10 12C10 12 12 16 16 20C20 24 22 22 22 22L24 20C24 20 26 19 28 21C30 23 27 25 27 25C25 27 21 28 16 23C11 18 8 12 7 9C6 6 7 5 7 5Z" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+  </svg>
+);
+
+const rights = [
+  { icon: DoorIcon, text: 'NO WARRANT,\nNO ENTRY' },
+  { icon: SilenceIcon, text: 'RIGHT TO\nSILENCE' },
+  { icon: HandIcon, text: 'NO SEARCH\nWITHOUT CONSENT' },
+  { icon: PhoneIcon, text: 'RIGHT TO\nA LAWYER' },
+];
+
 export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
   ({ status, documentInfo, contacts }, ref) => {
     const showDocument = documentInfo.type && documentLabels[documentInfo.type];
     const statusBadge = getStatusBadge(status);
-
-    const rights = [
-      { icon: DoorClosed, text: 'NO WARRANT,\nNO ENTRY' },
-      { icon: CircleSlash, text: 'RIGHT TO\nSILENCE' },
-      { icon: SearchX, text: 'NO SEARCH\nWITHOUT CONSENT' },
-      { icon: Scale, text: 'RIGHT TO\nA LAWYER' },
-    ];
 
     return (
       <div
@@ -130,14 +162,14 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                     flexShrink: 0,
                   }}
                 >
-                  <right.icon size={28} color="white" strokeWidth={2} />
+                  <right.icon />
                 </div>
                 {/* Text box - cream with border */}
                 <div
                   style={{
                     flex: 1,
                     backgroundColor: '#F5F2E8',
-                    border: '2px solid #1A1A1A',
+                    border: '3px solid #1A1A1A',
                     borderLeft: 'none',
                     borderRadius: '0 12px 12px 0',
                     display: 'flex',

@@ -1,82 +1,87 @@
 import { InfoPageLayout } from '@/components/InfoPageLayout';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function IceWorkplace() {
-  const { t } = useLanguage();
-
   return (
-    <InfoPageLayout title={t('iceWorkplace')}>
-      <div className="p-4 bg-accent/30 rounded-2xl mb-6">
+    <InfoPageLayout title="ICE at Your Workplace">
+      <div className="p-4 bg-secondary/10 rounded-2xl mb-6">
         <p className="text-sm font-medium text-headline">
-          ICE may conduct workplace raids. You have rights at work, too.
+          If ICE comes to your workplace, stay calm. Do not run.
         </p>
       </div>
 
       <section>
-        <h2>If ICE Comes to Your Workplace</h2>
-        <p>Stay calm. Do not run. You have rights even at work.</p>
+        <h2>What to Do</h2>
+        <ol className="list-none space-y-3 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-xs font-bold">1</span>
+            <span>Stay calm. Do not run or hide.</span>
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
+            <span>Ask if you are free to leave. If yes, leave calmly.</span>
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
+            <span>If not, exercise your right to remain silent.</span>
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-xs font-bold">4</span>
+            <span>Do not sign any documents without a lawyer.</span>
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-xs font-bold">5</span>
+            <span>Try to remember badge numbers, names, and what was said.</span>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>What NOT to Do</h2>
         <ul className="list-none space-y-2 my-4">
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            You have the right to remain silent
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Do not run or hide
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            You do not have to answer questions about your immigration status
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Do not lie or give false documents
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            You have the right to speak with a lawyer
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Do not resist physically
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Do not sign anything you don't understand
           </li>
         </ul>
       </section>
 
       <section>
-        <h2>Public vs. Private Areas</h2>
-        <p>
-          ICE can enter public areas of a business (like a lobby or store floor) without permission. But they need consent or a judicial warrant to enter private areas like employee break rooms or back offices.
-        </p>
-      </section>
-
-      <section>
-        <h2>If ICE Asks to Speak with You</h2>
-        <div className="p-4 bg-card rounded-2xl shadow-card mb-4 space-y-2">
-          <p className="text-sm text-muted-foreground italic">"I am exercising my right to remain silent."</p>
-          <p className="text-sm text-muted-foreground italic">"I want to speak to a lawyer before answering any questions."</p>
-        </div>
-      </section>
-
-      <section>
-        <h2>Know Your Employer's Responsibilities</h2>
-        <p>
-          Your employer cannot force you to speak with ICE. They also cannot fire you or retaliate against you for exercising your rights.
-        </p>
-        <p>
-          Some states and cities have laws that require employers to notify workers before an ICE inspection. Check your local laws.
-        </p>
-      </section>
-
-      <section>
-        <h2>Prepare in Advance</h2>
+        <h2>Know Your Workplace Rights</h2>
         <ul className="list-none space-y-2 my-4">
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            Know your emergency contacts
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+            ICE cannot enter private areas (like back offices or break rooms) without a judicial warrant or your employer's consent.
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            Have a lawyer's number saved
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+            Your employer cannot retaliate against you for exercising your rights.
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            Create a family safety plan
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+            You can ask for a lawyer before answering questions.
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+            You can refuse to sign voluntary departure forms.
           </li>
         </ul>
       </section>
 
-      <div className="p-4 bg-accent/20 rounded-2xl mt-8">
+      <div className="p-4 bg-secondary/10 rounded-2xl mt-8">
         <p className="text-sm font-medium text-center text-headline">
-          Your workplace does not take away your constitutional rights.
+          Stay calm. Exercise your rights. Know who to call.
         </p>
       </div>
     </InfoPageLayout>

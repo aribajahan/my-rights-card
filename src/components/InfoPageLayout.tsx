@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Home } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 interface InfoPageLayoutProps {
   title: string;
@@ -10,7 +9,6 @@ interface InfoPageLayoutProps {
 
 export function InfoPageLayout({ title, children }: InfoPageLayoutProps) {
   const navigate = useNavigate();
-  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background">
@@ -22,12 +20,12 @@ export function InfoPageLayout({ title, children }: InfoPageLayoutProps) {
             className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft size={18} />
-            {t('back')}
+            Back
           </button>
           <Link
             to="/"
             className="p-2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label={t('home')}
+            aria-label="Home"
           >
             <Home size={18} />
           </Link>
@@ -45,6 +43,14 @@ export function InfoPageLayout({ title, children }: InfoPageLayoutProps) {
           </div>
         </article>
       </main>
+
+      {/* Footer */}
+      <footer className="px-4 pb-6">
+        <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
+          This tool provides general information about your constitutional rights. 
+          It is not legal advice.
+        </p>
+      </footer>
     </div>
   );
 }

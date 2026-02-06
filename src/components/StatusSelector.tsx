@@ -1,4 +1,3 @@
-import { useLanguage } from '@/contexts/LanguageContext';
 import { ImmigrationStatus } from '@/types/card';
 
 interface StatusSelectorProps {
@@ -7,19 +6,17 @@ interface StatusSelectorProps {
   onSelect?: () => void;
 }
 
-const statusOptions: { key: Exclude<ImmigrationStatus, null>; translationKey: string }[] = [
-  { key: 'citizen', translationKey: 'usCitizen' },
-  { key: 'greenCard', translationKey: 'greenCard' },
-  { key: 'visa', translationKey: 'visaHolder' },
-  { key: 'dacaTps', translationKey: 'dacaTps' },
-  { key: 'asylum', translationKey: 'asylumSeeker' },
-  { key: 'undocumented', translationKey: 'undocumented' },
-  { key: 'preferNot', translationKey: 'preferNotToSay' },
+const statusOptions: { key: Exclude<ImmigrationStatus, null>; label: string }[] = [
+  { key: 'citizen', label: 'U.S. Citizen' },
+  { key: 'greenCard', label: 'Green Card Holder' },
+  { key: 'visa', label: 'Visa Holder' },
+  { key: 'dacaTps', label: 'DACA / TPS' },
+  { key: 'asylum', label: 'Asylum Seeker' },
+  { key: 'undocumented', label: 'Undocumented' },
+  { key: 'preferNot', label: 'Prefer not to say' },
 ];
 
 export function StatusSelector({ value, onChange, onSelect }: StatusSelectorProps) {
-  const { t } = useLanguage();
-
   const handleSelect = (status: ImmigrationStatus) => {
     onChange(status);
     // Auto-advance after a brief moment
@@ -31,10 +28,10 @@ export function StatusSelector({ value, onChange, onSelect }: StatusSelectorProp
   return (
     <div className="w-full max-w-sm mx-auto">
       <h2 className="text-xl font-semibold mb-2 text-center text-headline">
-        {t('selectStatus')}
+        Select Your Status
       </h2>
       <p className="text-muted-foreground text-center text-sm mb-6">
-        {t('statusOptional')}
+        This is optional and helps personalize your card.
       </p>
       <div className="space-y-2">
         {statusOptions.map((option) => (
@@ -49,7 +46,7 @@ export function StatusSelector({ value, onChange, onSelect }: StatusSelectorProp
               }
             `}
           >
-            {t(option.translationKey as any)}
+            {option.label}
           </button>
         ))}
       </div>
