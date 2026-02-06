@@ -77,10 +77,10 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
             <div>
               {showDocument && (
                 <>
-                  <p style={{ fontSize: '18px', letterSpacing: '0.1em', opacity: 0.7, marginBottom: '4px' }}>
+                  <p style={{ fontSize: '24px', letterSpacing: '0.1em', opacity: 0.7, marginBottom: '4px' }}>
                     DOCUMENT TYPE
                   </p>
-                  <p style={{ fontSize: '28px', fontWeight: 600 }}>
+                  <p style={{ fontSize: '36px', fontWeight: 600 }}>
                     {documentLabels[documentInfo.type!]}
                   </p>
                 </>
@@ -91,8 +91,8 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                 style={{
                   backgroundColor: '#F5F2E8',
                   color: '#1A1A1A',
-                  padding: '12px 24px',
-                  fontSize: '20px',
+                  padding: '16px 28px',
+                  fontSize: '26px',
                   fontWeight: 600,
                   letterSpacing: '0.05em',
                 }}
@@ -117,13 +117,14 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
           </h1>
 
           {/* Rights List - Text only */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '40px' }}>
             {rights.map((right, i) => (
               <p
                 key={i}
                 style={{
-                  fontFamily: "'Anton', sans-serif",
-                  fontSize: '36px',
+                  fontFamily: "'Inter', system-ui, sans-serif",
+                  fontSize: '48px',
+                  fontWeight: 500,
                   lineHeight: '1.2',
                   letterSpacing: '1px',
                   color: '#F5F2E8',
@@ -138,14 +139,14 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
           <div
             style={{
               backgroundColor: '#F5F2E8',
-              padding: '24px 32px',
+              padding: '28px 36px',
               marginBottom: '32px',
             }}
           >
             <p
               style={{
                 fontFamily: "'Anton', sans-serif",
-                fontSize: '28px',
+                fontSize: '36px',
                 color: '#1A1A1A',
                 textAlign: 'center',
                 letterSpacing: '2px',
@@ -159,13 +160,13 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
           <div
             style={{
               backgroundColor: '#F5F2E8',
-              padding: '32px',
+              padding: '40px',
               marginBottom: '32px',
             }}
           >
             <p
               style={{
-                fontSize: '24px',
+                fontSize: '30px',
                 lineHeight: '1.5',
                 color: '#1A1A1A',
                 fontWeight: 500,
@@ -180,7 +181,7 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
             <div style={{ marginBottom: '24px' }}>
               <p
                 style={{
-                  fontSize: '18px',
+                  fontSize: '24px',
                   letterSpacing: '0.15em',
                   color: 'rgba(245, 242, 232, 0.7)',
                   marginBottom: '12px',
@@ -189,14 +190,14 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
               >
                 EMERGENCY CONTACTS
               </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {contacts.map((contact) => (
                   <div
                     key={contact.id}
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
-                      fontSize: '24px',
+                      fontSize: '32px',
                       fontWeight: 500,
                     }}
                   >
@@ -214,7 +215,7 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
           {/* Disclaimer */}
           <p
             style={{
-              fontSize: '16px',
+              fontSize: '20px',
               textAlign: 'center',
               color: 'rgba(245, 242, 232, 0.5)',
               letterSpacing: '0.02em',
