@@ -38,6 +38,10 @@ type TranslationKey =
   | 'stateId'
   | 'workPermit'
   | 'greenCardDoc'
+  | 'visaI94'
+  | 'dacaApproval'
+  | 'tpsCard'
+  | 'passportVisa'
   | 'otherDoc'
   | 'documentNumber'
   | 'documentNumberPlaceholder'
@@ -52,6 +56,7 @@ type TranslationKey =
   | 'generateCard'
   | 'saveCard'
   | 'shareCard'
+  | 'downloadImage'
   | 'downloadSuccess'
   | 'shareFailed'
   | 'rightSilent'
@@ -103,6 +108,10 @@ const translations: Record<Language, Translations> = {
     stateId: 'State ID',
     workPermit: 'Work Permit (EAD)',
     greenCardDoc: 'Green Card',
+    visaI94: 'Visa / I-94',
+    dacaApproval: 'DACA Approval Notice',
+    tpsCard: 'TPS Card',
+    passportVisa: 'Passport (with visa)',
     otherDoc: 'Other',
     documentNumber: 'Document Number (Optional)',
     documentNumberPlaceholder: 'Enter document number',
@@ -117,6 +126,7 @@ const translations: Record<Language, Translations> = {
     generateCard: 'Generate My Card',
     saveCard: 'Save to Phone',
     shareCard: 'Share',
+    downloadImage: 'Download Image',
     downloadSuccess: 'Card saved! Check your downloads.',
     shareFailed: 'Sharing not supported. Try saving instead.',
     rightSilent: 'You have the right to remain silent.',
@@ -165,6 +175,10 @@ const translations: Record<Language, Translations> = {
     stateId: '[TRANSLATE: State ID]',
     workPermit: '[TRANSLATE: Work Permit (EAD)]',
     greenCardDoc: '[TRANSLATE: Green Card]',
+    visaI94: '[TRANSLATE: Visa / I-94]',
+    dacaApproval: '[TRANSLATE: DACA Approval Notice]',
+    tpsCard: '[TRANSLATE: TPS Card]',
+    passportVisa: '[TRANSLATE: Passport (with visa)]',
     otherDoc: '[TRANSLATE: Other]',
     documentNumber: '[TRANSLATE: Document Number (Optional)]',
     documentNumberPlaceholder: '[TRANSLATE: Enter document number]',
@@ -179,6 +193,7 @@ const translations: Record<Language, Translations> = {
     generateCard: '[TRANSLATE: Generate My Card]',
     saveCard: '[TRANSLATE: Save to Phone]',
     shareCard: 'Compartir',
+    downloadImage: '[TRANSLATE: Download Image]',
     downloadSuccess: '[TRANSLATE: Card saved! Check your downloads.]',
     shareFailed: '[TRANSLATE: Sharing not supported. Try saving instead.]',
     rightSilent: '[TRANSLATE: You have the right to remain silent.]',
@@ -227,6 +242,10 @@ const translations: Record<Language, Translations> = {
     stateId: '[TRANSLATE: State ID]',
     workPermit: '[TRANSLATE: Work Permit (EAD)]',
     greenCardDoc: '[TRANSLATE: Green Card]',
+    visaI94: '[TRANSLATE: Visa / I-94]',
+    dacaApproval: '[TRANSLATE: DACA Approval Notice]',
+    tpsCard: '[TRANSLATE: TPS Card]',
+    passportVisa: '[TRANSLATE: Passport (with visa)]',
     otherDoc: '[TRANSLATE: Other]',
     documentNumber: '[TRANSLATE: Document Number (Optional)]',
     documentNumberPlaceholder: '[TRANSLATE: Enter document number]',
@@ -241,6 +260,7 @@ const translations: Record<Language, Translations> = {
     generateCard: '[TRANSLATE: Generate My Card]',
     saveCard: '[TRANSLATE: Save to Phone]',
     shareCard: '[TRANSLATE: Share]',
+    downloadImage: '[TRANSLATE: Download Image]',
     downloadSuccess: '[TRANSLATE: Card saved! Check your downloads.]',
     shareFailed: '[TRANSLATE: Sharing not supported. Try saving instead.]',
     rightSilent: '[TRANSLATE: You have the right to remain silent.]',
@@ -289,6 +309,10 @@ const translations: Record<Language, Translations> = {
     stateId: '[TRANSLATE: State ID]',
     workPermit: '[TRANSLATE: Work Permit (EAD)]',
     greenCardDoc: '[TRANSLATE: Green Card]',
+    visaI94: '[TRANSLATE: Visa / I-94]',
+    dacaApproval: '[TRANSLATE: DACA Approval Notice]',
+    tpsCard: '[TRANSLATE: TPS Card]',
+    passportVisa: '[TRANSLATE: Passport (with visa)]',
     otherDoc: '[TRANSLATE: Other]',
     documentNumber: '[TRANSLATE: Document Number (Optional)]',
     documentNumberPlaceholder: '[TRANSLATE: Enter document number]',
@@ -303,6 +327,7 @@ const translations: Record<Language, Translations> = {
     generateCard: '[TRANSLATE: Generate My Card]',
     saveCard: '[TRANSLATE: Save to Phone]',
     shareCard: '[TRANSLATE: Share]',
+    downloadImage: '[TRANSLATE: Download Image]',
     downloadSuccess: '[TRANSLATE: Card saved! Check your downloads.]',
     shareFailed: '[TRANSLATE: Sharing not supported. Try saving instead.]',
     rightSilent: '[TRANSLATE: You have the right to remain silent.]',
@@ -351,6 +376,10 @@ const translations: Record<Language, Translations> = {
     stateId: '[TRANSLATE: State ID]',
     workPermit: '[TRANSLATE: Work Permit (EAD)]',
     greenCardDoc: '[TRANSLATE: Green Card]',
+    visaI94: '[TRANSLATE: Visa / I-94]',
+    dacaApproval: '[TRANSLATE: DACA Approval Notice]',
+    tpsCard: '[TRANSLATE: TPS Card]',
+    passportVisa: '[TRANSLATE: Passport (with visa)]',
     otherDoc: '[TRANSLATE: Other]',
     documentNumber: '[TRANSLATE: Document Number (Optional)]',
     documentNumberPlaceholder: '[TRANSLATE: Enter document number]',
@@ -365,6 +394,7 @@ const translations: Record<Language, Translations> = {
     generateCard: '[TRANSLATE: Generate My Card]',
     saveCard: '[TRANSLATE: Save to Phone]',
     shareCard: '[TRANSLATE: Share]',
+    downloadImage: '[TRANSLATE: Download Image]',
     downloadSuccess: '[TRANSLATE: Card saved! Check your downloads.]',
     shareFailed: '[TRANSLATE: Sharing not supported. Try saving instead.]',
     rightSilent: '[TRANSLATE: You have the right to remain silent.]',
@@ -413,6 +443,10 @@ const translations: Record<Language, Translations> = {
     stateId: '[TRANSLATE: State ID]',
     workPermit: '[TRANSLATE: Work Permit (EAD)]',
     greenCardDoc: '[TRANSLATE: Green Card]',
+    visaI94: '[TRANSLATE: Visa / I-94]',
+    dacaApproval: '[TRANSLATE: DACA Approval Notice]',
+    tpsCard: '[TRANSLATE: TPS Card]',
+    passportVisa: '[TRANSLATE: Passport (with visa)]',
     otherDoc: '[TRANSLATE: Other]',
     documentNumber: '[TRANSLATE: Document Number (Optional)]',
     documentNumberPlaceholder: '[TRANSLATE: Enter document number]',
@@ -427,6 +461,7 @@ const translations: Record<Language, Translations> = {
     generateCard: '[TRANSLATE: Generate My Card]',
     saveCard: '[TRANSLATE: Save to Phone]',
     shareCard: '[TRANSLATE: Share]',
+    downloadImage: '[TRANSLATE: Download Image]',
     downloadSuccess: '[TRANSLATE: Card saved! Check your downloads.]',
     shareFailed: '[TRANSLATE: Sharing not supported. Try saving instead.]',
     rightSilent: '[TRANSLATE: You have the right to remain silent.]',

@@ -9,11 +9,12 @@ export type ImmigrationStatus =
   | null;
 
 export type DocumentType = 
-  | 'passport'
-  | 'driversLicense'
-  | 'stateId'
-  | 'workPermit'
   | 'greenCard'
+  | 'workPermit'
+  | 'visaI94'
+  | 'dacaApproval'
+  | 'tpsCard'
+  | 'passportVisa'
   | 'other'
   | null;
 
@@ -55,10 +56,11 @@ export const statusGuidance: Record<Exclude<ImmigrationStatus, null>, string> = 
 };
 
 export const documentLabels: Record<Exclude<DocumentType, null>, string> = {
-  passport: 'Passport',
-  driversLicense: "Driver's License",
-  stateId: 'State ID',
-  workPermit: 'Work Permit (EAD)',
   greenCard: 'Green Card',
+  workPermit: 'Work Permit (EAD)',
+  visaI94: 'Visa / I-94',
+  dacaApproval: 'DACA Approval Notice',
+  tpsCard: 'TPS Card',
+  passportVisa: 'Passport (with visa)',
   other: 'Other',
 };

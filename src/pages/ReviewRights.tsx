@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { ArrowLeft, ChevronRight } from 'lucide-react';
+import { useLanguage, Language, languageNames } from '@/contexts/LanguageContext';
+import { ArrowLeft, ChevronRight, Globe } from 'lucide-react';
+import { useState } from 'react';
 
 const topics = [
   { key: 'universalRights', path: '/rights/universal' },
@@ -13,8 +14,11 @@ const topics = [
   { key: 'hotlinesResources', path: '/rights/hotlines' },
 ];
 
+const languages: Language[] = ['en', 'es', 'bn', 'zh', 'ko', 'hi'];
+
 export default function ReviewRights() {
-  const { t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
+  const [showLanguages, setShowLanguages] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -28,7 +32,38 @@ export default function ReviewRights() {
             <ArrowLeft size={18} />
             {t('home')}
           </Link>
+          <button
+            onClick={() => setShowLanguages(!showLanguages)}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted"
+          >
+            <Globe size={16} />
+            {languageNames[language]}
+          </button>
         </div>
+        
+        {/* Language dropdown */}
+        {showLanguages && (
+          <div className="container px-4 pb-3 animate-fade-in">
+            <div className="grid grid-cols-3 gap-2 max-w-sm mx-auto">
+              {languages.map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => {
+                    setLanguage(lang);
+                    setShowLanguages(false);
+                  }}
+                  className={`p-2 text-sm font-medium rounded-lg transition-all ${
+                    language === lang
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-card text-foreground hover:bg-muted'
+                  }`}
+                >
+                  {languageNames[lang]}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Content */}

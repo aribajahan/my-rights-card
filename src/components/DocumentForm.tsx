@@ -7,11 +7,12 @@ interface DocumentFormProps {
 }
 
 const documentOptions: { key: Exclude<DocumentType, null>; translationKey: string }[] = [
-  { key: 'passport', translationKey: 'passport' },
-  { key: 'driversLicense', translationKey: 'driversLicense' },
-  { key: 'stateId', translationKey: 'stateId' },
-  { key: 'workPermit', translationKey: 'workPermit' },
   { key: 'greenCard', translationKey: 'greenCardDoc' },
+  { key: 'workPermit', translationKey: 'workPermit' },
+  { key: 'visaI94', translationKey: 'visaI94' },
+  { key: 'dacaApproval', translationKey: 'dacaApproval' },
+  { key: 'tpsCard', translationKey: 'tpsCard' },
+  { key: 'passportVisa', translationKey: 'passportVisa' },
   { key: 'other', translationKey: 'otherDoc' },
 ];
 

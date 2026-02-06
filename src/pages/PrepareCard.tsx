@@ -8,8 +8,9 @@ import { EmergencyContactForm } from '@/components/EmergencyContactForm';
 import { RightsPreview } from '@/components/RightsPreview';
 import { RightsCard } from '@/components/RightsCard';
 import { ImmigrationStatus, EmergencyContact, DocumentInfo } from '@/types/card';
-import { ArrowLeft, Download, Share2, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Download, BookOpen, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 
 type Step = 'status' | 'documents' | 'contacts' | 'preview' | 'card';
 
@@ -146,15 +147,15 @@ export default function PrepareCard() {
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
-            {t('saveCard')}
+            {t('downloadImage')}
           </button>
-          <button
-            onClick={shareCard}
+          <Link
+            to="/rights"
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground rounded-xl shadow-card hover:shadow-card-hover transition-all duration-200"
           >
-            <Share2 size={18} className="opacity-50" />
-            {t('shareCard')}
-          </button>
+            <BookOpen size={18} className="opacity-50" />
+            {t('reviewRights')}
+          </Link>
           <button
             onClick={startOver}
             className="w-full flex items-center justify-center gap-2 p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
