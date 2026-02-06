@@ -155,37 +155,17 @@
   }
   
   
-  /* Hotline button - bracket style with stacked layout */
-  .btn-hotline {
-    @apply relative block text-left px-8 py-6 transition-all duration-300;
+  /* Menu item - with chevron for tap affordance */
+  .menu-item {
+    @apply flex items-center justify-between py-4 border-b border-border/50 font-medium text-foreground transition-colors duration-200;
   }
-  
-  .btn-hotline::before,
-  .btn-hotline::after {
-    content: '';
-    @apply absolute w-5 h-5 transition-all duration-300;
-    border-color: hsl(var(--foreground));
+
+  .menu-item:last-child {
+    @apply border-b-0;
   }
-  
-  .btn-hotline::before {
-    @apply top-0 left-0;
-    border-top: 2px solid;
-    border-left: 2px solid;
-  }
-  
-  .btn-hotline::after {
-    @apply bottom-0 right-0;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
-  }
-  
-  .btn-hotline:hover::before,
-  .btn-hotline:hover::after {
-    @apply w-full h-full;
-  }
-  
-  .btn-hotline:hover {
-    @apply bg-accent/50;
+
+  .menu-item:active {
+    @apply bg-accent/30;
   }
   
   /* Minimal callout - just left border, no background */
@@ -204,18 +184,6 @@
     font-family: Georgia, serif;
   }
   
-  /* Menu item - minimal list with underline hover */
-  .menu-item {
-    @apply block py-4 border-b border-border/50 font-medium text-foreground transition-all duration-200;
-  }
-  
-  .menu-item:last-child {
-    @apply border-b-0;
-  }
-  
-  .menu-item:hover {
-    @apply underline underline-offset-4;
-  }
   
   /* Section divider */
   .section-divider {

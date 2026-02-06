@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 
 const sections = [
@@ -35,7 +35,7 @@ export default function ReviewRights() {
             Review My Rights
           </h1>
 
-          {/* Section list - minimal */}
+          {/* Section list - with chevrons for tap affordance */}
           <nav>
             {sections.map((section) => (
               <Link
@@ -43,7 +43,8 @@ export default function ReviewRights() {
                 to={section.path}
                 className="menu-item"
               >
-                {section.label}
+                <span>{section.label}</span>
+                <ChevronRight size={18} className="text-muted-foreground" />
               </Link>
             ))}
           </nav>
