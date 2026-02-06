@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toPng } from 'html-to-image';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { StatusSelector } from '@/components/StatusSelector';
 import { DocumentForm } from '@/components/DocumentForm';
 import { EmergencyContactForm } from '@/components/EmergencyContactForm';
@@ -16,7 +15,6 @@ type Step = 'status' | 'documents' | 'contacts' | 'preview' | 'card';
 
 export default function PrepareCard() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
   const cardRef = useRef<HTMLDivElement>(null);
 
   const [step, setStep] = useState<Step>('status');
@@ -69,7 +67,7 @@ export default function PrepareCard() {
       link.href = dataUrl;
       link.click();
 
-      toast.success(t('downloadSuccess'));
+      toast.success('Card saved to your device!');
     } catch (error) {
       console.error('Failed to save card:', error);
       toast.error('Failed to save card. Please try again.');
@@ -96,7 +94,7 @@ export default function PrepareCard() {
           text: 'My rights card from Know Your Rights app',
         });
       } else {
-        toast.info(t('shareFailed'));
+        toast.info('Sharing not supported. Downloading instead.');
         saveCard();
       }
     } catch (error) {
@@ -147,21 +145,21 @@ export default function PrepareCard() {
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
-            {t('downloadImage')}
+            Download Image
           </button>
           <Link
-            to="/rights"
+            to="/review"
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground rounded-xl shadow-card hover:shadow-card-hover transition-all duration-200"
           >
             <BookOpen size={18} className="opacity-50" />
-            {t('reviewRights')}
+            Review My Rights
           </Link>
           <button
             onClick={startOver}
             className="w-full flex items-center justify-center gap-2 p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <RotateCcw size={16} />
-            {t('startOver')}
+            Start Over
           </button>
         </div>
       );
@@ -180,7 +178,7 @@ export default function PrepareCard() {
             disabled={isGenerating}
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90 disabled:opacity-50"
           >
-            {t('generateCard')}
+            Generate My Card
           </button>
         )}
 
@@ -189,7 +187,7 @@ export default function PrepareCard() {
             onClick={goNext}
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
           >
-            {t('next')}
+            Next
           </button>
         )}
 
@@ -198,7 +196,7 @@ export default function PrepareCard() {
             onClick={skipStep}
             className="w-full p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            {t('skip')}
+            Skip
           </button>
         )}
       </div>
@@ -215,7 +213,7 @@ export default function PrepareCard() {
             className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft size={18} />
-            {t('back')}
+            Back
           </button>
 
           {/* Progress dots */}

@@ -1,4 +1,3 @@
-import { useLanguage } from '@/contexts/LanguageContext';
 import { DocumentInfo, DocumentType } from '@/types/card';
 
 interface DocumentFormProps {
@@ -6,19 +5,17 @@ interface DocumentFormProps {
   onChange: (doc: DocumentInfo) => void;
 }
 
-const documentOptions: { key: Exclude<DocumentType, null>; translationKey: string }[] = [
-  { key: 'greenCard', translationKey: 'greenCardDoc' },
-  { key: 'workPermit', translationKey: 'workPermit' },
-  { key: 'visaI94', translationKey: 'visaI94' },
-  { key: 'dacaApproval', translationKey: 'dacaApproval' },
-  { key: 'tpsCard', translationKey: 'tpsCard' },
-  { key: 'passportVisa', translationKey: 'passportVisa' },
-  { key: 'other', translationKey: 'otherDoc' },
+const documentOptions: { key: Exclude<DocumentType, null>; label: string }[] = [
+  { key: 'greenCard', label: 'Green Card' },
+  { key: 'workPermit', label: 'Work Permit (EAD)' },
+  { key: 'visaI94', label: 'Visa / I-94' },
+  { key: 'dacaApproval', label: 'DACA Approval Notice' },
+  { key: 'tpsCard', label: 'TPS Card' },
+  { key: 'passportVisa', label: 'Passport (with visa)' },
+  { key: 'other', label: 'None / Prefer not to say' },
 ];
 
 export function DocumentForm({ value, onChange }: DocumentFormProps) {
-  const { t } = useLanguage();
-
   const handleTypeSelect = (type: DocumentType) => {
     onChange({ ...value, type });
   };
@@ -30,10 +27,10 @@ export function DocumentForm({ value, onChange }: DocumentFormProps) {
   return (
     <div className="w-full max-w-sm mx-auto">
       <h2 className="text-xl font-semibold mb-2 text-center text-headline">
-        {t('documentType')}
+        Document Type
       </h2>
       <p className="text-muted-foreground text-center text-sm mb-2">
-        {t('documentOptional')}
+        Select your ID type to include on your card.
       </p>
       <p className="text-muted-foreground/70 text-center text-xs mb-6">
         This will be added to your card for your reference.
@@ -53,26 +50,26 @@ export function DocumentForm({ value, onChange }: DocumentFormProps) {
               }
             `}
           >
-            {t(option.translationKey as any)}
+            {option.label}
           </button>
         ))}
       </div>
 
-      {/* Document number input - only show if type selected */}
-      {value.type && (
+      {/* Document number input - only show if type selected and not "other" */}
+      {value.type && value.type !== 'other' && (
         <div className="space-y-3 animate-fade-in">
           <label className="text-sm font-medium text-muted-foreground">
-            {t('documentNumber')}
+            Document Number (optional)
           </label>
           <input
             type="text"
-            placeholder={t('documentNumberPlaceholder')}
+            placeholder="A-number or document ID"
             value={value.number}
             onChange={(e) => handleNumberChange(e.target.value)}
             className="w-full p-4 text-base rounded-2xl bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
           <p className="text-xs text-muted-foreground text-center">
-            {t('documentNumberNote')}
+            This is only stored on your phone, never shared.
           </p>
         </div>
       )}

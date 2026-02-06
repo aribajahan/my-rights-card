@@ -1,98 +1,66 @@
 import { InfoPageLayout } from '@/components/InfoPageLayout';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function WhatToCarry() {
-  const { t } = useLanguage();
-
   return (
-    <InfoPageLayout title={t('whatToCarry')}>
-      <div className="p-4 bg-accent/30 rounded-2xl mb-6">
+    <InfoPageLayout title="What to Carry">
+      <div className="p-4 bg-secondary/10 rounded-2xl mb-6">
         <p className="text-sm font-medium text-headline">
-          What you carry with you matters. Here's how to stay prepared.
+          Having the right documents—and knowing what not to carry—can help protect you.
         </p>
       </div>
 
       <section>
-        <h2>What to Carry</h2>
+        <h2>Everyone Should Carry</h2>
         <ul className="list-none space-y-2 my-4">
           <li className="flex items-start gap-3 text-sm">
             <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
-            Your Know Your Rights card (from this app)
+            A "Know Your Rights" card
           </li>
           <li className="flex items-start gap-3 text-sm">
             <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
-            Emergency contact information
+            Emergency contact information (on paper)
           </li>
           <li className="flex items-start gap-3 text-sm">
             <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
-            Your lawyer's phone number (if you have one)
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
-            A valid photo ID (state ID, driver's license, or passport)
+            An immigration lawyer's phone number
           </li>
         </ul>
       </section>
 
       <section>
-        <h2>If You Have Immigration Documents</h2>
+        <h2>If You Have Lawful Immigration Status</h2>
         <p>
-          If you have valid immigration documents (green card, work permit, visa), you should carry them with you. This can help avoid complications during an encounter.
+          If you are a green card holder, you are required by law to carry your card. If you have another form of legal status (DACA, TPS, visa, etc.), consider carrying a copy of your documents.
         </p>
-        <p>
-          Keep copies of important documents in a safe place at home. Give copies to a trusted friend or family member.
+        <p className="text-sm text-muted-foreground mt-2">
+          <strong>Note:</strong> Some people prefer to carry copies rather than originals to avoid losing irreplaceable documents.
         </p>
       </section>
 
       <section>
-        <h2>What NOT to Carry</h2>
+        <h2>Do NOT Carry</h2>
         <ul className="list-none space-y-2 my-4">
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            Fake documents or false IDs—these can lead to criminal charges
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Fake documents or papers with false information
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            Documents from another country that could suggest you are not a U.S. citizen (unless you need them)
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Foreign passports (unless required for work or travel)
           </li>
           <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-muted-foreground flex-shrink-0"></span>
-            Anything that could be used against you in immigration proceedings
+            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-destructive flex-shrink-0"></span>
+            Documents from other countries that could raise questions
           </li>
         </ul>
-      </section>
-
-      <section>
-        <h2>Keep Your Phone Secure</h2>
-        <p>
-          Use a strong passcode (not Face ID or fingerprint alone). Officers may be able to compel you to unlock with biometrics, but they cannot force you to give a passcode.
-        </p>
-        <p>
-          Know your rights about phone searches. In most cases, officers need a warrant to search your phone.
+        <p className="text-sm text-muted-foreground mt-2">
+          Carrying false documents is a crime and can hurt your case.
         </p>
       </section>
 
-      <section>
-        <h2>Create a Family Safety Plan</h2>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
-            Designate a trusted person who can care for your children
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
-            Keep important documents (birth certificates, school records) in a safe place
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1.5 h-1.5 mt-2 rounded-full bg-primary flex-shrink-0"></span>
-            Make sure your family knows who to call in an emergency
-          </li>
-        </ul>
-      </section>
-
-      <div className="p-4 bg-accent/20 rounded-2xl mt-8">
+      <div className="p-4 bg-secondary/10 rounded-2xl mt-8">
         <p className="text-sm font-medium text-center text-headline">
-          Being prepared helps you stay calm and in control.
+          Be prepared. Know what to carry—and what not to.
         </p>
       </div>
     </InfoPageLayout>
