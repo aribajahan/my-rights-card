@@ -180,22 +180,66 @@
     color: hsl(var(--hotline));
   }
   
-  /* Secondary button - text with thin underline */
+  /* Secondary button - bracket hover (smaller, subtle) */
   .btn-text {
-    @apply relative inline-flex items-center justify-center py-3 font-semibold text-foreground bg-transparent transition-all duration-200;
+    @apply relative inline-flex items-center justify-center py-4 px-6 font-semibold text-foreground bg-transparent transition-all duration-300;
+  }
+  
+  .btn-text::before,
+  .btn-text::after {
+    content: '';
+    @apply absolute w-3 h-3 transition-all duration-300 opacity-0;
+    border-color: hsl(var(--foreground));
+  }
+  
+  .btn-text::before {
+    @apply top-0 left-0;
+    border-top: 2px solid;
+    border-left: 2px solid;
   }
   
   .btn-text::after {
-    content: '';
-    @apply absolute bottom-1 left-0 w-full h-[1px] bg-foreground/40 transition-all duration-200;
+    @apply bottom-0 right-0;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
   }
   
+  .btn-text:hover::before,
   .btn-text:hover::after {
-    @apply h-[2px] bg-foreground;
+    @apply opacity-100 w-5 h-5;
   }
   
-  .btn-text:hover {
-    @apply font-bold;
+  /* Hotline button - bracket style with stacked layout */
+  .btn-hotline {
+    @apply relative block text-left px-8 py-6 transition-all duration-300;
+  }
+  
+  .btn-hotline::before,
+  .btn-hotline::after {
+    content: '';
+    @apply absolute w-5 h-5 transition-all duration-300;
+    border-color: hsl(var(--foreground));
+  }
+  
+  .btn-hotline::before {
+    @apply top-0 left-0;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  
+  .btn-hotline::after {
+    @apply bottom-0 right-0;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+  
+  .btn-hotline:hover::before,
+  .btn-hotline:hover::after {
+    @apply w-full h-full;
+  }
+  
+  .btn-hotline:hover {
+    @apply bg-accent/50;
   }
   
   /* Minimal callout - just left border, no background */

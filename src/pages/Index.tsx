@@ -37,19 +37,24 @@ export default function Index() {
             </Link>
           </div>
 
-          {/* Hotline - minimal treatment */}
-          <div className="border-t border-border/50 pt-8">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+          {/* Hotline - bracket button style */}
+          <a 
+            href="tel:1-844-363-1423" 
+            className="btn-hotline block mt-8"
+          >
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">
               Report ICE Activity
             </p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">
+              United We Dream
+            </p>
             <div className="flex items-baseline gap-3">
-              <span className="text-sm font-medium text-muted-foreground">United We Dream</span>
-              <a href="tel:1-844-363-1423" className="text-hotline font-bold text-lg hover:opacity-80 transition-opacity">
+              <span className="text-foreground font-bold text-xl">
                 1-844-363-1423
-              </a>
+              </span>
               <span className="text-xs font-semibold text-muted-foreground">24/7</span>
             </div>
-          </div>
+          </a>
         </div>
       </main>
 
