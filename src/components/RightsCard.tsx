@@ -19,36 +19,62 @@ const getStatusBadge = (status: ImmigrationStatus): string => {
   }
 };
 
-// Bold, stencil-style SVG icons for the card
+// Bold graphic icons with human figures and brick red accents
 const DoorIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="4" width="16" height="24" rx="2" stroke="white" strokeWidth="3"/>
-    <circle cx="20" cy="16" r="1.5" fill="white"/>
-    <path d="M6 4L26 28" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    {/* Door frame */}
+    <rect x="6" y="4" width="14" height="24" rx="1" stroke="white" strokeWidth="2.5"/>
+    <circle cx="17" cy="16" r="1.2" fill="white"/>
+    {/* Person silhouette behind door */}
+    <circle cx="24" cy="10" r="3" stroke="white" strokeWidth="2"/>
+    <path d="M24 13V20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* Stop hand - brick red accent */}
+    <path d="M26 15L28 13M26 15L28 17M26 15H30" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
+    <circle cx="27" cy="15" r="3" fill="#B8352E"/>
   </svg>
 );
 
 const SilenceIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="16" cy="18" r="10" stroke="white" strokeWidth="3"/>
-    <path d="M16 4V8" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M12 15C12 15 13 18 16 18C19 18 20 15 20 15" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M6 6L26 26" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    {/* Head profile */}
+    <ellipse cx="14" cy="14" rx="8" ry="10" stroke="white" strokeWidth="2.5"/>
+    {/* Eye */}
+    <circle cx="11" cy="12" r="1.5" fill="white"/>
+    {/* Mouth line */}
+    <path d="M9 18H15" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    {/* Finger over lips - brick red accent */}
+    <rect x="18" y="10" width="4" height="14" rx="2" fill="#B8352E"/>
+    <path d="M20 8V24" stroke="#B8352E" strokeWidth="4" strokeLinecap="round"/>
   </svg>
 );
 
 const HandIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 4V18" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M12 8V16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M20 8V16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M8 12V18C8 24 12 28 16 28C20 28 24 24 24 18V12" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    {/* Reaching hand (left) */}
+    <path d="M4 16H10" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M6 13L10 16L6 19" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    {/* Blocking palm (right) - brick red accent */}
+    <path d="M20 8V12" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M24 10V14" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M28 10V14" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M16 12V18" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M14 16C14 16 14 24 22 24C30 24 30 16 30 16V14C30 14 30 10 26 10" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* X block indicator */}
+    <path d="M12 12L16 16M16 12L12 16" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
   </svg>
 );
 
 const PhoneIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M7 5C7 5 9 4 11 6C13 8 12 10 12 10L10 12C10 12 12 16 16 20C20 24 22 22 22 22L24 20C24 20 26 19 28 21C30 23 27 25 27 25C25 27 21 28 16 23C11 18 8 12 7 9C6 6 7 5 7 5Z" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    {/* Person silhouette */}
+    <circle cx="10" cy="8" r="4" stroke="white" strokeWidth="2.5"/>
+    <path d="M10 12V22" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M6 26L10 22L14 26" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    {/* Phone at ear */}
+    <rect x="12" y="6" width="3" height="8" rx="1" stroke="white" strokeWidth="2"/>
+    {/* Speech bubble - brick red accent (lawyer) */}
+    <path d="M20 6H28C29 6 30 7 30 8V14C30 15 29 16 28 16H24L22 19V16H20C19 16 18 15 18 14V8C18 7 19 6 20 6Z" fill="#B8352E"/>
+    <path d="M21 10H27M21 13H25" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
   </svg>
 );
 
