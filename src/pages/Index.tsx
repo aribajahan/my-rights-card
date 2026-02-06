@@ -18,16 +18,16 @@ export default function Index() {
           {/* Headline with brush script accent */}
           <div className="mb-10 relative">
             <p 
-              className="text-muted-foreground/40 text-2xl mb-1"
+              className="text-muted-foreground/40 text-2xl mb-1 uppercase"
               style={{ fontFamily: 'Caveat, cursive' }}
             >
-              stay prepared
+              know your rights
             </p>
             <h1 className="text-5xl tracking-wide text-headline mb-3">
-              Know Your Rights
+              Stay Ready
             </h1>
             <p className="text-foreground text-lg font-medium">
-              Be prepared. Stay calm. Know your rights.
+              Know what to say if ICE comes to your door, car, or workplace.
             </p>
           </div>
 
@@ -39,9 +39,9 @@ export default function Index() {
             >
               <div className="flex items-center justify-between">
                 <div className="text-left">
-                  <h2 className="text-lg font-bold" style={{ fontFamily: 'DM Sans, sans-serif' }}>Prepare My Card</h2>
+                  <h2 className="text-lg font-bold text-white" style={{ fontFamily: 'DM Sans, sans-serif' }}>PREPARE MY CARD</h2>
                   <p className="text-sm opacity-90">
-                    Create a digital rights card to save on your phone
+                    Save a rights card to your phone
                   </p>
                 </div>
                 <ChevronRight size={24} className="opacity-70 flex-shrink-0" />
@@ -54,7 +54,7 @@ export default function Index() {
             >
               <div className="flex items-center justify-between">
                 <div className="text-left">
-                  <h2 className="text-lg font-bold text-headline" style={{ fontFamily: 'DM Sans, sans-serif' }}>Review My Rights</h2>
+                  <h2 className="text-lg font-bold text-headline" style={{ fontFamily: 'DM Sans, sans-serif' }}>REVIEW MY RIGHTS</h2>
                   <p className="text-sm text-muted-foreground">
                     Learn what to do in different situations
                   </p>
@@ -64,21 +64,21 @@ export default function Index() {
             </Link>
           </div>
 
-          {/* Hotline box - simplified */}
+          {/* Hotline box - reframed */}
           <div className="bg-card rounded-2xl p-4 shadow-card mb-8">
+            <p className="text-xs font-bold text-headline uppercase tracking-wider mb-2">
+              Report ICE Activity
+            </p>
             <div className="flex items-center justify-between">
-              <div className="text-left">
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                  24/7 Hotline
-                </p>
-                <p className="text-sm font-medium">United We Dream</p>
-              </div>
               <a
                 href="tel:1-844-363-1423"
-                className="text-lg font-bold text-headline"
+                className="text-sm font-medium"
               >
-                1-844-363-1423
+                United We Dream | 1-844-363-1423
               </a>
+              <span className="bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-full">
+                24/7
+              </span>
             </div>
           </div>
         </div>

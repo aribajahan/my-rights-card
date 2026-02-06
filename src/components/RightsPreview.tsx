@@ -20,6 +20,11 @@ export function RightsPreview() {
       description: 'If you are detained or arrested, you have the right to speak to a lawyer.',
       quote: '"I want to speak to a lawyer before answering any questions."',
     },
+    {
+      title: 'Right to refuse to sign',
+      description: 'Do not sign anything you don\'t understand. Signing certain documents can waive your rights.',
+      quote: '"I do not wish to sign anything without speaking to a lawyer."',
+    },
   ];
 
   return (
