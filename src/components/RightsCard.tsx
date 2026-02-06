@@ -72,11 +72,25 @@ const PhoneIcon = () => (
   </svg>
 );
 
+const NoSignIcon = () => (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Document shape */}
+    <rect x="14" y="8" width="28" height="36" rx="3" fill="white"/>
+    {/* Document lines */}
+    <path d="M20 18H36" stroke="#B91C1C" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M20 26H32" stroke="#B91C1C" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M20 34H28" stroke="#B91C1C" strokeWidth="3" strokeLinecap="round"/>
+    {/* Bold diagonal slash */}
+    <path d="M8 48L48 8" stroke="white" strokeWidth="6" strokeLinecap="round"/>
+  </svg>
+);
+
 const rights = [
   { icon: DoorIcon, text: 'NO WARRANT,\nNO ENTRY' },
   { icon: SilenceIcon, text: 'RIGHT TO\nSILENCE' },
   { icon: HandIcon, text: 'NO SEARCH\nWITHOUT CONSENT' },
   { icon: PhoneIcon, text: 'RIGHT TO\nA LAWYER' },
+  { icon: NoSignIcon, text: 'RIGHT TO\nREFUSE TO SIGN' },
 ];
 
 export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
