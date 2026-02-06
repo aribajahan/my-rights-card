@@ -25,10 +25,10 @@ const DoorIcon = () => (
     {/* Bold door shape */}
     <rect x="11" y="6" width="25" height="45" rx="3" fill="white"/>
     {/* Door panel detail */}
-    <rect x="17" y="11" width="14" height="17" rx="1" stroke="#B91C1C" strokeWidth="3"/>
-    <rect x="17" y="34" width="14" height="11" rx="1" stroke="#B91C1C" strokeWidth="3"/>
+    <rect x="17" y="11" width="14" height="17" rx="1" stroke="#1A1A1A" strokeWidth="3"/>
+    <rect x="17" y="34" width="14" height="11" rx="1" stroke="#1A1A1A" strokeWidth="3"/>
     {/* Door handle */}
-    <circle cx="28" cy="28" r="3" fill="#B91C1C"/>
+    <circle cx="28" cy="28" r="3" fill="#1A1A1A"/>
     {/* Bold X blocking */}
     <path d="M36 11L53 28M53 11L36 28" stroke="white" strokeWidth="5" strokeLinecap="round"/>
   </svg>
@@ -39,7 +39,7 @@ const SilenceIcon = () => (
     {/* Bold lips shape */}
     <ellipse cx="28" cy="28" rx="22" ry="14" fill="white"/>
     {/* Mouth line sealed */}
-    <path d="M11 28H45" stroke="#B91C1C" strokeWidth="5" strokeLinecap="round"/>
+    <path d="M11 28H45" stroke="#1A1A1A" strokeWidth="5" strokeLinecap="round"/>
     {/* Bold strike-through */}
     <path d="M8 45L48 11" stroke="white" strokeWidth="5" strokeLinecap="round"/>
   </svg>
@@ -77,9 +77,9 @@ const NoSignIcon = () => (
     {/* Document shape */}
     <rect x="14" y="8" width="28" height="36" rx="3" fill="white"/>
     {/* Document lines */}
-    <path d="M20 18H36" stroke="#B91C1C" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M20 26H32" stroke="#B91C1C" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M20 34H28" stroke="#B91C1C" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M20 18H36" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M20 26H32" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M20 34H28" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round"/>
     {/* Bold diagonal slash */}
     <path d="M8 48L48 8" stroke="white" strokeWidth="6" strokeLinecap="round"/>
   </svg>
@@ -114,25 +114,25 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
         {/* Top Bar - Black background with document info */}
         <div
           style={{
-            backgroundColor: '#B8352E',
+            backgroundColor: '#1A1A1A',
             padding: '20px 24px',
             color: 'white',
           }}
         >
           <div className="flex justify-between items-start">
             <div>
-              <p style={{ fontSize: '10px', letterSpacing: '0.1em', opacity: 0.7, marginBottom: '4px' }}>
+              <p style={{ fontSize: '11px', letterSpacing: '0.1em', opacity: 0.7, marginBottom: '4px' }}>
                 DOCUMENT TYPE
               </p>
-              <p style={{ fontSize: '16px', fontWeight: 600 }}>
+              <p style={{ fontSize: '18px', fontWeight: 600 }}>
                 {showDocument ? documentLabels[documentInfo.type!] : 'Not specified'}
               </p>
               {documentInfo.number && (
                 <>
-                  <p style={{ fontSize: '10px', letterSpacing: '0.1em', opacity: 0.7, marginTop: '12px', marginBottom: '4px' }}>
+                  <p style={{ fontSize: '11px', letterSpacing: '0.1em', opacity: 0.7, marginTop: '12px', marginBottom: '4px' }}>
                     A-NUMBER
                   </p>
-                  <p style={{ fontSize: '16px', fontWeight: 600 }}>
+                  <p style={{ fontSize: '18px', fontWeight: 600 }}>
                     {documentInfo.number}
                   </p>
                 </>
@@ -143,9 +143,9 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                 style={{
                   backgroundColor: '#F5F2E8',
                   color: '#1A1A1A',
-                  padding: '8px 16px',
+                  padding: '10px 18px',
                   borderRadius: '0',
-                  fontSize: '11px',
+                  fontSize: '13px',
                   fontWeight: 600,
                   letterSpacing: '0.05em',
                 }}
@@ -166,7 +166,7 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
               lineHeight: '1',
               letterSpacing: '-1px',
               marginBottom: '16px',
-              color: '#B8352E',
+              color: '#1A1A1A',
             }}
           >
             MY RIGHTS
@@ -184,12 +184,12 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                   overflow: 'hidden',
                 }}
               >
-                {/* Icon box - white on red background */}
+                {/* Icon box - white on black background */}
                 <div
                   style={{
                     width: '88px',
                     height: '88px',
-                    backgroundColor: '#B91C1C',
+                    backgroundColor: '#1A1A1A',
                     borderRadius: '0',
                     display: 'flex',
                     alignItems: 'center',
