@@ -23,11 +23,11 @@ const getStatusBadge = (status: ImmigrationStatus): string => {
 const DoorIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Door frame */}
-    <rect x="6" y="4" width="14" height="24" rx="1" stroke="white" strokeWidth="2.5"/>
-    <circle cx="17" cy="16" r="1.2" fill="white"/>
+    <rect x="6" y="4" width="14" height="24" rx="1" stroke="#1A1A1A" strokeWidth="2.5"/>
+    <circle cx="17" cy="16" r="1.2" fill="#1A1A1A"/>
     {/* Person silhouette behind door */}
-    <circle cx="24" cy="10" r="3" stroke="white" strokeWidth="2"/>
-    <path d="M24 13V20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+    <circle cx="24" cy="10" r="3" stroke="#1A1A1A" strokeWidth="2"/>
+    <path d="M24 13V20" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
     {/* Stop hand - brick red accent */}
     <path d="M26 15L28 13M26 15L28 17M26 15H30" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
     <circle cx="27" cy="15" r="3" fill="#B8352E"/>
@@ -37,11 +37,11 @@ const DoorIcon = () => (
 const SilenceIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Head profile */}
-    <ellipse cx="14" cy="14" rx="8" ry="10" stroke="white" strokeWidth="2.5"/>
+    <ellipse cx="14" cy="14" rx="8" ry="10" stroke="#1A1A1A" strokeWidth="2.5"/>
     {/* Eye */}
-    <circle cx="11" cy="12" r="1.5" fill="white"/>
+    <circle cx="11" cy="12" r="1.5" fill="#1A1A1A"/>
     {/* Mouth line */}
-    <path d="M9 18H15" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M9 18H15" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round"/>
     {/* Finger over lips - brick red accent */}
     <rect x="18" y="10" width="4" height="14" rx="2" fill="#B8352E"/>
     <path d="M20 8V24" stroke="#B8352E" strokeWidth="4" strokeLinecap="round"/>
@@ -51,8 +51,8 @@ const SilenceIcon = () => (
 const HandIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Reaching hand (left) */}
-    <path d="M4 16H10" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M6 13L10 16L6 19" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M4 16H10" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M6 13L10 16L6 19" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
     {/* Blocking palm (right) - brick red accent */}
     <path d="M20 8V12" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
     <path d="M24 10V14" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
@@ -60,21 +60,21 @@ const HandIcon = () => (
     <path d="M16 12V18" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
     <path d="M14 16C14 16 14 24 22 24C30 24 30 16 30 16V14C30 14 30 10 26 10" stroke="#B8352E" strokeWidth="2.5" strokeLinecap="round"/>
     {/* X block indicator */}
-    <path d="M12 12L16 16M16 12L12 16" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M12 12L16 16M16 12L12 16" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
   </svg>
 );
 
 const PhoneIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Person silhouette */}
-    <circle cx="10" cy="8" r="4" stroke="white" strokeWidth="2.5"/>
-    <path d="M10 12V22" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M6 26L10 22L14 26" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="10" cy="8" r="4" stroke="#1A1A1A" strokeWidth="2.5"/>
+    <path d="M10 12V22" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M6 26L10 22L14 26" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
     {/* Phone at ear */}
-    <rect x="12" y="6" width="3" height="8" rx="1" stroke="white" strokeWidth="2"/>
+    <rect x="12" y="6" width="3" height="8" rx="1" stroke="#1A1A1A" strokeWidth="2"/>
     {/* Speech bubble - brick red accent (lawyer) */}
     <path d="M20 6H28C29 6 30 7 30 8V14C30 15 29 16 28 16H24L22 19V16H20C19 16 18 15 18 14V8C18 7 19 6 20 6Z" fill="#B8352E"/>
-    <path d="M21 10H27M21 13H25" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M21 10H27M21 13H25" stroke="#F5F2E8" strokeWidth="1.5" strokeLinecap="round"/>
   </svg>
 );
 
@@ -150,18 +150,18 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
 
         {/* Main content area */}
         <div style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column' }}>
-          {/* MY RIGHTS headline - Anton font, massive */}
+          {/* MY RIGHTS headline - Anton font */}
           <h1
             style={{
               fontFamily: "'Anton', sans-serif",
-              fontSize: '96px',
-              lineHeight: '0.9',
-              letterSpacing: '-2px',
-              marginBottom: '24px',
+              fontSize: '72px',
+              lineHeight: '1',
+              letterSpacing: '-1px',
+              marginBottom: '16px',
               color: '#B8352E',
             }}
           >
-            MY<br />RIGHTS
+            MY RIGHTS
           </h1>
 
           {/* Rights strips */}
@@ -171,17 +171,19 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                 key={i}
                 style={{
                   display: 'flex',
-                  height: '72px',
+                  height: '88px',
                   borderRadius: '12px',
                   overflow: 'hidden',
                 }}
               >
-                {/* Icon box - black */}
+                {/* Icon box - cream with black border */}
                 <div
                   style={{
-                    width: '72px',
-                    height: '72px',
-                    backgroundColor: '#1A1A1A',
+                    width: '88px',
+                    height: '88px',
+                    backgroundColor: '#F5F2E8',
+                    border: '3px solid #1A1A1A',
+                    borderRadius: '12px 0 0 12px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -206,7 +208,7 @@ export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
                   <p
                     style={{
                       fontFamily: "'Anton', sans-serif",
-                      fontSize: '22px',
+                      fontSize: '26px',
                       lineHeight: '1.1',
                       letterSpacing: '0.5px',
                       whiteSpace: 'pre-line',
