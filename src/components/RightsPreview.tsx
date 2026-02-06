@@ -24,7 +24,7 @@ export function RightsPreview() {
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <h2 className="text-xl font-semibold mb-2 text-center text-headline">
+      <h2 className="text-2xl tracking-wide mb-2 text-center text-headline">
         Your Rights
       </h2>
       <p className="text-muted-foreground text-center text-sm mb-6">
@@ -38,7 +38,7 @@ export function RightsPreview() {
             className="p-4 bg-card rounded-2xl shadow-card animate-slide-up"
             style={{ animationDelay: `${index * 75}ms` }}
           >
-            <h3 className="font-semibold text-headline mb-2">
+            <h3 className="text-lg tracking-wide text-headline mb-2">
               {right.title}
             </h3>
             <p className="text-sm text-muted-foreground mb-3">

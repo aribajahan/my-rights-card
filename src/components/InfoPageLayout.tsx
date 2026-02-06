@@ -35,7 +35,7 @@ export function InfoPageLayout({ title, children }: InfoPageLayoutProps) {
       {/* Content */}
       <main className="container py-6 px-4 pb-24">
         <article className="max-w-lg mx-auto">
-          <h1 className="text-2xl font-semibold mb-6 text-headline leading-tight">
+          <h1 className="text-2xl tracking-wide mb-6 text-headline leading-tight">
             {title}
           </h1>
           <div className="info-content space-y-6">

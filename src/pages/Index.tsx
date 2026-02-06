@@ -8,10 +8,10 @@ export default function Index() {
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-sm text-center">
           {/* Headline */}
-          <h1 className="text-4xl font-bold text-headline mb-2">
+          <h1 className="text-5xl tracking-wide text-headline mb-3">
             Know Your Rights
           </h1>
-          <p className="text-foreground text-lg mb-10">
+          <p className="text-foreground text-lg font-medium mb-10">
             Be prepared. Stay calm. Know your rights.
           </p>
 
@@ -26,7 +26,7 @@ export default function Index() {
                   <FileText size={24} />
                 </div>
                 <div className="text-left">
-                  <h2 className="text-lg font-semibold text-primary-foreground">Prepare My Card</h2>
+                  <h2 className="text-lg font-bold uppercase tracking-wider text-primary-foreground normal-case" style={{ fontFamily: 'DM Sans, sans-serif' }}>Prepare My Card</h2>
                   <p className="text-sm opacity-90">
                     Create a digital rights card to save on your phone
                   </p>
@@ -43,7 +43,7 @@ export default function Index() {
                   <BookOpen size={24} className="text-secondary" />
                 </div>
                 <div className="text-left">
-                  <h2 className="text-lg font-semibold text-headline">Review My Rights</h2>
+                  <h2 className="text-lg font-bold uppercase tracking-wider text-headline" style={{ fontFamily: 'DM Sans, sans-serif', textTransform: 'none' }}>Review My Rights</h2>
                   <p className="text-sm text-muted-foreground">
                     Learn what to do in different situations
                   </p>

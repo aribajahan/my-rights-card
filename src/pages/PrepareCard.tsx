@@ -142,7 +142,7 @@ export default function PrepareCard() {
         <div className="space-y-2">
           <button
             onClick={saveCard}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
             Download Image
@@ -176,7 +176,7 @@ export default function PrepareCard() {
           <button
             onClick={generateCard}
             disabled={isGenerating}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90 disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90 disabled:opacity-50"
           >
             Generate My Card
           </button>
@@ -185,7 +185,7 @@ export default function PrepareCard() {
         {showNext && (
           <button
             onClick={goNext}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
           >
             Next
           </button>

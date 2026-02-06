@@ -29,7 +29,7 @@ export default function ReviewRights() {
       {/* Main content */}
       <main className="px-4 pb-8">
         <div className="max-w-md mx-auto">
-          <h1 className="text-2xl font-bold text-headline mb-6">
+          <h1 className="text-3xl tracking-wide text-headline mb-6">
             Review My Rights
           </h1>
 

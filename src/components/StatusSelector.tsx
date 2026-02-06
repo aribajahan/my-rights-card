@@ -27,7 +27,7 @@ export function StatusSelector({ value, onChange, onSelect }: StatusSelectorProp
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <h2 className="text-xl font-semibold mb-2 text-center text-headline">
+      <h2 className="text-2xl tracking-wide mb-2 text-center text-headline">
         Select Your Status
       </h2>
       <p className="text-muted-foreground text-center text-sm mb-6">
