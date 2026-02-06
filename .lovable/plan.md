@@ -1,27 +1,19 @@
 
 
-# Visual Redesign: Warm Brick Red Palette
+# Bold Typography Overhaul
 
-## New Color Direction
+Make the app typography bolder and more impactful to match the reference images.
 
-Based on the reference images, this redesign shifts from the current purple/teal palette to a warm, unified brick red aesthetic.
+---
 
-### New Palette
+## Current vs. Target
 
-| Element | Current | New | Hex |
-|---------|---------|-----|-----|
-| Background | Warm cream | Soft cream | `#FAF6F1` |
-| Headlines | Deep purple | Brick red | `#B8352E` |
-| Body text | Dark gray | Charcoal | `#2D2D2D` |
-| Buttons | Teal green | Brick red | `#B8352E` |
-| Cards | White | Warm white | `#FFFFFF` |
-| Muted text | Gray | Warm gray | `#6B6560` |
-
-### Typography Updates
-
-- **Headlines**: Keep Anton (condensed bold), but use the brick red color
-- **Body**: Keep DM Sans for readability
-- **Style**: More uppercase headlines for impact (matching reference)
+| Element | Current | Target |
+|---------|---------|--------|
+| Main headline | `text-4xl font-bold` (DM Sans) | `font-display text-5xl uppercase` (Anton) |
+| Section headlines | `text-xl font-semibold` | `font-display text-2xl uppercase tracking-wide` |
+| Button text | `font-medium` | `font-bold uppercase tracking-wider` |
+| Body text | DM Sans regular | DM Sans (stays the same) |
 
 ---
 
@@ -29,73 +21,61 @@ Based on the reference images, this redesign shifts from the current purple/teal
 
 ### File: `src/index.css`
 
-Update CSS custom properties:
+Update base heading styles to use Anton display font:
 
-```text
---background: Warm cream (#FAF6F1)
---foreground: Charcoal (#2D2D2D)
---headline: Brick red (#B8352E)
---primary: Brick red (#B8352E)
---primary-foreground: Cream (#FAF6F1)
---muted-foreground: Warm gray (#6B6560)
---coral: Remove or change to brick red
+```css
+h1, h2, h3 {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: hsl(var(--headline));
+}
 ```
-
-Remove the secondary purple color entirely - use brick red as the single accent.
-
-### File: `tailwind.config.ts`
-
-- Update shadow colors to work with warm palette
-- Adjust any purple-specific utilities
 
 ### File: `src/pages/Index.tsx`
 
-- Update any hardcoded color references
-- Ensure buttons use new primary (brick red) color
-- Cards remain white with subtle shadows
+- Main headline: Use `font-display text-5xl uppercase tracking-wide`
+- Subhead: Keep DM Sans but make it bolder
+- Button text: Add `uppercase tracking-wider font-bold`
 
-### Component Updates
+### File: `src/components/StatusSelector.tsx`
 
-The following components may need minor color class updates:
-- `StatusSelector.tsx` - button states
-- `RightsCard.tsx` - already uses black/cream (no change needed)
-- `InfoPageLayout.tsx` - headline colors
+- Section headline: Use `font-display text-2xl uppercase tracking-wide`
+- Keep button labels in sentence case for readability
 
----
+### File: `src/pages/ReviewRights.tsx`
 
-## Visual Comparison
+- Page title: Use `font-display text-3xl uppercase tracking-wide`
 
-### Before (Current)
-- Purple headlines (#5B21B6)
-- Teal buttons (#059669)
-- Multiple accent colors
-- Feels: corporate, clinical
+### File: `src/components/RightsPreview.tsx`
 
-### After (New)
-- Brick red headlines (#B8352E)
-- Brick red buttons (#B8352E)
-- Single unified accent
-- Feels: warm, confident, trustworthy
+- Rights titles: Use `font-display text-lg uppercase`
+
+### File: `src/components/InfoPageLayout.tsx`
+
+- Page titles: Use `font-display text-2xl uppercase tracking-wide`
 
 ---
 
-## What Stays the Same
+## Visual Result
 
-- **Downloadable card**: Keeps the bold black (#1A1A1A) and cream (#F5F2E8) high-contrast design
-- **Typography**: Anton for display, DM Sans for body
-- **Layout**: All page structures remain unchanged
-- **Content**: All text from the content spec stays exactly the same
+**Before**: Calm, professional, subdued  
+**After**: Bold, commanding, activist-energy
+
+The warm brick red color combined with Anton uppercase headlines will create that confident, "we've got your back" feeling from the reference images.
 
 ---
 
 ## Files to Modify
 
-| File | Change |
-|------|--------|
-| `src/index.css` | Update all CSS custom properties to new palette |
-| `tailwind.config.ts` | Update any color-specific configurations |
-| `src/pages/Index.tsx` | Remove any hardcoded purple/teal classes |
-| `src/components/StatusSelector.tsx` | Update selected state colors |
-| `src/components/RightsPreview.tsx` | Update accent colors |
-| `src/pages/ReviewRights.tsx` | Verify heading colors use new palette |
+| File | Changes |
+|------|---------|
+| `src/index.css` | Update heading base styles to use Anton + uppercase |
+| `tailwind.config.ts` | Already has `font-display: ['Anton']` - no changes needed |
+| `src/pages/Index.tsx` | Update headline and button typography classes |
+| `src/components/StatusSelector.tsx` | Update section headline typography |
+| `src/pages/ReviewRights.tsx` | Update page title typography |
+| `src/components/RightsPreview.tsx` | Update rights card titles |
+| `src/components/InfoPageLayout.tsx` | Update page title typography |
+| `src/pages/PrepareCard.tsx` | Update button typography |
 
