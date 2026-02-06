@@ -124,12 +124,56 @@ export default function PrepareCard() {
         return <RightsPreview />;
       case 'card':
         return (
-          <div className="flex flex-col items-center">
-            <div className="w-full max-w-xs overflow-hidden shadow-card-hover">
-              <div className="transform scale-[0.5] origin-top-left w-[200%]">
-                <RightsCard ref={cardRef} status={status} documentInfo={documentInfo} contacts={contacts} />
+          <div className="flex flex-col items-center gap-6">
+            {/* Phone mockup container */}
+            <div className="relative">
+              {/* Phone frame */}
+              <div 
+                className="relative bg-foreground overflow-hidden shadow-2xl"
+                style={{
+                  width: '180px',
+                  height: '400px',
+                  borderRadius: '24px',
+                  padding: '8px',
+                }}
+              >
+                {/* Screen area */}
+                <div 
+                  className="relative overflow-hidden bg-background"
+                  style={{
+                    borderRadius: '16px',
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  {/* Scaled card preview */}
+                  <div 
+                    style={{
+                      transform: 'scale(0.152)',
+                      transformOrigin: 'top left',
+                      width: '1080px',
+                      height: '2400px',
+                    }}
+                  >
+                    <RightsCard ref={cardRef} status={status} documentInfo={documentInfo} contacts={contacts} />
+                  </div>
+                </div>
+                {/* Notch/dynamic island */}
+                <div 
+                  className="absolute top-3 left-1/2 -translate-x-1/2 bg-foreground"
+                  style={{
+                    width: '60px',
+                    height: '20px',
+                    borderRadius: '10px',
+                  }}
+                />
               </div>
             </div>
+            
+            {/* Instruction text */}
+            <p className="text-center text-sm text-muted-foreground max-w-xs">
+              Set as your lock screen so your rights are always visible.
+            </p>
           </div>
         );
       default:
@@ -146,7 +190,7 @@ export default function PrepareCard() {
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
-            Download Image
+            Download Card
           </button>
           <Link
             to="/review"
