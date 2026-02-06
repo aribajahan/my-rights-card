@@ -6,89 +6,91 @@
 
 @layer base {
   :root {
-    /* Warm brick red palette */
-    --background: 30 47% 96%; /* Soft cream #FAF6F1 */
-    --foreground: 0 0% 18%; /* Charcoal #2D2D2D */
+    /* Black and cream editorial palette */
+    --background: 42 25% 94%; /* Warm cream #F5F2E8 */
+    --foreground: 0 0% 10%; /* Black #1A1A1A */
     
     --card: 0 0% 100%; /* Pure white */
-    --card-foreground: 0 0% 18%;
+    --card-foreground: 0 0% 10%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 18%;
+    --popover-foreground: 0 0% 10%;
     
-    --primary: 3 60% 45%; /* Brick red #B8352E */
-    --primary-foreground: 30 47% 96%;
+    --primary: 0 0% 10%; /* Black for buttons */
+    --primary-foreground: 42 25% 94%; /* Cream */
     
-    --secondary: 3 60% 45%; /* Same brick red for unified accent */
-    --secondary-foreground: 30 47% 96%;
+    --secondary: 0 0% 10%; /* Black */
+    --secondary-foreground: 42 25% 94%;
     
-    --muted: 30 20% 90%;
-    --muted-foreground: 27 5% 40%; /* Warm gray #6B6560 */
+    --muted: 40 15% 88%;
+    --muted-foreground: 0 0% 40%; /* Medium gray */
     
-    --accent: 3 45% 92%; /* Light brick red tint */
-    --accent-foreground: 3 60% 45%;
+    --accent: 40 20% 90%; /* Slightly darker cream #EDE9DF for callouts */
+    --accent-foreground: 0 0% 10%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 30 15% 85%;
-    --input: 30 15% 85%;
-    --ring: 3 60% 45%;
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 0 0% 10%;
     
-    --radius: 0.75rem;
+    --radius: 0; /* Sharp corners globally */
     
     /* Semantic colors */
-    --headline: 3 60% 45%; /* Brick red for headlines */
+    --headline: 0 0% 10%; /* Black for headlines */
+    --hotline: 0 77% 41%; /* Brick red #B91C1C for phone numbers only */
     
-    --sidebar-background: 30 30% 98%;
-    --sidebar-foreground: 0 0% 18%;
-    --sidebar-primary: 3 60% 45%;
-    --sidebar-primary-foreground: 30 47% 96%;
-    --sidebar-accent: 30 30% 93%;
-    --sidebar-accent-foreground: 0 0% 18%;
-    --sidebar-border: 30 15% 85%;
-    --sidebar-ring: 3 60% 45%;
+    --sidebar-background: 42 25% 96%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 42 25% 94%;
+    --sidebar-accent: 40 20% 93%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 40 15% 85%;
+    --sidebar-ring: 0 0% 10%;
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 30 30% 95%;
+    --background: 0 0% 8%;
+    --foreground: 42 20% 92%;
     
-    --card: 0 0% 15%;
-    --card-foreground: 30 30% 95%;
+    --card: 0 0% 12%;
+    --card-foreground: 42 20% 92%;
     
-    --popover: 0 0% 15%;
-    --popover-foreground: 30 30% 95%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 42 20% 92%;
     
-    --primary: 3 55% 55%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 42 20% 92%;
+    --primary-foreground: 0 0% 8%;
     
-    --secondary: 3 55% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 42 20% 92%;
+    --secondary-foreground: 0 0% 8%;
     
-    --muted: 0 0% 20%;
-    --muted-foreground: 30 20% 65%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
     
-    --accent: 3 40% 25%;
-    --accent-foreground: 30 30% 95%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 42 20% 92%;
     
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --ring: 3 55% 55%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 42 20% 92%;
     
-    --headline: 3 50% 65%;
+    --headline: 42 20% 92%;
+    --hotline: 0 70% 55%;
     
-    --sidebar-background: 0 0% 12%;
-    --sidebar-foreground: 30 30% 95%;
-    --sidebar-primary: 3 55% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 30 30% 95%;
-    --sidebar-border: 0 0% 25%;
-    --sidebar-ring: 3 55% 55%;
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 42 20% 92%;
+    --sidebar-primary: 42 20% 92%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 42 20% 92%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 42 20% 92%;
   }
 }
 
@@ -124,26 +126,30 @@
 }
 
 @layer components {
-  /* Card styling with subtle shadow */
+  /* Card styling with subtle shadow - no rounded corners */
   .card-elevated {
-    @apply bg-card rounded-2xl shadow-card;
+    @apply bg-card shadow-card;
   }
   
-  /* Primary button with shadow */
+  /* Primary button with shadow - no rounded corners */
   .btn-primary {
-    @apply bg-primary text-primary-foreground font-semibold rounded-2xl px-6 py-4 shadow-button hover:opacity-90 transition-all duration-200;
+    @apply bg-primary text-primary-foreground font-semibold px-5 py-3 shadow-button hover:opacity-90 transition-all duration-200;
   }
   
-  /* Secondary/outline button */
+  /* Secondary/outline button - no rounded corners */
   .btn-secondary {
-    @apply bg-card text-foreground font-medium rounded-2xl px-6 py-4 shadow-card hover:shadow-card-hover transition-all duration-200;
+    @apply bg-card text-foreground font-medium px-5 py-3 shadow-card hover:shadow-card-hover transition-all duration-200;
   }
   
-  /* Headline purple color */
+  /* Headline color */
   .text-headline {
     color: hsl(var(--headline));
   }
   
+  /* Hotline accent color - brick red for phone numbers only */
+  .text-hotline {
+    color: hsl(var(--hotline));
+  }
   
   /* Info page content styles */
   .info-content h2 {
@@ -156,7 +162,7 @@
   }
 
   .info-content ul {
-    @apply space-y-3 mb-6;
+    @apply space-y-2 mb-6;
   }
 
   .info-content li {

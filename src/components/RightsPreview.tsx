@@ -40,7 +40,7 @@ export function RightsPreview() {
         {rights.map((right, index) => (
           <div
             key={index}
-            className="p-4 bg-card rounded-2xl shadow-card animate-slide-up"
+            className="p-3 bg-card shadow-card animate-slide-up"
             style={{ animationDelay: `${index * 75}ms` }}
           >
             <h3 className="text-lg tracking-wide text-headline mb-2">
@@ -49,7 +49,7 @@ export function RightsPreview() {
             <p className="text-sm text-muted-foreground mb-3">
               {right.description}
             </p>
-            <p className="text-sm italic text-foreground bg-accent p-3 rounded-xl">
+            <p className="text-sm italic text-foreground bg-accent border-l-4 border-foreground p-3">
               {right.quote}
             </p>
           </div>

@@ -11,8 +11,8 @@ export default function Index() {
           {/* Headline with overlapping brush script accent */}
           <div className="mb-14 relative">
             <p 
-              className="text-muted-foreground/40 text-5xl uppercase -mb-6 relative z-0"
-              style={{ fontFamily: 'Caveat, cursive' }}
+              className="text-5xl uppercase -mb-6 relative z-0"
+              style={{ fontFamily: 'Caveat, cursive', color: '#8A8A8A' }}
             >
               know your rights
             </p>
@@ -22,18 +22,17 @@ export default function Index() {
             <p className="text-foreground text-xl font-medium">
               Know what to say if ICE comes to your door, car, or workplace.
             </p>
-            <div className="w-12 h-1 bg-primary mx-auto mt-4" />
           </div>
 
           {/* Action cards - simplified */}
           <div className="space-y-4 mb-8">
             <Link
               to="/prepare"
-              className="block bg-primary text-primary-foreground rounded-2xl p-5 shadow-button hover:opacity-90 transition-all duration-200"
+              className="block bg-primary text-primary-foreground p-4 shadow-button hover:opacity-90 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div className="text-left">
-                  <h2 className="text-lg font-bold text-white" style={{ fontFamily: 'DM Sans, sans-serif' }}>PREPARE MY CARD</h2>
+                  <h2 className="text-lg font-bold text-primary-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>PREPARE MY CARD</h2>
                   <p className="text-sm opacity-90">
                     Save a rights card to your phone
                   </p>
@@ -44,7 +43,7 @@ export default function Index() {
 
             <Link
               to="/rights"
-              className="block bg-card text-foreground rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all duration-200"
+              className="block bg-card text-foreground p-4 shadow-card hover:shadow-card-hover transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div className="text-left">
@@ -59,17 +58,20 @@ export default function Index() {
           </div>
 
           {/* Hotline box - reframed */}
-          <div className="bg-card rounded-2xl p-4 shadow-card mb-8">
+          <div className="bg-card p-3 shadow-card mb-8">
             <p className="text-xs font-bold text-headline uppercase tracking-wider mb-2">
               Report ICE Activity
             </p>
             <div className="flex items-center justify-between">
-              <a
-                href="tel:1-844-363-1423"
-                className="text-sm font-medium"
-              >
-                United We Dream | 1-844-363-1423
-              </a>
+              <p className="text-sm font-medium">
+                United We Dream |{' '}
+                <a
+                  href="tel:1-844-363-1423"
+                  className="text-hotline font-bold"
+                >
+                  1-844-363-1423
+                </a>
+              </p>
               <span className="bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-full">
                 24/7
               </span>

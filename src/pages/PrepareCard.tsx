@@ -125,7 +125,7 @@ export default function PrepareCard() {
       case 'card':
         return (
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-card-hover">
+            <div className="w-full max-w-xs overflow-hidden shadow-card-hover">
               <div className="transform scale-[0.5] origin-top-left w-[200%]">
                 <RightsCard ref={cardRef} status={status} documentInfo={documentInfo} contacts={contacts} />
               </div>
@@ -143,14 +143,14 @@ export default function PrepareCard() {
         <div className="space-y-2">
           <button
             onClick={saveCard}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
             Download Image
           </button>
           <Link
             to="/review"
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground rounded-xl shadow-card hover:shadow-card-hover transition-all duration-200"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground shadow-card hover:shadow-card-hover transition-all duration-200"
           >
             <BookOpen size={18} className="opacity-50" />
             Review My Rights
@@ -177,7 +177,7 @@ export default function PrepareCard() {
           <button
             onClick={generateCard}
             disabled={isGenerating}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90 disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90 disabled:opacity-50"
           >
             Generate My Card
           </button>
@@ -186,7 +186,7 @@ export default function PrepareCard() {
         {showNext && (
           <button
             onClick={goNext}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground rounded-xl transition-all duration-200 hover:opacity-90"
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
           >
             Next
           </button>
@@ -222,7 +222,7 @@ export default function PrepareCard() {
             {steps.map((s, i) => (
               <div
                 key={s}
-                className={`w-2 h-2 rounded-full transition-colors ${
+                className={`w-2 h-2 transition-colors ${
                   i <= currentStepIndex ? 'bg-primary' : 'bg-muted'
                 }`}
               />

@@ -39,7 +39,7 @@ export function StatusSelector({ value, onChange, onSelect }: StatusSelectorProp
             key={option.key}
             onClick={() => handleSelect(option.key)}
             className={`
-              w-full p-4 text-left text-base font-medium rounded-2xl transition-all duration-200
+              w-full p-3 text-left text-base font-medium transition-all duration-200
               ${value === option.key 
                 ? 'bg-primary text-primary-foreground shadow-button' 
                 : 'bg-card text-foreground shadow-card hover:shadow-card-hover'

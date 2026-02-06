@@ -9,6 +9,7 @@ const sections = [
   { key: 'street', label: 'Stopped on the Street', path: '/rights/street' },
   { key: 'workplace', label: 'ICE at Your Workplace', path: '/rights/workplace' },
   { key: 'warrants', label: 'Warrants: Know the Difference', path: '/rights/warrants' },
+  { key: 'report', label: 'Report and Record', path: '/rights/report' },
   { key: 'carry', label: 'What to Carry', path: '/rights/carry' },
   { key: 'hotlines', label: 'Hotlines & Resources', path: '/rights/hotlines' },
 ];
@@ -35,7 +36,7 @@ export default function ReviewRights() {
           </h1>
 
           {/* Section list */}
-          <div className="bg-card rounded-2xl shadow-card overflow-hidden divide-y divide-border">
+          <div className="bg-card shadow-card overflow-hidden divide-y divide-border">
             {sections.map((section) => (
               <Link
                 key={section.key}

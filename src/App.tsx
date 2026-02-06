@@ -15,6 +15,7 @@ import IceWorkplace from "./pages/rights/IceWorkplace";
 import Warrants from "./pages/rights/Warrants";
 import WhatToCarry from "./pages/rights/WhatToCarry";
 import Hotlines from "./pages/rights/Hotlines";
+import ReportRecord from "./pages/rights/ReportRecord";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/rights/warrants" element={<Warrants />} />
             <Route path="/rights/carry" element={<WhatToCarry />} />
             <Route path="/rights/hotlines" element={<Hotlines />} />
+            <Route path="/rights/report" element={<ReportRecord />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
