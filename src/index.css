@@ -136,78 +136,24 @@
     color: hsl(var(--hotline));
   }
   
-  /* Corner bracket button - gallery-style with prominent corners */
-  .btn-bracket {
-    @apply relative inline-flex items-center justify-center px-10 py-5 font-bold text-foreground bg-transparent transition-all duration-300;
+  /* Primary button - solid black */
+  .btn-primary {
+    @apply inline-flex items-center justify-center w-full px-8 py-4 font-bold text-primary-foreground bg-primary transition-all duration-200;
   }
   
-  .btn-bracket::before,
-  .btn-bracket::after {
-    content: '';
-    @apply absolute w-6 h-6 transition-all duration-300;
-    border-color: hsl(var(--foreground));
+  .btn-primary:hover {
+    @apply opacity-90;
   }
   
-  .btn-bracket::before {
-    @apply top-0 left-0;
-    border-top: 3px solid;
-    border-left: 3px solid;
+  /* Text link - simple underlined link */
+  .btn-link {
+    @apply inline-flex items-center justify-center font-semibold text-foreground underline underline-offset-4 decoration-1 transition-all duration-200;
   }
   
-  .btn-bracket::after {
-    @apply bottom-0 right-0;
-    border-bottom: 3px solid;
-    border-right: 3px solid;
+  .btn-link:hover {
+    @apply decoration-2;
   }
   
-  /* On hover: brackets extend to full border */
-  .btn-bracket:hover::before,
-  .btn-bracket:hover::after {
-    @apply w-full h-full;
-  }
-  
-  .btn-bracket:hover {
-    @apply bg-accent/50;
-  }
-  
-  /* Active/selected state - red brackets */
-  .btn-bracket.active::before,
-  .btn-bracket.active::after {
-    border-color: hsl(var(--hotline));
-  }
-  
-  .btn-bracket.active {
-    color: hsl(var(--hotline));
-  }
-  
-  /* Secondary button - bracket hover (smaller, subtle) */
-  .btn-text {
-    @apply relative inline-flex items-center justify-center py-4 px-6 font-semibold text-foreground bg-transparent transition-all duration-300;
-  }
-  
-  .btn-text::before,
-  .btn-text::after {
-    content: '';
-    @apply absolute w-3 h-3 transition-all duration-300 opacity-0;
-    border-color: hsl(var(--foreground));
-  }
-  
-  .btn-text::before {
-    @apply top-0 left-0;
-    border-top: 2px solid;
-    border-left: 2px solid;
-  }
-  
-  .btn-text::after {
-    @apply bottom-0 right-0;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
-  }
-  
-  .btn-text:hover::before,
-  .btn-text:hover::after {
-    @apply opacity-100 w-5 h-5;
-  }
   
   /* Hotline button - bracket style with stacked layout */
   .btn-hotline {
@@ -258,41 +204,17 @@
     font-family: Georgia, serif;
   }
   
-  /* Menu item - minimal with bracket hover */
+  /* Menu item - minimal list with underline hover */
   .menu-item {
-    @apply relative flex items-center justify-between py-5 border-b border-border/50 transition-all duration-300;
-  }
-  
-  .menu-item::before,
-  .menu-item::after {
-    content: '';
-    @apply absolute w-3 h-3 transition-all duration-300 opacity-0;
-    border-color: hsl(var(--foreground));
-  }
-  
-  .menu-item::before {
-    @apply top-2 left-0;
-    border-top: 2px solid;
-    border-left: 2px solid;
-  }
-  
-  .menu-item::after {
-    @apply bottom-2 right-0;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
+    @apply block py-4 border-b border-border/50 font-medium text-foreground transition-all duration-200;
   }
   
   .menu-item:last-child {
     @apply border-b-0;
   }
   
-  .menu-item:hover::before,
-  .menu-item:hover::after {
-    @apply opacity-100 w-4 h-4;
-  }
-  
   .menu-item:hover {
-    @apply bg-accent/30;
+    @apply underline underline-offset-4;
   }
   
   /* Section divider */
