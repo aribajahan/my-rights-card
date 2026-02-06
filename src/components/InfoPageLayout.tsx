@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Home } from 'lucide-react';
+import { PrivacyNotice } from '@/components/PrivacyNotice';
 
 interface InfoPageLayoutProps {
   title: string;
@@ -45,11 +46,12 @@ export function InfoPageLayout({ title, children }: InfoPageLayoutProps) {
       </main>
 
       {/* Footer */}
-      <footer className="px-4 pb-6">
+      <footer className="px-4 pb-6 space-y-2">
         <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
           This tool provides general information about your constitutional rights. 
           It is not legal advice.
         </p>
+        <PrivacyNotice />
       </footer>
     </div>
   );

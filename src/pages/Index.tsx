@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { PrivacyNotice } from '@/components/PrivacyNotice';
 
 export default function Index() {
   return (
@@ -84,9 +85,9 @@ export default function Index() {
           It is not legal advice. For advice about your specific situation, consult 
           a qualified immigration attorney.
         </p>
-        <p className="text-xs text-muted-foreground/70 text-center mt-2">
-          This tool does not collect or store any personal information.
-        </p>
+        <div className="mt-2">
+          <PrivacyNotice />
+        </div>
       </footer>
     </div>
   );

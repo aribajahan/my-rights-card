@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { PrivacyNotice } from '@/components/PrivacyNotice';
 
 const sections = [
   { key: 'universal', label: 'Your Universal Rights', path: '/rights/universal' },
@@ -50,11 +51,12 @@ export default function ReviewRights() {
       </main>
 
       {/* Footer */}
-      <footer className="px-4 pb-6">
+      <footer className="px-4 pb-6 space-y-2">
         <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
           This tool provides general information about your constitutional rights. 
           It is not legal advice.
         </p>
+        <PrivacyNotice />
       </footer>
     </div>
   );

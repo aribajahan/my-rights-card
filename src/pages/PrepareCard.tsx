@@ -6,6 +6,7 @@ import { DocumentForm } from '@/components/DocumentForm';
 import { EmergencyContactForm } from '@/components/EmergencyContactForm';
 import { RightsPreview } from '@/components/RightsPreview';
 import { RightsCard } from '@/components/RightsCard';
+import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { ImmigrationStatus, EmergencyContact, DocumentInfo } from '@/types/card';
 import { ArrowLeft, Download, BookOpen, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
@@ -239,8 +240,9 @@ export default function PrepareCard() {
 
       {/* Footer */}
       <footer className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm p-4">
-        <div className="container max-w-sm mx-auto">
+        <div className="container max-w-sm mx-auto space-y-3">
           {renderNavButtons()}
+          <PrivacyNotice />
         </div>
       </footer>
     </div>
