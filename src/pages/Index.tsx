@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import heroFist from '@/assets/hero-fist.png';
 
 export default function Index() {
   return (
@@ -8,22 +7,15 @@ export default function Index() {
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-sm text-center">
-          {/* Hero image */}
-          <img 
-            src={heroFist} 
-            alt="Raised fist symbol of solidarity" 
-            className="h-36 w-auto object-contain mb-6 mx-auto"
-          />
-
-          {/* Headline with brush script accent */}
+          {/* Headline with overlapping brush script accent */}
           <div className="mb-10 relative">
             <p 
-              className="text-muted-foreground/40 text-2xl mb-1 uppercase"
+              className="text-muted-foreground/40 text-4xl uppercase -mb-4 relative z-0"
               style={{ fontFamily: 'Caveat, cursive' }}
             >
               know your rights
             </p>
-            <h1 className="text-5xl tracking-wide text-headline mb-3">
+            <h1 className="text-6xl tracking-wide text-headline mb-4 relative z-10">
               Stay Ready
             </h1>
             <p className="text-foreground text-lg font-medium">
