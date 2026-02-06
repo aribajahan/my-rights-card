@@ -25,9 +25,14 @@ export default function Index() {
 
           {/* Action buttons - 2 styles only */}
           <div className="space-y-6">
-            <Link to="/prepare" className="btn-primary">
-              PREPARE MY CARD
-            </Link>
+            <div className="text-center">
+              <Link to="/prepare" className="btn-primary">
+                PREPARE MY CARD
+              </Link>
+              <p className="text-sm text-muted-foreground mt-2">
+                Save a rights card to your phone
+              </p>
+            </div>
 
             <div className="text-center">
               <Link to="/rights" className="btn-link">
