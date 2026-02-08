@@ -20,7 +20,7 @@ export default function Index() {
       {/* Three Paths Section */}
       <section className="px-6 py-[24px]">
         <div className="max-w-md mx-auto space-y-4">
-          <FocusFrameCard to="/prepare" headline="Prepare My Card" subhead="Lock screen ready" />
+          <FocusFrameCard to="/prepare" headline="Prepare My Card" subhead="Save a rights card for your lock screen" />
           <FocusFrameCard to="/rights" headline="Review My Rights" subhead="Door / Car / Street / Work" />
           <FocusFrameCard to="/community" headline="Help Your Community" subhead="Witness / Support / Prepare" />
         </div>
