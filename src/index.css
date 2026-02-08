@@ -345,7 +345,7 @@
   }
 
   .info-content p {
-    @apply text-base leading-relaxed mb-2;
+    @apply text-base leading-normal mb-2;
   }
 
   .info-content ul {
