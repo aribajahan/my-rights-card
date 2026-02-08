@@ -26,15 +26,6 @@ export function DocumentForm({ value, onChange }: DocumentFormProps) {
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <h2 className="text-xl font-semibold mb-2 text-center text-headline">
-        Document Type
-      </h2>
-      <p className="text-muted-foreground text-center text-sm mb-2">
-        Select your ID type to include on your card.
-      </p>
-      <p className="text-muted-foreground/70 text-center text-xs mb-6">
-        This will be added to your card for your reference.
-      </p>
 
       {/* Document type selection */}
       <div className="space-y-2 mb-6">

@@ -340,7 +340,7 @@
 
   .info-content h2 {
     font-family: 'DM Sans', sans-serif;
-    @apply text-sm font-semibold uppercase tracking-widest mb-2 mt-4 first:mt-0;
+    @apply text-base font-bold uppercase tracking-wider mb-2 mt-6 first:mt-0;
     color: hsl(var(--headline));
   }
 
