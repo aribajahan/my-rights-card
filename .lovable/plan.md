@@ -1,146 +1,125 @@
 
+# Fix: Emergency Contact Not Appearing on Card
 
-# Typography & Spacing Refinements
+## Problem
 
-## Summary
+When users fill in emergency contact fields but click "Next" or "Skip" without clicking "Add Contact", the contact data is lost. The card generates with an empty contacts array.
 
-Polish the editorial design by establishing proper visual hierarchy: page titles stay bold and commanding, section headers become quieter labels, body text becomes lighter and more readable, and spacing tightens for a denser, magazine-like feel.
+## Solution
 
----
-
-## Changes Overview
-
-| Element | Current | After |
-|---------|---------|-------|
-| Body/paragraph text | `font-semibold` (600) | `font-normal` (400) |
-| Section headers (h2) | Anton font, bold condensed | DM Sans, semibold, smaller, letterspaced |
-| Section spacing | `mb-6` (24px) | `mb-4` (16px) |
-| Paragraph spacing | `mb-3` (12px) | `mb-2` (8px) |
-| List item spacing | `space-y-2` (8px) | `space-y-1.5` (6px) |
-| Bullets | 6px squares | 4px dots, muted color |
+Auto-save any pending contact data when the user navigates away from the contacts step.
 
 ---
 
-## Visual Hierarchy (Before → After)
+## Changes
 
-```text
-BEFORE:
-┌──────────────────────────────────┐
-│ YOUR UNIVERSAL                   │ ← Page title (Anton, bold)
-│ RIGHTS                           │
-│                                  │
-│ THE RIGHT TO REMAIN SILENT       │ ← Section h2 (also Anton, bold - TOO HEAVY)
-│                                  │
-│ You do not have to answer...     │ ← Body (semibold - too heavy)
-│                                  │
-│ ■ List item one                  │ ← 6px square bullet
-│                                  │
-│ ■ List item two                  │
-└──────────────────────────────────┘
+### `src/pages/PrepareCard.tsx`
 
-AFTER:
-┌──────────────────────────────────┐
-│ YOUR UNIVERSAL                   │ ← Page title (Anton, bold - UNCHANGED)
-│ RIGHTS                           │
-│                                  │
-│ THE RIGHT TO REMAIN SILENT       │ ← Section h2 (DM Sans, semibold, smaller)
-│                                  │
-│ You do not have to answer...     │ ← Body (regular weight - lighter)
-│                                  │
-│ • List item one                  │ ← 4px dot, muted
-│ • List item two                  │
-└──────────────────────────────────┘
-```
+**1. Add a ref to access the EmergencyContactForm's pending data**
 
-The page title still commands attention. Section headers organize content without competing. Body text is easy to read.
+Create a mechanism to capture pending (unsaved) contact data when the user proceeds to the next step.
+
+**2. Modify the `goNext` function to auto-add pending contacts**
+
+Before navigating away from the contacts step, check if there's valid data in the input fields and add it automatically.
+
+**Implementation approach:**
+
+Option A - Lift the pending state up to PrepareCard:
+- Move `newName` and `newPhone` state from EmergencyContactForm to PrepareCard
+- Pass them as props to the form
+- In `goNext()`, check if there's pending contact data and add it before proceeding
+
+Option B - Use a callback prop (cleaner):
+- Add an `onPendingContact` callback to EmergencyContactForm
+- When fields change, call this callback with the current field values
+- In `goNext()`, use the pending values to auto-add before proceeding
+
+I recommend **Option A** for simplicity.
 
 ---
 
 ## File Changes
 
-### `src/index.css`
+### `src/pages/PrepareCard.tsx`
 
-**1. Change body text weight from semibold to normal**
+```tsx
+// Add state for pending contact fields
+const [pendingContactName, setPendingContactName] = useState('');
+const [pendingContactPhone, setPendingContactPhone] = useState('');
 
-```css
-/* Line 102-106: Change body weight */
-body {
-  @apply bg-background text-foreground font-normal;  /* was font-semibold */
-  font-family: 'DM Sans', system-ui, sans-serif;
-  position: relative;
-}
+// Modify goNext to auto-save pending contact
+const goNext = () => {
+  // If on contacts step and there's pending data, auto-add it
+  if (step === 'contacts' && pendingContactName.trim() && pendingContactPhone.trim()) {
+    const newContact: EmergencyContact = {
+      id: Date.now().toString(),
+      name: pendingContactName.trim(),
+      phone: formatPhoneDisplay(pendingContactPhone.trim()),
+    };
+    setContacts([...contacts, newContact]);
+    setPendingContactName('');
+    setPendingContactPhone('');
+  }
+  
+  const nextIndex = currentStepIndex + 1;
+  if (nextIndex < steps.length) {
+    setStep(steps[nextIndex]);
+  }
+};
 
-/* Line 137-139: Change p, span, li weight */
-p, span, li, label {
-  @apply font-normal;  /* was font-semibold */
-}
+// Pass pending state to EmergencyContactForm
+<EmergencyContactForm 
+  contacts={contacts} 
+  onChange={setContacts}
+  pendingName={pendingContactName}
+  onPendingNameChange={setPendingContactName}
+  pendingPhone={pendingContactPhone}
+  onPendingPhoneChange={setPendingContactPhone}
+/>
 ```
 
-**2. Override section headers in info-content to use DM Sans**
+### `src/components/EmergencyContactForm.tsx`
 
-```css
-/* Line 340-343: Update .info-content h2 */
-.info-content h2 {
-  font-family: 'DM Sans', sans-serif;  /* Override Anton inheritance */
-  @apply text-sm font-semibold uppercase tracking-widest mb-2 mt-4 first:mt-0;
-  color: hsl(var(--headline));
+```tsx
+interface EmergencyContactFormProps {
+  contacts: EmergencyContact[];
+  onChange: (contacts: EmergencyContact[]) => void;
+  pendingName: string;
+  onPendingNameChange: (value: string) => void;
+  pendingPhone: string;
+  onPendingPhoneChange: (value: string) => void;
 }
+
+// Remove local newName/newPhone state
+// Use props instead:
+// - pendingName instead of newName
+// - onPendingNameChange instead of setNewName
+// - pendingPhone instead of newPhone  
+// - onPendingPhoneChange instead of setNewPhone
 ```
-
-**3. Tighten spacing in info-content**
-
-```css
-/* Line 345-347: Reduce paragraph margin */
-.info-content p {
-  @apply text-base leading-relaxed mb-2;  /* was mb-3 */
-}
-
-/* Line 349-351: Reduce list spacing */
-.info-content ul {
-  @apply space-y-1.5 mb-3;  /* was space-y-2 mb-4 */
-}
-
-/* Line 357-359: Reduce section margin */
-.info-content section {
-  @apply mb-4;  /* was mb-6 */
-}
-```
-
-**4. Update section-header styling**
-
-```css
-/* Line 327-334: Refine .section-header */
-.section-header {
-  @apply py-2 mt-4 first:mt-0;  /* Remove borders, add top margin */
-}
-
-.section-header h2 {
-  font-family: 'DM Sans', sans-serif;  /* Override Anton */
-  @apply text-xs font-semibold uppercase tracking-widest m-0;
-  color: hsl(var(--muted-foreground));
-}
-```
-
-**5. Keep buttons and critical UI elements bold**
-
-The `button` rule stays `font-bold`. The `.btn-primary` and `.btn-link` stay as-is.
 
 ---
 
-## What Stays The Same
+## Helper Function
 
-- **Page titles** (`headline-stacked`, `headline-page`): Still use Anton font, bold condensed
-- **Navigation list items** (`.nav-list-item`): Still use Anton for that bold nav feel
-- **Phrase boxes**: Keep `font-medium` for the critical "what to say" text
-- **Buttons**: Stay `font-bold`
+Move `formatPhoneDisplay` to a shared location or duplicate in PrepareCard:
 
----
+```tsx
+const formatPhoneDisplay = (phone: string): string => {
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length === 10) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+  return phone;
+};
 
-## Technical Notes
-
-- The base `h1, h2, h3` rule sets `font-family: 'Anton'` globally
-- We override this specifically for `.info-content h2` and `.section-header h2` to use DM Sans
-- This creates the hierarchy: Anton for titles/nav, DM Sans for section labels and body
+const isValidPhone = (phone: string): boolean => {
+  const cleaned = phone.replace(/[^\d+]/g, '');
+  const digitCount = cleaned.replace(/\D/g, '').length;
+  return digitCount >= 10 && digitCount <= 15;
+};
+```
 
 ---
 
@@ -148,5 +127,15 @@ The `button` rule stays `font-bold`. The `.btn-primary` and `.btn-link` stay as-
 
 | File | Changes |
 |------|---------|
-| `src/index.css` | Update font weights, section header styling, and spacing values |
+| `src/pages/PrepareCard.tsx` | Add pending contact state, auto-save logic in goNext |
+| `src/components/EmergencyContactForm.tsx` | Use controlled props instead of local state |
 
+---
+
+## Result
+
+After this fix:
+1. User types name "Mom" and phone "555-123-4567"
+2. User clicks "Next" without clicking "Add Contact"
+3. System auto-adds the contact before proceeding
+4. Card generates with "Mom - (555) 123-4567" visible
