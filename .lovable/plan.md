@@ -1,182 +1,143 @@
 
-# Fixes: Card Data Bug + Homepage Updates
+# Fix: Card Not Showing Document Number and Emergency Contacts
 
-## Issue 1: Emergency Contact & Document Number Not Appearing on Card
+## Problem Summary
 
-### Diagnosis
+The user reports that document number and emergency contact information are not appearing on the generated card, despite the data being entered during the card preparation flow.
 
-After reviewing the code flow, I identified a **React state batching issue** in `goNext()`:
+## Diagnosis
+
+After analyzing the code flow, I've identified several potential issues:
+
+### Issue 1: State Update Timing in goNext()
+
+The current `goNext()` function updates contacts and immediately changes the step:
 
 ```tsx
-// PrepareCard.tsx lines 48-67
 const goNext = () => {
   if (step === 'contacts' && pendingContactName.trim() && pendingContactPhone.trim()) {
-    setContacts([...contacts, newContact]); // Async state update
+    setContacts(prev => [...prev, newContact]);  // State update queued
     // ...
   }
-  setStep(steps[nextIndex]); // Immediately moves to next step
+  setStep(steps[nextIndex]);  // Immediately navigates
 };
 ```
 
-When `setContacts` and `setStep` are called in sequence, React batches them together. However, the `newContact` is created using the **current** `contacts` array value. The issue is that subsequent renders may not pick up the new contact if there's a timing issue.
+While React 18 batches these updates, there's a subtle timing issue: the step change triggers a new render, but the contacts state update may not be fully processed before the RightsCard component reads the props.
 
-### Fix: Use Functional State Update
+### Issue 2: Missing Debug Visibility
 
-Change from:
+Without console logs, we cannot verify:
+- Whether `documentInfo.number` is actually populated
+- Whether `contacts` array contains data when RightsCard renders
+- Whether the auto-save logic in `goNext()` is actually executing
+
+## Solution
+
+### Part 1: Add Debug Logging (Temporary)
+
+Add console logs to trace exactly where data is being lost:
+
 ```tsx
-setContacts([...contacts, newContact]);
+// In goNext() - trace the auto-save
+console.log('[goNext] Step:', step);
+console.log('[goNext] Pending contact:', { pendingContactName, pendingContactPhone });
+console.log('[goNext] Current contacts:', contacts);
+
+// In RightsCard - trace what props are received
+console.log('[RightsCard] documentInfo:', documentInfo);
+console.log('[RightsCard] contacts:', contacts);
 ```
 
-To:
+### Part 2: Ensure State Updates Complete Before Navigation
+
+Use React's `flushSync` to force synchronous state updates before navigation:
+
 ```tsx
-setContacts(prev => [...prev, newContact]);
+import { flushSync } from 'react-dom';
+
+const goNext = () => {
+  if (step === 'contacts' && pendingContactName.trim() && pendingContactPhone.trim()) {
+    if (isValidPhone(pendingContactPhone.trim()) && contacts.length < 3) {
+      const newContact: EmergencyContact = {
+        id: Date.now().toString(),
+        name: pendingContactName.trim(),
+        phone: formatPhoneDisplay(pendingContactPhone.trim()),
+      };
+      
+      // Force synchronous update to ensure contacts are set before step change
+      flushSync(() => {
+        setContacts(prev => [...prev, newContact]);
+      });
+      
+      setPendingContactName('');
+      setPendingContactPhone('');
+    }
+  }
+  
+  const nextIndex = currentStepIndex + 1;
+  if (nextIndex < steps.length) {
+    setStep(steps[nextIndex]);
+  }
+};
 ```
 
-This ensures we always work with the latest state value, regardless of React's batching behavior.
+### Part 3: Alternative Approach - Use useEffect for Step Transition
 
-### Files to Modify
-
-| File | Change |
-|------|--------|
-| `src/pages/PrepareCard.tsx` | Use functional state update pattern in `goNext()` |
-
-### Code Change
+If flushSync doesn't resolve it, we can separate the data collection from the navigation using a flag:
 
 ```tsx
-// Line 57 - change:
-setContacts([...contacts, newContact]);
+const [shouldAdvance, setShouldAdvance] = useState(false);
 
-// To:
-setContacts(prev => [...prev, newContact]);
+const goNext = () => {
+  if (step === 'contacts' && pendingContactName.trim() && pendingContactPhone.trim()) {
+    // Add contact first
+    const newContact = { ... };
+    setContacts(prev => [...prev, newContact]);
+    setPendingContactName('');
+    setPendingContactPhone('');
+    setShouldAdvance(true);  // Flag to advance after state settles
+    return;  // Don't advance yet
+  }
+  
+  // Normal navigation
+  advanceStep();
+};
+
+useEffect(() => {
+  if (shouldAdvance) {
+    setShouldAdvance(false);
+    advanceStep();
+  }
+}, [contacts, shouldAdvance]);  // Advance after contacts state updates
 ```
 
 ---
 
-## Issue 2: Add Subheadline to Homepage
-
-Add a clear, action-oriented subheadline below "STAY READY":
-
-**Text:** "Know what to say if ICE comes to your door, car, or workplace."
-
-### Placement
-
-```text
-┌────────────────────────────┐
-│        STAY                │
-│        READY               │
-│                            │
-│  Know what to say if ICE   │  ← NEW subheadline
-│  comes to your door, car,  │
-│  or workplace.             │
-│                            │
-│  ┌──────────────────────┐  │
-│  │ Prepare My Card      │  │
-│  └──────────────────────┘  │
-└────────────────────────────┘
-```
-
-### Styling
-
-- `text-base` or `text-sm` (subtle, not competing with headline)
-- `text-muted-foreground` (secondary color)
-- `text-center`
-- Tight margin below headline (`mt-4`)
-
----
-
-## Issue 3: Add "Know Your Rights" Back to Homepage
-
-### Design Options
-
-Based on the editorial brutalist aesthetic, here are three approaches:
-
-**Option A: Small Uppercase Eyebrow (Recommended)**
-Position a small, uppercase label ABOVE the main headline. This is a common editorial pattern.
-
-```text
-┌────────────────────────────┐
-│     KNOW YOUR RIGHTS       │  ← tiny uppercase eyebrow
-│        STAY                │
-│        READY               │
-│                            │
-│  Know what to say if ICE   │
-│  comes to your door...     │
-└────────────────────────────┘
-```
-
-Styling:
-- `text-[10px]` or `text-xs`
-- `uppercase tracking-[0.3em]`
-- `text-muted-foreground`
-- Acts as a category/brand label without competing with headline
-
-**Option B: Handwritten Script Accent**
-Use a handwritten-style font positioned as an accent element, floating at an angle.
-
-```text
-┌────────────────────────────┐
-│    ✎ Know your rights      │  ← script font, rotated -3deg
-│        STAY                │
-│        READY               │
-└────────────────────────────┘
-```
-
-This creates visual interest but requires adding a script font (Caveat, Kalam, etc.)
-
-**Option C: Integrated as Part of Headline**
-Make it part of the stacked headline in a smaller weight:
-
-```text
-┌────────────────────────────┐
-│    Know Your Rights        │  ← smaller, lighter weight
-│        STAY                │
-│        READY               │
-└────────────────────────────┘
-```
-
-### My Recommendation: Option A
-
-The small uppercase eyebrow label maintains the clean brutalist aesthetic while establishing "Know Your Rights" as the brand identity. It's:
-- Minimal and unobtrusive
-- Common in editorial/magazine design
-- Easy to implement with existing font stack
-- Won't compete with the powerful stacked headline
-
----
-
-## Summary of Changes
+## Files to Modify
 
 | File | Changes |
 |------|---------|
-| `src/pages/PrepareCard.tsx` | Fix state update to use functional pattern |
-| `src/pages/Index.tsx` | Add "KNOW YOUR RIGHTS" eyebrow + subheadline |
+| `src/pages/PrepareCard.tsx` | Add debug logs, use flushSync or useEffect pattern |
+| `src/components/RightsCard.tsx` | Add debug log for received props |
 
 ---
 
-## Final Homepage Layout
+## Implementation Steps
 
-```text
-┌──────────────────────────────────┐
-│         KNOW YOUR RIGHTS         │  ← 10px, uppercase, tracking wide
-│             STAY                 │  ← Anton headline (large)
-│             READY                │
-│                                  │
-│    Know what to say if ICE       │  ← text-sm, muted
-│    comes to your door, car,      │
-│    or workplace.                 │
-│                                  │
-│  ┌────────────────────────────┐  │
-│  │    Prepare My Card         │  │
-│  └────────────────────────────┘  │
-│  ┌────────────────────────────┐  │
-│  │    Review My Rights        │  │
-│  └────────────────────────────┘  │
-│  ┌────────────────────────────┐  │
-│  │    Help Your Community     │  │
-│  └────────────────────────────┘  │
-│                                  │
-│  ─────────────────────────────   │
-│  STAY READY TIPS                 │
-│  ...                             │
-└──────────────────────────────────┘
-```
+1. **Add debug console.logs** to trace the exact data flow and identify where data is lost
+2. **Implement flushSync** to ensure state updates complete synchronously before navigation
+3. **Test the flow** end-to-end: enter document type + number, add emergency contact, verify they appear on the final card
+4. **Remove debug logs** once the issue is confirmed fixed
+
+---
+
+## Expected Result
+
+After this fix:
+1. User enters document type "Green Card" and number "A12345678"
+2. User enters emergency contact "Mom" with phone "555-123-4567"
+3. User clicks "Next" (without clicking Add Contact)
+4. Generated card displays:
+   - "DOCUMENT TYPE: Green Card" with "A12345678"
+   - "EMERGENCY CONTACTS: Mom - (555) 123-4567"
