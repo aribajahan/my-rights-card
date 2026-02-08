@@ -6,6 +6,10 @@ import { Plus, X } from 'lucide-react';
 interface EmergencyContactFormProps {
   contacts: EmergencyContact[];
   onChange: (contacts: EmergencyContact[]) => void;
+  pendingName: string;
+  onPendingNameChange: (value: string) => void;
+  pendingPhone: string;
+  onPendingPhoneChange: (value: string) => void;
 }
 
 // Simple phone validation - allows common formats
@@ -25,35 +29,40 @@ const formatPhoneDisplay = (phone: string): string => {
   return phone;
 };
 
-export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFormProps) {
+export function EmergencyContactForm({ 
+  contacts, 
+  onChange,
+  pendingName,
+  onPendingNameChange,
+  pendingPhone,
+  onPendingPhoneChange,
+}: EmergencyContactFormProps) {
   const { t } = useLanguage();
-  const [newName, setNewName] = useState('');
-  const [newPhone, setNewPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
 
   const addContact = () => {
-    const trimmedPhone = newPhone.trim();
+    const trimmedPhone = pendingPhone.trim();
     
     if (!isValidPhone(trimmedPhone)) {
       setPhoneError('Please enter a valid phone number (at least 10 digits)');
       return;
     }
     
-    if (newName.trim() && trimmedPhone && contacts.length < 3) {
+    if (pendingName.trim() && trimmedPhone && contacts.length < 3) {
       const newContact: EmergencyContact = {
         id: Date.now().toString(),
-        name: newName.trim(),
+        name: pendingName.trim(),
         phone: formatPhoneDisplay(trimmedPhone),
       };
       onChange([...contacts, newContact]);
-      setNewName('');
-      setNewPhone('');
+      onPendingNameChange('');
+      onPendingPhoneChange('');
       setPhoneError('');
     }
   };
 
   const handlePhoneChange = (value: string) => {
-    setNewPhone(value);
+    onPendingPhoneChange(value);
     if (phoneError && value.trim()) {
       setPhoneError('');
     }
@@ -103,15 +112,15 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
           <input
             type="text"
             placeholder={t('contactName')}
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
+            value={pendingName}
+            onChange={(e) => onPendingNameChange(e.target.value)}
             className="w-full p-4 text-base bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-b-4 focus:border-foreground transition-all"
           />
           <div>
             <input
               type="tel"
               placeholder={t('contactPhone')}
-              value={newPhone}
+              value={pendingPhone}
               onChange={(e) => handlePhoneChange(e.target.value)}
               className={`w-full p-4 text-base bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none transition-all ${
                 phoneError ? 'border-b-4 border-destructive' : 'focus:border-b-4 focus:border-foreground'
@@ -123,7 +132,7 @@ export function EmergencyContactForm({ contacts, onChange }: EmergencyContactFor
           </div>
           <button
             onClick={addContact}
-            disabled={!newName.trim() || !newPhone.trim()}
+            disabled={!pendingName.trim() || !pendingPhone.trim()}
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground shadow-card hover:shadow-card-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
           >
             <Plus size={18} className="opacity-50" />

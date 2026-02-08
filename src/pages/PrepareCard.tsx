@@ -23,11 +23,43 @@ export default function PrepareCard() {
   const [documentInfo, setDocumentInfo] = useState<DocumentInfo>({ type: null, number: '' });
   const [contacts, setContacts] = useState<EmergencyContact[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  
+  // Pending contact state (lifted from EmergencyContactForm for auto-save)
+  const [pendingContactName, setPendingContactName] = useState('');
+  const [pendingContactPhone, setPendingContactPhone] = useState('');
 
   const steps: Step[] = ['status', 'documents', 'contacts', 'preview', 'card'];
   const currentStepIndex = steps.indexOf(step);
 
+  const formatPhoneDisplay = (phone: string): string => {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length === 10) {
+      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    }
+    return phone;
+  };
+
+  const isValidPhone = (phone: string): boolean => {
+    const cleaned = phone.replace(/[^\d+]/g, '');
+    const digitCount = cleaned.replace(/\D/g, '').length;
+    return digitCount >= 10 && digitCount <= 15;
+  };
+
   const goNext = () => {
+    // Auto-save pending contact data when leaving contacts step
+    if (step === 'contacts' && pendingContactName.trim() && pendingContactPhone.trim()) {
+      if (isValidPhone(pendingContactPhone.trim()) && contacts.length < 3) {
+        const newContact: EmergencyContact = {
+          id: Date.now().toString(),
+          name: pendingContactName.trim(),
+          phone: formatPhoneDisplay(pendingContactPhone.trim()),
+        };
+        setContacts([...contacts, newContact]);
+        setPendingContactName('');
+        setPendingContactPhone('');
+      }
+    }
+    
     const nextIndex = currentStepIndex + 1;
     if (nextIndex < steps.length) {
       setStep(steps[nextIndex]);
@@ -170,7 +202,14 @@ export default function PrepareCard() {
               <span className="block">Emergency</span>
               <span className="block">Contacts</span>
             </h2>
-            <EmergencyContactForm contacts={contacts} onChange={setContacts} />
+            <EmergencyContactForm 
+              contacts={contacts} 
+              onChange={setContacts}
+              pendingName={pendingContactName}
+              onPendingNameChange={setPendingContactName}
+              pendingPhone={pendingContactPhone}
+              onPendingPhoneChange={setPendingContactPhone}
+            />
           </div>
         );
       case 'preview':
