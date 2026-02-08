@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { FocusFrameCard } from '@/components/FocusFrameCard';
 import { downloadVCard } from '@/lib/vcard';
-import { ChevronDown } from 'lucide-react';
+
 
 export default function Index() {
   const handleSaveContact = () => {
@@ -11,18 +11,13 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Hero Section - Full viewport with stacked headline */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 relative">
+      {/* Hero Section - Compact mobile-first */}
+      <section className="flex flex-col items-center justify-center px-6 pt-12 pb-8">
         <div className="text-center">
           <h1 className="headline-stacked headline-hero">
             <span className="block">Stay</span>
             <span className="block">Ready</span>
           </h1>
-        </div>
-        
-        {/* Subtle scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-pulse">
-          <ChevronDown size={24} className="text-muted-foreground" />
         </div>
       </section>
 

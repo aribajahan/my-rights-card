@@ -291,7 +291,7 @@
      ======================================== */
 
   .phrase-box {
-    @apply border-2 border-foreground p-6 my-6;
+    @apply border-2 border-foreground p-4 my-4;
   }
 
   .phrase-box p {
@@ -300,13 +300,13 @@
   }
 
   .phrase-box-label {
-    @apply text-xs font-bold uppercase tracking-widest mb-3 block;
+    @apply text-xs font-bold uppercase tracking-widest mb-2 block;
     color: hsl(var(--muted-foreground));
   }
 
   /* Warning box */
   .warning-box {
-    @apply border border-foreground p-4 my-6 relative;
+    @apply border border-foreground p-3 my-3 relative;
   }
 
   .warning-box::before {
@@ -320,12 +320,12 @@
      ======================================== */
 
   .section-divider {
-    @apply w-full h-px my-8;
+    @apply w-full h-px my-4;
     background-color: hsl(var(--border));
   }
 
   .section-header {
-    @apply py-4 border-y border-foreground/20;
+    @apply py-3 border-y border-foreground/20;
   }
 
   .section-header h2 {
@@ -338,16 +338,16 @@
      ======================================== */
 
   .info-content h2 {
-    @apply text-lg font-semibold mb-3 mt-8 first:mt-0;
+    @apply text-lg font-semibold mb-2 mt-6 first:mt-0;
     color: hsl(var(--headline));
   }
 
   .info-content p {
-    @apply text-base leading-relaxed mb-4;
+    @apply text-base leading-relaxed mb-3;
   }
 
   .info-content ul {
-    @apply space-y-3 mb-6;
+    @apply space-y-2 mb-4;
   }
 
   .info-content li {
@@ -355,7 +355,7 @@
   }
   
   .info-content section {
-    @apply mb-8;
+    @apply mb-6;
   }
 
   /* ========================================

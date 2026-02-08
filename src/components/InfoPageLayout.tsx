@@ -80,9 +80,9 @@ export function InfoPageLayout({
           )}
 
           {/* Divider */}
-          <div className="section-divider mb-8" />
+          <div className="section-divider mb-4" />
 
-          <div className="info-content space-y-6">
+          <div className="info-content space-y-4">
             {children}
           </div>
         </article>

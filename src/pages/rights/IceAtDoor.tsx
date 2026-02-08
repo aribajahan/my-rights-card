@@ -9,7 +9,7 @@ export default function IceAtDoor() {
       backLabel="Rights"
     >
       {/* Section: Your Rights */}
-      <div className="section-header mb-6">
+      <div className="section-header mb-4">
         <h2>Your Rights</h2>
       </div>
 
@@ -22,7 +22,7 @@ export default function IceAtDoor() {
       </p>
 
       {/* Section: What to Say */}
-      <div className="section-header my-6">
+      <div className="section-header my-4">
         <h2>What to Say</h2>
       </div>
 
@@ -37,7 +37,7 @@ export default function IceAtDoor() {
       </div>
 
       {/* Section: If They Force Entry */}
-      <div className="section-header my-6">
+      <div className="section-header my-4">
         <h2>If They Force Entry</h2>
       </div>
 
@@ -49,7 +49,7 @@ export default function IceAtDoor() {
       </div>
 
       {/* Section: Warnings */}
-      <div className="section-header my-6">
+      <div className="section-header my-4">
         <h2>Important</h2>
       </div>
 
@@ -66,11 +66,11 @@ export default function IceAtDoor() {
       </div>
 
       {/* Section: Do Not */}
-      <div className="section-header my-6">
+      <div className="section-header my-4">
         <h2>Do Not</h2>
       </div>
 
-      <ul className="list-none space-y-3">
+      <ul className="list-none space-y-2">
         <li className="flex items-start gap-3 text-base">
           <span className="w-1.5 h-1.5 mt-2 bg-foreground flex-shrink-0"></span>
           Run or hide
@@ -89,7 +89,7 @@ export default function IceAtDoor() {
         </li>
       </ul>
 
-      <p className="text-center text-muted-foreground mt-12 pt-8 border-t border-foreground/10 font-bold">
+      <p className="text-center text-muted-foreground mt-8 pt-6 border-t border-foreground/10 font-bold">
         Stay calm. Do not open the door. Assert your rights.
       </p>
     </InfoPageLayout>
