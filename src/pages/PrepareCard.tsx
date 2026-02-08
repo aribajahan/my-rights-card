@@ -185,11 +185,10 @@ export default function PrepareCard() {
         );
       case 'card':
         return (
-          <div className="flex flex-col items-center gap-6 max-w-md mx-auto">
-            {/* Stacked title */}
-            <h2 className="headline-stacked headline-page text-center">
-              <span className="block">Your Card</span>
-              <span className="block">Is Ready</span>
+          <div className="flex flex-col items-center gap-3 max-w-md mx-auto">
+            {/* Compact title */}
+            <h2 className="text-xl font-bold uppercase tracking-wider text-center">
+              Your Card Is Ready
             </h2>
 
             {/* Hidden card for image generation - positioned off-screen */}
@@ -208,23 +207,23 @@ export default function PrepareCard() {
               />
             </div>
 
-            {/* Phone mockup container */}
+            {/* Phone mockup container - smaller */}
             <div className="relative">
               {/* Phone frame */}
               <div 
                 className="relative bg-foreground overflow-hidden shadow-2xl"
                 style={{
-                  width: '180px',
-                  height: '400px',
-                  borderRadius: '24px',
-                  padding: '8px',
+                  width: '140px',
+                  height: '310px',
+                  borderRadius: '20px',
+                  padding: '6px',
                 }}
               >
                 {/* Screen area */}
                 <div 
                   className="relative overflow-hidden bg-background"
                   style={{
-                    borderRadius: '16px',
+                    borderRadius: '14px',
                     width: '100%',
                     height: '100%',
                   }}
@@ -232,7 +231,7 @@ export default function PrepareCard() {
                   {/* Scaled card preview */}
                   <div 
                     style={{
-                      transform: 'scale(0.152)',
+                      transform: 'scale(0.118)',
                       transformOrigin: 'top left',
                       width: '1080px',
                       height: '2400px',
@@ -243,18 +242,18 @@ export default function PrepareCard() {
                 </div>
                 {/* Notch/dynamic island */}
                 <div 
-                  className="absolute top-3 left-1/2 -translate-x-1/2 bg-foreground"
+                  className="absolute top-2 left-1/2 -translate-x-1/2 bg-foreground"
                   style={{
-                    width: '60px',
-                    height: '20px',
-                    borderRadius: '10px',
+                    width: '48px',
+                    height: '16px',
+                    borderRadius: '8px',
                   }}
                 />
               </div>
             </div>
             
             {/* Instruction text */}
-            <p className="text-center text-sm text-muted-foreground">
+            <p className="text-center text-xs text-muted-foreground">
               This fits your lock screen.
             </p>
           </div>
@@ -270,39 +269,38 @@ export default function PrepareCard() {
         <div className="space-y-2">
           <button
             onClick={saveCard}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
+            className="w-full flex items-center justify-center gap-2 p-3 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
             Download Card Image
           </button>
           <button
             onClick={downloadAudio}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
+            className="w-full flex items-center justify-center gap-2 p-2.5 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
           >
-            <Volume2 size={18} />
+            <Volume2 size={16} />
             Download Audio Statement
           </button>
-          <p className="text-xs text-muted-foreground text-center px-4">
-            Play this statement out loud when you need it. Set up a shortcut for one-tap access.
-          </p>
-          <Link
-            to="/tips/audio-shortcut"
-            className="block text-center text-sm font-medium underline underline-offset-4 text-foreground hover:text-muted-foreground transition-colors py-2"
-          >
-            How to set up one-tap audio →
-          </Link>
-          <Link
-            to="/rights"
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground shadow-card hover:shadow-card-hover transition-all duration-200"
-          >
-            <BookOpen size={18} className="opacity-50" />
-            Review My Rights
-          </Link>
+          <div className="flex items-center justify-center gap-4 text-xs">
+            <Link
+              to="/tips/audio-shortcut"
+              className="underline underline-offset-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Set up shortcuts
+            </Link>
+            <span className="text-muted-foreground/40">·</span>
+            <Link
+              to="/rights"
+              className="underline underline-offset-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Review rights
+            </Link>
+          </div>
           <button
             onClick={startOver}
-            className="w-full flex items-center justify-center gap-2 p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="w-full flex items-center justify-center gap-1 p-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
-            <RotateCcw size={16} />
+            <RotateCcw size={12} />
             Start Over
           </button>
         </div>
@@ -375,7 +373,7 @@ export default function PrepareCard() {
       </header>
 
       {/* Content */}
-      <main className="container py-6 px-4 pb-40">
+      <main className="container py-6 px-4 pb-32">
         <div className="animate-fade-in">
           {renderStepContent()}
         </div>
