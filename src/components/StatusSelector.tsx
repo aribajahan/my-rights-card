@@ -1,5 +1,5 @@
 import { ImmigrationStatus } from '@/types/card';
-import { FocusFrameOption } from '@/components/FocusFrameCard';
+import { NavListOption } from '@/components/NavListItem';
 
 interface StatusSelectorProps {
   value: ImmigrationStatus;
@@ -30,9 +30,9 @@ export function StatusSelector({ value, onChange, onSelect }: StatusSelectorProp
       <p className="text-muted-foreground text-center text-sm mb-8">
         We'll customize your card based on your immigration status.
       </p>
-      <div className="space-y-3">
+      <div className="nav-list">
         {statusOptions.map((option) => (
-          <FocusFrameOption
+          <NavListOption
             key={option.key}
             label={option.label}
             onClick={() => handleSelect(option.key)}

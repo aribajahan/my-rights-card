@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
-import { FocusFrameCard } from '@/components/FocusFrameCard';
+import { NavListItem } from '@/components/NavListItem';
 
 const tips = [
   { key: 'lock-screen', label: 'Lock Screen Setup', path: '/tips/lock-screen' },
@@ -39,13 +39,13 @@ export default function StayReadyTips() {
           {/* Divider */}
           <div className="section-divider mb-8" />
 
-          {/* Tips list as Focus Frame cards */}
-          <nav className="space-y-3">
+          {/* Tips list as simple nav items */}
+          <nav className="nav-list">
             {tips.map((tip) => (
-              <FocusFrameCard
+              <NavListItem
                 key={tip.key}
                 to={tip.path}
-                headline={tip.label}
+                label={tip.label}
               />
             ))}
           </nav>

@@ -392,6 +392,38 @@
     color: hsl(var(--muted-foreground) / 0.4);
     font-family: Georgia, serif;
   }
+
+  /* ========================================
+     NAV LIST - Simple list for long menus
+     ======================================== */
+
+  .nav-list {
+    @apply divide-y divide-foreground/10;
+    border-top: 1px solid hsl(var(--border));
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .nav-list-item {
+    @apply flex items-center justify-between w-full py-4 px-1;
+    @apply text-left;
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: all 150ms ease-out;
+  }
+
+  .nav-list-item:active,
+  .nav-list-item.is-selected {
+    @apply scale-[0.98];
+    background-color: hsl(var(--foreground));
+    color: hsl(var(--background));
+  }
+
+  .nav-list-item:active .nav-list-arrow,
+  .nav-list-item.is-selected .nav-list-arrow {
+    color: hsl(var(--background));
+  }
 }
 
 /* ========================================

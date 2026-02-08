@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
-import { FocusFrameCard } from '@/components/FocusFrameCard';
+import { NavListItem } from '@/components/NavListItem';
 
 const sections = [
   { key: 'universal', label: 'Universal Rights', path: '/rights/universal' },
@@ -42,13 +42,13 @@ export default function ReviewRights() {
           {/* Divider */}
           <div className="section-divider mb-8" />
 
-          {/* Section list as Focus Frame cards */}
-          <nav className="space-y-3">
+          {/* Section list as simple nav items */}
+          <nav className="nav-list">
             {sections.map((section) => (
-              <FocusFrameCard
+              <NavListItem
                 key={section.key}
                 to={section.path}
-                headline={section.label}
+                label={section.label}
               />
             ))}
           </nav>
