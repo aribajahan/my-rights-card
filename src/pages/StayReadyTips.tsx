@@ -1,20 +1,21 @@
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
+import { FocusFrameCard } from '@/components/FocusFrameCard';
 
 const tips = [
-  { key: 'lock-screen', label: 'Set Up Your Lock Screen', path: '/tips/lock-screen' },
-  { key: 'audio-shortcut', label: 'Set Up One-Tap Audio', path: '/tips/audio-shortcut' },
-  { key: 'emergency-text', label: 'Emergency Text Shortcuts', path: '/tips/emergency-text' },
+  { key: 'lock-screen', label: 'Lock Screen Setup', path: '/tips/lock-screen' },
+  { key: 'audio-shortcut', label: 'One-Tap Audio', path: '/tips/audio-shortcut' },
+  { key: 'emergency-text', label: 'Emergency Text', path: '/tips/emergency-text' },
   { key: 'recording', label: 'One-Tap Recording', path: '/tips/recording' },
-  { key: 'location-sharing', label: 'Location Sharing Setup', path: '/tips/location-sharing' },
-  { key: 'trackers', label: 'Tracker Tips (AirTags)', path: '/tips/trackers' },
-  { key: 'kids', label: 'What to Tell Your Kids', path: '/tips/kids' },
+  { key: 'location-sharing', label: 'Location Sharing', path: '/tips/location-sharing' },
+  { key: 'trackers', label: 'Tracker Tips', path: '/tips/trackers' },
+  { key: 'kids', label: 'Tell Your Kids', path: '/tips/kids' },
 ];
 
 export default function StayReadyTips() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background animate-page-enter">
       {/* Header */}
       <header className="px-6 py-6">
         <Link
@@ -29,24 +30,23 @@ export default function StayReadyTips() {
       {/* Main content */}
       <main className="px-6 pb-12">
         <div className="max-w-md mx-auto">
-          <h1 className="text-3xl tracking-wide text-headline mb-4">
-            Stay Ready Tips
+          {/* Stacked title */}
+          <h1 className="headline-stacked headline-section mb-6">
+            <span className="block">Stay Ready</span>
+            <span className="block">Tips</span>
           </h1>
-          <p className="text-muted-foreground mb-10">
-            Practical ways to prepare yourself and your family. These small steps can make a big difference.
-          </p>
 
-          {/* Tips list */}
-          <nav>
+          {/* Divider */}
+          <div className="section-divider mb-8" />
+
+          {/* Tips list as Focus Frame cards */}
+          <nav className="space-y-3">
             {tips.map((tip) => (
-              <Link
+              <FocusFrameCard
                 key={tip.key}
                 to={tip.path}
-                className="menu-item"
-              >
-                <span>{tip.label}</span>
-                <ChevronRight size={18} className="text-muted-foreground" />
-              </Link>
+                headline={tip.label}
+              />
             ))}
           </nav>
         </div>

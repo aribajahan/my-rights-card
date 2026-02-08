@@ -14,7 +14,7 @@ const getStatusBadge = (status: ImmigrationStatus): string => {
     case 'visa': return 'VISA HOLDER';
     case 'dacaTps': return 'DACA / TPS';
     case 'asylum': return 'ASYLUM SEEKER';
-    case 'undocumented': return 'UNDOCUMENTED';
+    case 'preferNot': return '';
     default: return '';
   }
 };

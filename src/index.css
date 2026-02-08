@@ -7,25 +7,25 @@
 @layer base {
   :root {
     /* Black and cream editorial palette */
-    --background: 42 25% 94%; /* Warm cream #F5F2E8 */
-    --foreground: 0 0% 10%; /* Black #1A1A1A */
+    --background: 42 25% 96%; /* Warm cream #FAF9F6 */
+    --foreground: 0 0% 10%; /* Near-black #1A1A1A */
     
-    --card: 0 0% 100%; /* Pure white */
+    --card: 0 0% 100%;
     --card-foreground: 0 0% 10%;
     
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
     
-    --primary: 0 0% 10%; /* Black for buttons */
-    --primary-foreground: 42 25% 94%; /* Cream */
+    --primary: 0 0% 10%;
+    --primary-foreground: 42 25% 96%;
     
-    --secondary: 0 0% 10%; /* Black */
-    --secondary-foreground: 42 25% 94%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 42 25% 96%;
     
-    --muted: 40 15% 88%;
-    --muted-foreground: 0 0% 40%; /* Medium gray */
+    --muted: 40 15% 90%;
+    --muted-foreground: 0 0% 40%;
     
-    --accent: 40 20% 90%; /* Slightly darker cream #EDE9DF for callouts */
+    --accent: 40 20% 92%;
     --accent-foreground: 0 0% 10%;
     
     --destructive: 0 84% 60%;
@@ -35,16 +35,16 @@
     --input: 40 15% 85%;
     --ring: 0 0% 10%;
     
-    --radius: 0; /* Sharp corners globally */
+    --radius: 0;
     
     /* Semantic colors */
-    --headline: 0 0% 10%; /* Black for headlines */
-    --hotline: 0 77% 41%; /* Brick red #B91C1C for phone numbers only */
+    --headline: 0 0% 10%;
+    --hotline: 350 70% 45%; /* #C41E3A - THE ONLY RED */
     
     --sidebar-background: 42 25% 96%;
     --sidebar-foreground: 0 0% 10%;
     --sidebar-primary: 0 0% 10%;
-    --sidebar-primary-foreground: 42 25% 94%;
+    --sidebar-primary-foreground: 42 25% 96%;
     --sidebar-accent: 40 20% 93%;
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 40 15% 85%;
@@ -53,44 +53,44 @@
 
   .dark {
     --background: 0 0% 8%;
-    --foreground: 42 20% 92%;
+    --foreground: 42 20% 96%;
     
     --card: 0 0% 12%;
-    --card-foreground: 42 20% 92%;
+    --card-foreground: 42 20% 96%;
     
     --popover: 0 0% 12%;
-    --popover-foreground: 42 20% 92%;
+    --popover-foreground: 42 20% 96%;
     
-    --primary: 42 20% 92%;
+    --primary: 42 20% 96%;
     --primary-foreground: 0 0% 8%;
     
-    --secondary: 42 20% 92%;
+    --secondary: 42 20% 96%;
     --secondary-foreground: 0 0% 8%;
     
     --muted: 0 0% 18%;
     --muted-foreground: 0 0% 60%;
     
     --accent: 0 0% 15%;
-    --accent-foreground: 42 20% 92%;
+    --accent-foreground: 42 20% 96%;
     
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
     
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 42 20% 92%;
+    --ring: 42 20% 96%;
     
-    --headline: 42 20% 92%;
-    --hotline: 0 70% 55%;
+    --headline: 42 20% 96%;
+    --hotline: 350 65% 55%;
     
     --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 42 20% 92%;
-    --sidebar-primary: 42 20% 92%;
+    --sidebar-foreground: 42 20% 96%;
+    --sidebar-primary: 42 20% 96%;
     --sidebar-primary-foreground: 0 0% 8%;
     --sidebar-accent: 0 0% 18%;
-    --sidebar-accent-foreground: 42 20% 92%;
+    --sidebar-accent-foreground: 42 20% 96%;
     --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 42 20% 92%;
+    --sidebar-ring: 42 20% 96%;
   }
 }
 
@@ -102,6 +102,24 @@
   body {
     @apply bg-background text-foreground font-semibold;
     font-family: 'DM Sans', system-ui, sans-serif;
+    position: relative;
+  }
+
+  /* Subtle paper grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    z-index: 0;
+  }
+
+  /* Ensure content is above texture */
+  body > * {
+    position: relative;
+    z-index: 1;
   }
   
   h1, h2, h3 {
@@ -126,17 +144,132 @@
 }
 
 @layer components {
-  /* Headline color */
+  /* ========================================
+     TYPOGRAPHY - Editorial Brutalist Scale
+     ======================================== */
+
+  /* Stacked headline - words stack vertically */
+  .headline-stacked {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    color: hsl(var(--headline));
+  }
+
+  /* Hero scale - fills viewport */
+  .headline-hero {
+    font-size: clamp(5rem, 22vw, 14rem);
+  }
+
+  /* Section scale - large but not hero */
+  .headline-section {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+  }
+
+  /* Page title scale */
+  .headline-page {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  /* Semantic color utilities */
   .text-headline {
     color: hsl(var(--headline));
   }
   
-  /* Hotline accent color - brick red for phone numbers only */
   .text-hotline {
     color: hsl(var(--hotline));
   }
-  
-  /* Primary button - solid black */
+
+  /* ========================================
+     FOCUS FRAME CARDS - Corner bracket nav
+     ======================================== */
+
+  .focus-frame {
+    @apply relative w-full p-6 text-left block;
+    transition: all 150ms ease-out;
+  }
+
+  /* Corner brackets */
+  .focus-frame-corner {
+    @apply absolute pointer-events-none;
+    width: 32px;
+    height: 32px;
+    border-color: hsl(var(--foreground));
+    border-style: solid;
+    transition: all 150ms ease-out;
+  }
+
+  .focus-frame-corner.top-left {
+    @apply top-0 left-0;
+    border-width: 2px 0 0 2px;
+  }
+
+  .focus-frame-corner.top-right {
+    @apply top-0 right-0;
+    border-width: 2px 2px 0 0;
+  }
+
+  .focus-frame-corner.bottom-left {
+    @apply bottom-0 left-0;
+    border-width: 0 0 2px 2px;
+  }
+
+  .focus-frame-corner.bottom-right {
+    @apply bottom-0 right-0;
+    border-width: 0 2px 2px 0;
+  }
+
+  /* Active/pressed state - brackets complete, colors invert */
+  .focus-frame:active {
+    @apply scale-[0.98];
+    background-color: hsl(var(--foreground));
+  }
+
+  .focus-frame:active .focus-frame-corner {
+    width: 100%;
+    height: 100%;
+    border-width: 2px;
+  }
+
+  .focus-frame:active .focus-frame-headline,
+  .focus-frame:active .focus-frame-arrow {
+    color: hsl(var(--background));
+  }
+
+  .focus-frame:active .focus-frame-subhead {
+    color: hsl(var(--background));
+    opacity: 0.7;
+  }
+
+  /* Focus Frame Option - for status selection */
+  .focus-frame-option {
+    @apply relative w-full p-5 text-left block;
+    transition: all 150ms ease-out;
+  }
+
+  .focus-frame-option:active,
+  .focus-frame-option.is-selected {
+    @apply scale-[0.98];
+    background-color: hsl(var(--foreground));
+  }
+
+  .focus-frame-option:active .focus-frame-corner,
+  .focus-frame-option.is-selected .focus-frame-corner {
+    width: 100%;
+    height: 100%;
+    border-width: 2px;
+  }
+
+  .focus-frame-option:active .focus-frame-headline,
+  .focus-frame-option.is-selected .focus-frame-headline {
+    color: hsl(var(--background));
+  }
+
+  /* ========================================
+     BUTTONS & LINKS
+     ======================================== */
+
   .btn-primary {
     @apply inline-flex items-center justify-center w-full px-8 py-4 font-bold text-primary-foreground bg-primary transition-all duration-200;
   }
@@ -145,7 +278,6 @@
     @apply opacity-90;
   }
   
-  /* Text link - simple underlined link */
   .btn-link {
     @apply inline-flex items-center justify-center font-semibold text-foreground underline underline-offset-4 decoration-1 transition-all duration-200;
   }
@@ -153,48 +285,58 @@
   .btn-link:hover {
     @apply decoration-2;
   }
-  
-  
-  /* Menu item - with chevron for tap affordance */
-  .menu-item {
-    @apply flex items-center justify-between py-4 border-b border-border/50 font-medium text-foreground transition-colors duration-200;
+
+  /* ========================================
+     PHRASE BOXES - Critical "What to say"
+     ======================================== */
+
+  .phrase-box {
+    @apply border-2 border-foreground p-6 my-6;
   }
 
-  .menu-item:last-child {
-    @apply border-b-0;
+  .phrase-box p {
+    @apply leading-relaxed font-medium;
+    font-size: clamp(1.125rem, 4vw, 1.375rem);
   }
 
-  .menu-item:hover {
-    @apply bg-accent/30;
+  .phrase-box-label {
+    @apply text-xs font-bold uppercase tracking-widest mb-3 block;
+    color: hsl(var(--muted-foreground));
   }
 
-  .menu-item:active {
-    @apply bg-accent/50;
+  /* Warning box */
+  .warning-box {
+    @apply border border-foreground p-4 my-6 relative;
   }
-  
-  /* Minimal callout - just left border, no background */
-  .callout-minimal {
-    @apply pl-4 border-l-2 border-foreground;
+
+  .warning-box::before {
+    content: '⚠';
+    @apply absolute -top-3 left-4 px-2 text-sm;
+    background-color: hsl(var(--background));
   }
-  
-  /* Pull quote with large quotation mark */
-  .pull-quote {
-    @apply relative pl-8;
-  }
-  
-  .pull-quote::before {
-    content: '"';
-    @apply absolute left-0 -top-2 text-4xl leading-none text-muted-foreground/40;
-    font-family: Georgia, serif;
-  }
-  
-  
-  /* Section divider */
+
+  /* ========================================
+     SECTION DIVIDERS
+     ======================================== */
+
   .section-divider {
-    @apply w-full h-px bg-border/50 my-8;
+    @apply w-full h-px my-8;
+    background-color: hsl(var(--border));
   }
-  
-  /* Info page content styles */
+
+  .section-header {
+    @apply py-4 border-y border-foreground/20;
+  }
+
+  .section-header h2 {
+    @apply text-xs font-bold uppercase tracking-widest m-0;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* ========================================
+     INFO CONTENT PAGES
+     ======================================== */
+
   .info-content h2 {
     @apply text-lg font-semibold mb-3 mt-8 first:mt-0;
     color: hsl(var(--headline));
@@ -215,9 +357,47 @@
   .info-content section {
     @apply mb-8;
   }
+
+  /* ========================================
+     LEGACY STYLES (for backward compat)
+     ======================================== */
+
+  .menu-item {
+    @apply flex items-center justify-between py-4 border-b border-border/50 font-medium text-foreground transition-colors duration-200;
+  }
+
+  .menu-item:last-child {
+    @apply border-b-0;
+  }
+
+  .menu-item:hover {
+    @apply bg-accent/30;
+  }
+
+  .menu-item:active {
+    @apply bg-accent/50;
+  }
+
+  .callout-minimal {
+    @apply pl-4 border-l-2 border-foreground;
+  }
+
+  .pull-quote {
+    @apply relative pl-8;
+  }
+  
+  .pull-quote::before {
+    content: '"';
+    @apply absolute left-0 -top-2 text-4xl leading-none;
+    color: hsl(var(--muted-foreground) / 0.4);
+    font-family: Georgia, serif;
+  }
 }
 
-/* Smooth animations */
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
 @layer utilities {
   .animate-slide-up {
     animation: slide-up 0.25s ease-out;
@@ -225,6 +405,10 @@
   
   .animate-fade-in {
     animation: fade-in 0.2s ease-out;
+  }
+
+  .animate-page-enter {
+    animation: page-enter 0.25s ease-out;
   }
 }
 
@@ -236,4 +420,9 @@
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes page-enter {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toPng } from 'html-to-image';
 import { StatusSelector } from '@/components/StatusSelector';
 import { DocumentForm } from '@/components/DocumentForm';
@@ -7,10 +7,10 @@ import { EmergencyContactForm } from '@/components/EmergencyContactForm';
 import { RightsPreview } from '@/components/RightsPreview';
 import { RightsCard } from '@/components/RightsCard';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
+import { FocusFrameCard } from '@/components/FocusFrameCard';
 import { ImmigrationStatus, EmergencyContact, DocumentInfo } from '@/types/card';
-import { ArrowLeft, Download, BookOpen, RotateCcw, Volume2 } from 'lucide-react';
+import { ChevronLeft, Download, BookOpen, RotateCcw, Volume2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { Link } from 'react-router-dom';
 
 type Step = 'status' | 'documents' | 'contacts' | 'preview' | 'card';
 
@@ -143,16 +143,55 @@ export default function PrepareCard() {
   const renderStepContent = () => {
     switch (step) {
       case 'status':
-        return <StatusSelector value={status} onChange={setStatus} onSelect={() => goNext()} />;
+        return (
+          <div className="max-w-md mx-auto">
+            {/* Stacked title */}
+            <h1 className="headline-stacked headline-page text-center mb-2">
+              <span className="block">Prepare</span>
+              <span className="block">My Card</span>
+            </h1>
+            <StatusSelector value={status} onChange={setStatus} onSelect={() => goNext()} />
+          </div>
+        );
       case 'documents':
-        return <DocumentForm value={documentInfo} onChange={setDocumentInfo} />;
+        return (
+          <div className="max-w-md mx-auto">
+            <h2 className="headline-stacked headline-page text-center mb-6">
+              <span className="block">Document</span>
+              <span className="block">Info</span>
+            </h2>
+            <DocumentForm value={documentInfo} onChange={setDocumentInfo} />
+          </div>
+        );
       case 'contacts':
-        return <EmergencyContactForm contacts={contacts} onChange={setContacts} />;
+        return (
+          <div className="max-w-md mx-auto">
+            <h2 className="headline-stacked headline-page text-center mb-6">
+              <span className="block">Emergency</span>
+              <span className="block">Contacts</span>
+            </h2>
+            <EmergencyContactForm contacts={contacts} onChange={setContacts} />
+          </div>
+        );
       case 'preview':
-        return <RightsPreview />;
+        return (
+          <div className="max-w-md mx-auto">
+            <h2 className="headline-stacked headline-page text-center mb-6">
+              <span className="block">Your</span>
+              <span className="block">Rights</span>
+            </h2>
+            <RightsPreview />
+          </div>
+        );
       case 'card':
         return (
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-6 max-w-md mx-auto">
+            {/* Stacked title */}
+            <h2 className="headline-stacked headline-page text-center">
+              <span className="block">Your Card</span>
+              <span className="block">Is Ready</span>
+            </h2>
+
             {/* Hidden card for image generation - positioned off-screen */}
             <div 
               style={{
@@ -215,8 +254,8 @@ export default function PrepareCard() {
             </div>
             
             {/* Instruction text */}
-            <p className="text-center text-sm text-muted-foreground max-w-xs">
-              Set as your lock screen so your rights are always visible.
+            <p className="text-center text-sm text-muted-foreground">
+              This fits your lock screen.
             </p>
           </div>
         );
@@ -317,7 +356,7 @@ export default function PrepareCard() {
             onClick={goBack}
             className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft size={18} />
+            <ChevronLeft size={18} />
             Back
           </button>
 

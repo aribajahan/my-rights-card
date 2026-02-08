@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
+import { FocusFrameCard } from '@/components/FocusFrameCard';
 
 const sections = [
-  { key: 'witness', label: 'How to Be a Good Witness', path: '/community/witness' },
-  { key: 'bystander', label: 'Your Rights as a Bystander', path: '/community/bystander' },
-  { key: 'arrest', label: 'What to Do If You See an Arrest', path: '/community/arrest' },
+  { key: 'witness', label: 'Be a Good Witness', path: '/community/witness' },
+  { key: 'bystander', label: 'Bystander Rights', path: '/community/bystander' },
+  { key: 'arrest', label: 'If You See an Arrest', path: '/community/arrest' },
   { key: 'family', label: 'Prepare Your Family', path: '/community/family' },
-  { key: 'rapid-response', label: 'Rapid Response Networks', path: '/community/rapid-response' },
-  { key: 'mutual-aid', label: 'Mutual Aid & Support', path: '/community/mutual-aid' },
+  { key: 'rapid-response', label: 'Rapid Response', path: '/community/rapid-response' },
+  { key: 'mutual-aid', label: 'Mutual Aid', path: '/community/mutual-aid' },
 ];
 
 export default function HelpCommunity() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background animate-page-enter">
       {/* Header */}
       <header className="px-6 py-6">
         <Link
@@ -28,24 +29,23 @@ export default function HelpCommunity() {
       {/* Main content */}
       <main className="px-6 pb-12">
         <div className="max-w-md mx-auto">
-          <h1 className="text-3xl tracking-wide text-headline mb-4">
-            Help Your Community
+          {/* Stacked title */}
+          <h1 className="headline-stacked headline-section mb-6">
+            <span className="block">Help Your</span>
+            <span className="block">Community</span>
           </h1>
-          <p className="text-muted-foreground mb-10">
-            You don't have to be directly affected to help. Here's how to support your neighbors.
-          </p>
 
-          {/* Section list */}
-          <nav>
+          {/* Divider */}
+          <div className="section-divider mb-8" />
+
+          {/* Section list as Focus Frame cards */}
+          <nav className="space-y-3">
             {sections.map((section) => (
-              <Link
+              <FocusFrameCard
                 key={section.key}
                 to={section.path}
-                className="menu-item"
-              >
-                <span>{section.label}</span>
-                <ChevronRight size={18} className="text-muted-foreground" />
-              </Link>
+                headline={section.label}
+              />
             ))}
           </nav>
         </div>

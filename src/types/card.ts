@@ -4,7 +4,6 @@ export type ImmigrationStatus =
   | 'visa'
   | 'dacaTps'
   | 'asylum'
-  | 'undocumented'
   | 'preferNot'
   | null;
 
@@ -41,7 +40,6 @@ export const statusLabels: Record<Exclude<ImmigrationStatus, null>, string> = {
   visa: 'Visa Holder',
   dacaTps: 'DACA / TPS',
   asylum: 'Asylum Seeker',
-  undocumented: 'Undocumented',
   preferNot: 'Status not specified',
 };
 
@@ -51,7 +49,6 @@ export const statusGuidance: Record<Exclude<ImmigrationStatus, null>, string> = 
   visa: 'Carry your visa documents. Know your visa expiration date.',
   dacaTps: 'Carry your EAD card. Know your attorney\'s contact info.',
   asylum: 'Carry proof of pending case. Contact your attorney immediately if detained.',
-  undocumented: 'You still have constitutional rights. Stay calm and exercise them.',
   preferNot: '',
 };
 

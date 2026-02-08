@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
+import { FocusFrameCard } from '@/components/FocusFrameCard';
 import { downloadVCard } from '@/lib/vcard';
+import { ChevronDown } from 'lucide-react';
 
 export default function Index() {
   const handleSaveContact = () => {
@@ -9,90 +11,99 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Main content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-16">
-        <div className="w-full max-w-md">
-          {/* Headline with overlapping brush script accent */}
-          <div className="mb-16">
-            <p className="text-5xl uppercase -mb-6 relative z-0" style={{
-              fontFamily: 'Caveat, cursive',
-              color: '#8A8A8A'
-            }}>
-              know your rights
-            </p>
-            <h1 className="tracking-wide text-headline mb-6 relative z-10 text-8xl">
-              Stay Ready
-            </h1>
-            <p className="text-foreground text-lg font-medium max-w-sm font-sans">
-              Know what to say if ICE comes to your door, car, or workplace.
-            </p>
-          </div>
-
-          {/* Action buttons */}
-          <div className="space-y-6">
-            {/* Primary action */}
-            <div className="text-center">
-              <Link to="/prepare" className="btn-primary">
-                PREPARE MY CARD
-              </Link>
-              <p className="text-sm text-muted-foreground mt-2">
-                Save a rights card to your phone
-              </p>
-            </div>
-
-            {/* Secondary actions - side by side */}
-            <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="text-center">
-                <Link to="/rights" className="btn-link text-sm">
-                  REVIEW MY RIGHTS
-                </Link>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Learn what to do
-                </p>
-              </div>
-              <div className="text-center">
-                <Link to="/community" className="btn-link text-sm">
-                  HELP YOUR COMMUNITY
-                </Link>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Support your neighbors
-                </p>
-              </div>
-            </div>
-          </div>
+      {/* Hero Section - Full viewport with stacked headline */}
+      <section className="min-h-screen flex flex-col items-center justify-center px-6 relative">
+        <div className="text-center">
+          <h1 className="headline-stacked headline-hero">
+            <span className="block">Stay</span>
+            <span className="block">Ready</span>
+          </h1>
         </div>
-      </main>
+        
+        {/* Subtle scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-pulse">
+          <ChevronDown size={24} className="text-muted-foreground" />
+        </div>
+      </section>
 
-      {/* Footer with hotline box */}
-      <footer className="px-6 pb-8 pt-8">
-        {/* Hotline Box */}
-        <div className="border border-foreground p-4 mb-6 max-w-sm mx-auto">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-1 text-center">
-            Report ICE Activity
+      {/* Three Paths Section */}
+      <section className="px-6 py-12">
+        <div className="max-w-md mx-auto space-y-4">
+          <FocusFrameCard
+            to="/prepare"
+            headline="Prepare My Card"
+            subhead="Lock screen ready"
+          />
+          <FocusFrameCard
+            to="/rights"
+            headline="Review My Rights"
+            subhead="Door / Car / Street / Work"
+          />
+          <FocusFrameCard
+            to="/community"
+            headline="Help Your Community"
+            subhead="Witness / Support / Prepare"
+          />
+        </div>
+      </section>
+
+      {/* Tips Section - Secondary */}
+      <section className="px-6 py-8 border-t border-foreground/10">
+        <div className="max-w-md mx-auto">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+            Stay Ready Tips
+          </h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Memorize a number · Record your statement · Talk to your family · Know your exits
           </p>
-          <p className="text-sm font-medium text-muted-foreground mb-2 text-center">
-            United We Dream
+          <Link 
+            to="/tips" 
+            className="text-sm font-semibold underline underline-offset-4 decoration-1 hover:decoration-2 transition-all"
+          >
+            All tips →
+          </Link>
+        </div>
+      </section>
+
+      {/* Hotline Footer */}
+      <footer className="px-6 py-8 border-t border-foreground/10 mt-auto">
+        <div className="max-w-md mx-auto text-center">
+          <p className="text-sm text-muted-foreground mb-4">
+            If you need help now:
           </p>
-          <div className="text-center mb-3">
-            <a href="tel:1-844-363-1423" className="text-hotline font-bold text-xl">
-              1-844-363-1423
-            </a>
-            <span className="text-xs font-semibold text-muted-foreground ml-2">24/7</span>
-          </div>
+          
+          <h3 className="text-xs font-bold uppercase tracking-widest mb-2">
+            United We Dream Hotline
+          </h3>
+          
+          <a 
+            href="tel:1-844-363-1423" 
+            className="text-hotline font-bold text-2xl block mb-2"
+          >
+            1-844-363-1423
+          </a>
+          
+          <p className="text-xs text-muted-foreground mb-4">
+            24/7 — Free — Confidential
+          </p>
+          
           <button
             onClick={handleSaveContact}
-            className="w-full py-2 text-sm font-semibold text-foreground underline underline-offset-4 decoration-1 hover:decoration-2 transition-all"
+            className="text-sm font-semibold underline underline-offset-4 decoration-1 hover:decoration-2 transition-all mb-8"
           >
             Save to Contacts
           </button>
+
+          <div className="pt-6 border-t border-foreground/10 space-y-2">
+            <p className="text-xs text-muted-foreground">
+              This is not legal advice.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Built with love for our communities.
+            </p>
+            <PrivacyNotice />
+          </div>
         </div>
-        
-        <p className="text-xs text-muted-foreground max-w-sm mx-auto leading-relaxed text-center mb-3">
-          This tool provides general information about your constitutional rights. 
-          It is not legal advice. For advice about your specific situation, consult 
-          a qualified immigration attorney.
-        </p>
-        <PrivacyNotice />
       </footer>
     </div>
   );
