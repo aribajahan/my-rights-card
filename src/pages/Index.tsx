@@ -10,10 +10,20 @@ export default function Index() {
       {/* Hero Section - Compact mobile-first */}
       <section className="flex flex-col items-center justify-center px-6 pt-12 pb-8">
         <div className="text-center">
+          {/* Eyebrow label */}
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
+            Know Your Rights
+          </p>
+          
           <h1 className="headline-stacked headline-hero">
             <span className="block">Stay</span>
             <span className="block">Ready</span>
           </h1>
+          
+          {/* Subheadline */}
+          <p className="text-sm text-muted-foreground mt-4 max-w-[280px] mx-auto">
+            Know what to say if ICE comes to your door, car, or workplace.
+          </p>
         </div>
       </section>
 

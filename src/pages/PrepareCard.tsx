@@ -54,7 +54,7 @@ export default function PrepareCard() {
           name: pendingContactName.trim(),
           phone: formatPhoneDisplay(pendingContactPhone.trim()),
         };
-        setContacts([...contacts, newContact]);
+        setContacts(prev => [...prev, newContact]);
         setPendingContactName('');
         setPendingContactPhone('');
       }
