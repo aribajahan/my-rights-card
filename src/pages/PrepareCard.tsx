@@ -8,7 +8,7 @@ import { RightsPreview } from '@/components/RightsPreview';
 import { RightsCard } from '@/components/RightsCard';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { ImmigrationStatus, EmergencyContact, DocumentInfo } from '@/types/card';
-import { ArrowLeft, Download, BookOpen, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Download, BookOpen, RotateCcw, Volume2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
 
@@ -73,6 +73,14 @@ export default function PrepareCard() {
       console.error('Failed to save card:', error);
       toast.error('Failed to save card. Please try again.');
     }
+  };
+
+  const downloadAudio = () => {
+    const link = document.createElement('a');
+    link.href = '/audio/rights-statement-en.mp3';
+    link.download = 'rights-statement.mp3';
+    link.click();
+    toast.success('Audio statement downloaded!');
   };
 
   const shareCard = async () => {
@@ -190,8 +198,24 @@ export default function PrepareCard() {
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
-            Download Card
+            Download Card Image
           </button>
+          <button
+            onClick={downloadAudio}
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
+          >
+            <Volume2 size={18} />
+            Download Audio Statement
+          </button>
+          <p className="text-xs text-muted-foreground text-center px-4">
+            Play this statement out loud when you need it. Set up a shortcut for one-tap access.
+          </p>
+          <Link
+            to="/tips/audio-shortcut"
+            className="block text-center text-sm font-medium underline underline-offset-4 text-foreground hover:text-muted-foreground transition-colors py-2"
+          >
+            How to set up one-tap audio →
+          </Link>
           <Link
             to="/rights"
             className="w-full flex items-center justify-center gap-2 p-4 text-base font-medium bg-card text-foreground shadow-card hover:shadow-card-hover transition-all duration-200"

@@ -3,19 +3,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 
 const sections = [
-  { key: 'universal', label: 'Your Universal Rights', path: '/rights/universal' },
-  { key: 'door', label: 'ICE at Your Door', path: '/rights/door' },
-  { key: 'car', label: 'Stopped in Your Car', path: '/rights/car' },
-  { key: 'street', label: 'Stopped on the Street', path: '/rights/street' },
-  { key: 'workplace', label: 'ICE at Your Workplace', path: '/rights/workplace' },
-  { key: 'warrants', label: 'Warrants: Know the Difference', path: '/rights/warrants' },
-  { key: 'carry', label: 'What to Carry', path: '/rights/carry' },
-  { key: 'report', label: 'Report and Record', path: '/rights/report' },
-  { key: 'state', label: 'Do Rights Change by State?', path: '/rights/state' },
-  { key: 'hotlines', label: 'Hotlines & Resources', path: '/rights/hotlines' },
+  { key: 'witness', label: 'How to Be a Good Witness', path: '/community/witness' },
+  { key: 'bystander', label: 'Your Rights as a Bystander', path: '/community/bystander' },
+  { key: 'arrest', label: 'What to Do If You See an Arrest', path: '/community/arrest' },
+  { key: 'family', label: 'Prepare Your Family', path: '/community/family' },
+  { key: 'rapid-response', label: 'Rapid Response Networks', path: '/community/rapid-response' },
+  { key: 'mutual-aid', label: 'Mutual Aid & Support', path: '/community/mutual-aid' },
 ];
 
-export default function ReviewRights() {
+export default function HelpCommunity() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -33,13 +29,13 @@ export default function ReviewRights() {
       <main className="px-6 pb-12">
         <div className="max-w-md mx-auto">
           <h1 className="text-3xl tracking-wide text-headline mb-4">
-            Review My Rights
+            Help Your Community
           </h1>
           <p className="text-muted-foreground mb-10">
-            Everyone in the United States has constitutional rights—regardless of immigration status.
+            You don't have to be directly affected to help. Here's how to support your neighbors.
           </p>
 
-          {/* Section list - with chevrons for tap affordance */}
+          {/* Section list */}
           <nav>
             {sections.map((section) => (
               <Link

@@ -1,6 +1,11 @@
 import { InfoPageLayout } from '@/components/InfoPageLayout';
+import { downloadVCard } from '@/lib/vcard';
 
 export default function Hotlines() {
+  const handleSaveContact = () => {
+    downloadVCard('United We Dream Hotline', '1-844-363-1423', 'United We Dream');
+  };
+
   return (
     <InfoPageLayout title="Hotlines & Resources">
       <p className="text-lg text-muted-foreground mb-8">
@@ -16,6 +21,12 @@ export default function Hotlines() {
               1-844-363-1423
             </a>
             <p className="text-sm text-muted-foreground mt-1">24/7 — Report ICE activity, get rapid response</p>
+            <button
+              onClick={handleSaveContact}
+              className="mt-2 text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+            >
+              Save to Contacts
+            </button>
           </div>
           
           <div className="border-b border-border/50 pb-4">
@@ -34,6 +45,42 @@ export default function Hotlines() {
             <p className="text-sm text-muted-foreground mt-1">Know your rights, report violations</p>
           </div>
         </div>
+      </section>
+
+      <section>
+        <h2>If Someone Is Detained</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            <a href="https://locator.ice.gov" target="_blank" rel="noopener noreferrer" className="underline hover:text-muted-foreground transition-colors">
+              ICE Detainee Locator
+            </a> — Find where someone is being held
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            <a href="https://immigrantbailfund.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-muted-foreground transition-colors">
+              National Immigration Bond Fund
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Find a Lawyer</h2>
+        <ul className="list-none space-y-2 my-4">
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            <a href="https://cliniclegal.org/directory" target="_blank" rel="noopener noreferrer" className="underline hover:text-muted-foreground transition-colors">
+              CLINIC Legal Directory
+            </a>
+          </li>
+          <li className="flex items-start gap-3 text-sm">
+            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+            <a href="https://immigrationadvocates.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-muted-foreground transition-colors">
+              Immigration Advocates Network
+            </a>
+          </li>
+        </ul>
       </section>
 
       <section>

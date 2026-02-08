@@ -2,20 +2,17 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 
-const sections = [
-  { key: 'universal', label: 'Your Universal Rights', path: '/rights/universal' },
-  { key: 'door', label: 'ICE at Your Door', path: '/rights/door' },
-  { key: 'car', label: 'Stopped in Your Car', path: '/rights/car' },
-  { key: 'street', label: 'Stopped on the Street', path: '/rights/street' },
-  { key: 'workplace', label: 'ICE at Your Workplace', path: '/rights/workplace' },
-  { key: 'warrants', label: 'Warrants: Know the Difference', path: '/rights/warrants' },
-  { key: 'carry', label: 'What to Carry', path: '/rights/carry' },
-  { key: 'report', label: 'Report and Record', path: '/rights/report' },
-  { key: 'state', label: 'Do Rights Change by State?', path: '/rights/state' },
-  { key: 'hotlines', label: 'Hotlines & Resources', path: '/rights/hotlines' },
+const tips = [
+  { key: 'lock-screen', label: 'Set Up Your Lock Screen', path: '/tips/lock-screen' },
+  { key: 'audio-shortcut', label: 'Set Up One-Tap Audio', path: '/tips/audio-shortcut' },
+  { key: 'emergency-text', label: 'Emergency Text Shortcuts', path: '/tips/emergency-text' },
+  { key: 'recording', label: 'One-Tap Recording', path: '/tips/recording' },
+  { key: 'location-sharing', label: 'Location Sharing Setup', path: '/tips/location-sharing' },
+  { key: 'trackers', label: 'Tracker Tips (AirTags)', path: '/tips/trackers' },
+  { key: 'kids', label: 'What to Tell Your Kids', path: '/tips/kids' },
 ];
 
-export default function ReviewRights() {
+export default function StayReadyTips() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -33,21 +30,21 @@ export default function ReviewRights() {
       <main className="px-6 pb-12">
         <div className="max-w-md mx-auto">
           <h1 className="text-3xl tracking-wide text-headline mb-4">
-            Review My Rights
+            Stay Ready Tips
           </h1>
           <p className="text-muted-foreground mb-10">
-            Everyone in the United States has constitutional rights—regardless of immigration status.
+            Practical ways to prepare yourself and your family. These small steps can make a big difference.
           </p>
 
-          {/* Section list - with chevrons for tap affordance */}
+          {/* Tips list */}
           <nav>
-            {sections.map((section) => (
+            {tips.map((tip) => (
               <Link
-                key={section.key}
-                to={section.path}
+                key={tip.key}
+                to={tip.path}
                 className="menu-item"
               >
-                <span>{section.label}</span>
+                <span>{tip.label}</span>
                 <ChevronRight size={18} className="text-muted-foreground" />
               </Link>
             ))}

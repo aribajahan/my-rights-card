@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
+import { downloadVCard } from '@/lib/vcard';
 
 export default function Index() {
+  const handleSaveContact = () => {
+    downloadVCard('United We Dream Hotline', '1-844-363-1423', 'United We Dream');
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Main content */}
@@ -23,8 +28,9 @@ export default function Index() {
             </p>
           </div>
 
-          {/* Action buttons - 2 styles only */}
+          {/* Action buttons */}
           <div className="space-y-6">
+            {/* Primary action */}
             <div className="text-center">
               <Link to="/prepare" className="btn-primary">
                 PREPARE MY CARD
@@ -34,42 +40,59 @@ export default function Index() {
               </p>
             </div>
 
-            <div className="text-center">
-              <Link to="/rights" className="btn-link">
-                REVIEW MY RIGHTS
-              </Link>
+            {/* Secondary actions - side by side */}
+            <div className="grid grid-cols-2 gap-4 pt-2">
+              <div className="text-center">
+                <Link to="/rights" className="btn-link text-sm">
+                  REVIEW MY RIGHTS
+                </Link>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Learn what to do
+                </p>
+              </div>
+              <div className="text-center">
+                <Link to="/community" className="btn-link text-sm">
+                  HELP YOUR COMMUNITY
+                </Link>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Support your neighbors
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Footer with hotline */}
-      <footer className="px-6 pb-8 pt-16">
-        {/* Hotline - simple footer style */}
-        <a 
-          href="tel:1-844-363-1423" 
-          className="block text-center mb-8"
-        >
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-1">
+      {/* Footer with hotline box */}
+      <footer className="px-6 pb-8 pt-8">
+        {/* Hotline Box */}
+        <div className="border border-foreground p-4 mb-6 max-w-sm mx-auto">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-1 text-center">
             Report ICE Activity
           </p>
-          <p className="text-sm font-medium text-muted-foreground mb-1">
+          <p className="text-sm font-medium text-muted-foreground mb-2 text-center">
             United We Dream
           </p>
-          <span className="text-foreground font-bold text-lg underline underline-offset-4">
-            1-844-363-1423
-          </span>
-          <span className="text-xs font-semibold text-muted-foreground ml-2">24/7</span>
-        </a>
+          <div className="text-center mb-3">
+            <a href="tel:1-844-363-1423" className="text-hotline font-bold text-xl">
+              1-844-363-1423
+            </a>
+            <span className="text-xs font-semibold text-muted-foreground ml-2">24/7</span>
+          </div>
+          <button
+            onClick={handleSaveContact}
+            className="w-full py-2 text-sm font-semibold text-foreground underline underline-offset-4 decoration-1 hover:decoration-2 transition-all"
+          >
+            Save to Contacts
+          </button>
+        </div>
         
-        <p className="text-xs text-muted-foreground max-w-sm mx-auto leading-relaxed text-center">
+        <p className="text-xs text-muted-foreground max-w-sm mx-auto leading-relaxed text-center mb-3">
           This tool provides general information about your constitutional rights. 
           It is not legal advice. For advice about your specific situation, consult 
           a qualified immigration attorney.
         </p>
-        <div className="mt-3">
-          <PrivacyNotice />
-        </div>
+        <PrivacyNotice />
       </footer>
     </div>
   );
