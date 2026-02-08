@@ -1,140 +1,116 @@
 
 
-# Mobile-First Homepage + Tighter Content Spacing
+# Fix: "Your Card Is Ready" Screen - Reduce Scroll Length
 
-## Problems Identified
+## Current Problems
 
-### 1. Homepage - Not Mobile-First
-The current `min-h-screen` hero forces users to scroll past an entire viewport just to see navigation. On mobile, this buries the three main paths completely.
+| Element | Current | Issue |
+|---------|---------|-------|
+| Title | `headline-page` (2.5-5rem) | Too large for this context |
+| Phone mockup | 400px tall | Takes most of viewport |
+| Content gap | `gap-6` (24px) | Adds unnecessary spacing |
+| Footer buttons | 6 stacked items | Creates ~300px fixed footer |
+| Content padding | `pb-40` (160px) | Reserves space for footer |
 
-### 2. Content Pages - Too Much Spacing
-Multiple spacing issues make pages feel stretched and AI-generated:
-- `.info-content space-y-6` adds 24px between every child element
-- `.section-header my-6` adds 24px margins above AND below section headers
-- `.section-divider mb-8` adds 32px after title divider
-- `.phrase-box my-6` adds 24px above AND below each box
-- `<section> mb-8` adds 32px after each section
-- Combined: massive cumulative gaps between every element
+Combined: User must scroll past ~600px+ of content to see all buttons.
 
 ---
 
 ## Fixes
 
-### Fix 1: Mobile-First Homepage Layout
+### 1. Reduce Title Size
+Change from `headline-page` to `headline-section` or custom smaller size for this step only.
 
-**File:** `src/pages/Index.tsx`
+**Current:** "Your Card / Is Ready" at 2.5-5rem
+**Updated:** Single line "Your Card Is Ready" at smaller scale
 
-Change from full-viewport hero to a compact header with navigation visible immediately:
+### 2. Shrink Phone Mockup
+Reduce phone frame dimensions:
+- **Current:** 180px × 400px
+- **Updated:** 140px × 310px (or similar)
 
-```text
-CURRENT                          UPDATED
-┌─────────────────┐              ┌─────────────────┐
-│                 │              │     STAY        │
-│      STAY       │              │     READY       │
-│      READY      │ (100vh)      │─────────────────│
-│                 │              │ PREPARE MY CARD │
-│       ↓         │              │ REVIEW RIGHTS   │
-└─────────────────┘              │ HELP COMMUNITY  │
-│ PREPARE...      │              │─────────────────│
-│ REVIEW...       │              │ Tips section    │
-│ HELP...         │              │ Hotline         │
-└─────────────────┘              └─────────────────┘
-```
+This still shows the card preview but takes less vertical space.
 
-Changes:
-- Remove `min-h-screen` from hero section
-- Add padding (`py-16` or `py-20`) instead — keeps drama without the scroll
-- Remove scroll indicator (ChevronDown)
-- Keep stacked headline but at slightly smaller scale for mobile context
+### 3. Reduce Content Gaps
+Change `gap-6` to `gap-4` in the card step container.
 
-### Fix 2: Tighten Content Page Spacing
+### 4. Consolidate Footer Actions
+The footer has too many items. Restructure to prioritize the main action:
 
-**File:** `src/index.css`
+**Current footer (card step):**
+1. Download Card Image (primary)
+2. Download Audio Statement (primary)
+3. Helper text
+4. Audio shortcut link
+5. Review My Rights (secondary)
+6. Start Over
+7. Privacy Notice
 
-Reduce spacing in the `.info-content` and related classes:
+**Updated footer (card step):**
+1. Download Card Image (primary) - keep
+2. Download Audio Statement (secondary styling, smaller)
+3. Collapsible or inline: "How to set up shortcuts" + "Review Rights" as links
+4. Start Over (smaller)
+5. Privacy Notice (smaller)
 
-| Element | Current | Updated |
-|---------|---------|---------|
-| `.info-content` container | `space-y-6` (24px) | `space-y-4` (16px) |
-| `.info-content h2` | `mt-8` (32px) | `mt-6` (24px) |
-| `.info-content p` | `mb-4` (16px) | `mb-3` (12px) |
-| `.info-content ul` | `space-y-3 mb-6` | `space-y-2 mb-4` |
-| `.info-content section` | `mb-8` (32px) | `mb-6` (24px) |
-| `.section-divider` | `my-8` (32px) | `my-4` (16px) |
-| `.section-header` | `my-6` (24px) | `my-4` (16px) |
-| `.phrase-box` | `my-6 p-6` (24px) | `my-4 p-4` (16px) |
-| `.warning-box` | `my-6 p-4` | `my-3 p-3` |
-
-**File:** `src/components/InfoPageLayout.tsx`
-
-- Change `space-y-6` to `space-y-4` on the content wrapper
-- Change `mb-8` to `mb-4` after section divider
-
-### Fix 3: Individual Content Pages
-
-Update spacing in pages that override defaults:
-
-**Files to update:**
-- `src/pages/rights/IceAtDoor.tsx`
-- `src/pages/rights/UniversalRights.tsx`
-- `src/pages/community/GoodWitness.tsx`
-
-Changes per file:
-- Reduce `mb-8` to `mb-6` on intro text
-- Reduce `my-6` to `my-4` on section headers
-- Reduce `space-y-3` to `space-y-2` on lists
+### 5. Reduce Footer Padding Reservation
+Change `pb-40` to `pb-32` or even `pb-28` since footer will be smaller.
 
 ---
 
 ## Visual Comparison
 
-### Content Page - Before
-```text
+### Before
+```
 ┌─────────────────────┐
-│ ← Back      [Home]  │
+│ ← Back        ●●●●● │
 │                     │
-│ AT YOUR             │
-│ DOOR                │
-│                     │  ← 32px gap
-│ ─────────────────── │
-│                     │  ← 32px gap
-│ ─ YOUR RIGHTS ───── │
-│                     │  ← 24px gap
-│ You are not...      │
-│                     │  ← 16px gap
-│ You do NOT have...  │
-│                     │  ← 24px gap
-│ ─ WHAT TO SAY ───── │
-│                     │  ← 24px gap
-│ ┌─────────────────┐ │
-│ │ SAY THIS        │ │
-│ │ "I do not..."   │ │  ← 24px padding
-│ └─────────────────┘ │
-│                     │  ← 24px gap
+│    YOUR CARD        │ ← Large title
+│    IS READY         │
+│                     │
+│  ┌─────────────┐    │
+│  │             │    │
+│  │   Phone     │    │ ← 400px tall
+│  │   Mockup    │    │
+│  │             │    │
+│  │             │    │
+│  └─────────────┘    │
+│                     │
+│  This fits your...  │
+│                     │
+├─────────────────────┤ ← User must scroll to see buttons
+│ [Download Card]     │
+│ [Download Audio]    │
+│ Helper text...      │
+│ How to set up →     │
+│ [Review My Rights]  │
+│ Start Over          │
+│ Privacy notice      │
+└─────────────────────┘
 ```
 
-### Content Page - After
-```text
+### After
+```
 ┌─────────────────────┐
-│ ← Back      [Home]  │
-│ AT YOUR             │
-│ DOOR                │
-│ ─────────────────── │  ← 16px gap
-│ ─ YOUR RIGHTS ───── │  ← 16px gap
-│ You are not...      │
-│ You do NOT have...  │  ← 12px gap
-│ ─ WHAT TO SAY ───── │  ← 16px gap
-│ ┌─────────────────┐ │
-│ │ SAY THIS        │ │
-│ │ "I do not..."   │ │  ← 16px padding
-│ └─────────────────┘ │  ← 16px gap
-│ ┌─────────────────┐ │
-│ │ SAY THIS        │ │
-│ │ "I am exercis..."│ │
-│ └─────────────────┘ │
+│ ← Back        ●●●●● │
+│                     │
+│  Your Card Is Ready │ ← Smaller, single line
+│                     │
+│    ┌─────────┐      │
+│    │  Phone  │      │ ← 310px tall
+│    │ Mockup  │      │
+│    └─────────┘      │
+│  This fits your...  │
+├─────────────────────┤
+│ [Download Card]     │ ← Primary action visible
+│ Download Audio      │ ← Secondary, smaller
+│ Set up shortcuts →  │
+│ Review Rights →     │ ← Inline links
+│ Start Over          │
+└─────────────────────┘
 ```
 
-Content feels tighter, more intentional, less like a template.
+All content visible with minimal or no scroll on most phones.
 
 ---
 
@@ -142,30 +118,23 @@ Content feels tighter, more intentional, less like a template.
 
 | File | Changes |
 |------|---------|
-| `src/pages/Index.tsx` | Remove `min-h-screen` hero, reduce to `py-16`/`py-20` |
-| `src/index.css` | Tighten spacing across all content utilities |
-| `src/components/InfoPageLayout.tsx` | Reduce `space-y-6` to `space-y-4`, reduce divider margin |
-| `src/pages/rights/IceAtDoor.tsx` | Reduce section header margins |
-| `src/pages/rights/UniversalRights.tsx` | Reduce intro and section margins |
-| `src/pages/community/GoodWitness.tsx` | Reduce list and section spacing |
+| `src/pages/PrepareCard.tsx` | Smaller title, smaller phone mockup, consolidated footer, reduced padding |
 
 ---
 
 ## Technical Details
 
-### Homepage Hero Height Options
-The current `min-h-screen` can be replaced with:
-- `py-16` (64px top/bottom) — compact but still impactful
-- `py-20` (80px) — slightly more breathing room
-- `pt-12 pb-16` — asymmetric for visual interest
+### Phone Mockup Scaling
+Current: 180×400 with `scale(0.152)` on 1080×2400 card
+Updated: 140×310 with `scale(0.118)` (140/1080 ≈ 0.13)
 
-The headline scale is already responsive via `clamp()`, so reducing container height won't break the typography.
+The scale factor should be: `newWidth / 1080` to maintain aspect ratio.
 
-### Content Spacing Philosophy
-The tighter spacing follows newspaper/magazine conventions:
-- Body text: ~12px paragraph spacing (not 16px)
-- Section breaks: 16-24px (not 32px)
-- Pull quotes/callouts: 16px margins (not 24px)
+### Footer Button Hierarchy
+- **Primary:** Download Card Image (full button styling)
+- **Secondary:** Download Audio (text link or smaller button)
+- **Tertiary:** Setup tips, Review Rights (inline text links)
+- **Minimal:** Start Over, Privacy (small text)
 
-This creates rhythm without the "padded template" feel.
+This keeps the essential action prominent while reducing vertical space.
 
