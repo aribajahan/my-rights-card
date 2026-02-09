@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { NavListItem } from '@/components/NavListItem';
+import { FocusFrameCard } from '@/components/FocusFrameCard';
 
 const sections = [
   { key: 'universal', label: 'Universal Rights', path: '/rights/universal' },
@@ -50,9 +51,14 @@ export default function ReviewRights() {
           
           {/* Practice section */}
           <div className="section-divider my-6" />
-          <nav className="nav-list">
-            <NavListItem to="/rights/practice" label="Practice Your Rights" />
-          </nav>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
+            Practice
+          </h2>
+          <FocusFrameCard
+            to="/rights/practice"
+            headline="Practice Your Rights"
+            subhead="Say them out loud · 30 seconds"
+          />
         </div>
       </main>
 
