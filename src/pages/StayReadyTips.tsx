@@ -20,13 +20,10 @@ export default function StayReadyTips() {
       <main className="px-6 pb-12">
         <div className="max-w-md mx-auto">
           {/* Stacked title */}
-          <h1 className="headline-stacked headline-section mb-6">
+          <h1 className="headline-stacked headline-section mb-8">
             <span className="block">Stay Ready</span>
             <span className="block">Tips</span>
           </h1>
-
-          {/* Divider */}
-          <div className="section-divider mb-8" />
 
           {/* ESSENTIALS */}
           <section className="mb-8">
