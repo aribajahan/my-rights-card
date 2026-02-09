@@ -48,10 +48,10 @@ export default function About() {
       <section>
         <h2>Questions or Feedback?</h2>
         <a 
-          href="mailto:hello@stayready.org" 
+          href="mailto:stayready@gmail.com" 
           className="text-sm underline hover:text-muted-foreground transition-colors"
         >
-          hello@stayready.org
+          stayready@gmail.com
         </a>
       </section>
     </InfoPageLayout>
