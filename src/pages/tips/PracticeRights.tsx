@@ -367,17 +367,17 @@ export default function PracticeRights() {
 
           {/* Main content */}
           <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
-            {screen === 'playing' && (
-              <p className="text-2xl sm:text-3xl font-bold leading-relaxed max-w-md">
-                "{currentPhrase.text}"
-              </p>
-            )}
+            {/* Always show the phrase text during playing and countdown */}
+            <p className="text-2xl sm:text-3xl font-bold leading-relaxed max-w-md">
+              "{currentPhrase.text}"
+            </p>
             
+            {/* Show "Your turn" + countdown below the phrase */}
             {screen === 'countdown' && (
-              <>
-                <p className="text-lg opacity-70 mb-4">Your turn.</p>
-                <p className="text-6xl font-bold tabular-nums">{countdown}</p>
-              </>
+              <div className="mt-8">
+                <p className="text-lg opacity-70 mb-2">Your turn.</p>
+                <p className="text-5xl font-bold tabular-nums">{countdown}</p>
+              </div>
             )}
             
             {isPaused && (
