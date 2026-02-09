@@ -1,132 +1,81 @@
 
 
-# Compact Footer + Support & Mutual Aid Page
+# Fix Excessive Scroll on "Your Card Is Ready" Page
 
-## Summary
+## Problem
 
-Two changes:
-1. Make homepage footer more compact by placing "Hotlines & Resources" and "About" links side-by-side
-2. Create new "Support & Mutual Aid" page for the Help Your Community section
+The "Your Card is Ready" step scrolls way beyond the visible content because of the **hidden RightsCard** used for image generation.
 
----
+The hidden card has these styles:
+```tsx
+style={{
+  position: 'absolute',
+  left: '-9999px',
+  top: 0,
+}}
+```
 
-## 1. Homepage Footer Layout (`src/pages/Index.tsx`)
+The RightsCard itself is **1080px wide × 2400px tall** (phone lock screen dimensions). While `left: -9999px` moves it off-screen horizontally, it still contributes to the document's vertical scroll height because:
 
-### Current Layout
+1. `position: absolute` is relative to the nearest positioned ancestor (the content container)
+2. The 2400px height extends the scrollable area
+
+## Solution
+
+Add styles to properly contain the hidden card so it doesn't affect document flow:
+
 ```text
-This is not legal advice.
-[privacy notice]
-About
+Current:                          Fixed:
+┌─────────────────────────┐       ┌─────────────────────────┐
+│ Your Card Is Ready      │       │ Your Card Is Ready      │
+│ [phone mockup]          │       │ [phone mockup]          │
+│ Lock screen instructions│       │ Lock screen instructions│
+│ Next Steps nav          │       │ Next Steps nav          │
+├─────────────────────────┤       └─────────────────────────┘
+│                         │         ↑ Page ends here
+│ (2400px of empty scroll)│
+│                         │
+└─────────────────────────┘
 ```
 
-### New Layout
-Put the two links on the same line with a separator:
+## Code Change
 
-```text
-This is not legal advice.
-[privacy notice]
-Hotlines & Resources · About
-```
+**File: `src/pages/PrepareCard.tsx`**
 
-Wait - looking at the current code, "All hotlines & resources" is in a different section above (line 53-55), with the About link below in the disclaimer section. 
-
-Looking more carefully at the footer structure:
-- Lines 44-51: Hotline number block
-- Lines 53-55: "All hotlines & resources" link with `mb-6`
-- Lines 57-63: Disclaimer section with border-t
-
-To make it tighter, I'll move the hotlines link into the disclaimer section alongside About, allowing us to remove the `mb-6` spacing.
-
-**New footer structure:**
-```tsx
-<div className="border-t border-foreground/10 pt-4 space-y-0.5">
-  <p className="text-xs text-muted-foreground">This is not legal advice.</p>
-  <PrivacyNotice />
-  <div className="flex items-center justify-center gap-3 pt-1">
-    <Link to="/hotlines" className="text-xs text-muted-foreground underline hover:text-foreground transition-colors">
-      Hotlines & Resources
-    </Link>
-    <span className="text-xs text-muted-foreground">·</span>
-    <Link to="/about" className="text-xs text-muted-foreground underline hover:text-foreground transition-colors">
-      About
-    </Link>
-  </div>
-</div>
-```
-
-This removes the separate "All hotlines & resources" block and `mb-6`, making the footer significantly shorter.
-
----
-
-## 2. Support & Mutual Aid Page
-
-### Add to Navigation (`src/pages/HelpCommunity.tsx`)
-
-Add new entry to the sections array:
+Update the hidden card container (lines 148-153) from:
 
 ```tsx
-{ key: 'support', label: 'Support & Mutual Aid', path: '/community/support' },
+<div 
+  style={{
+    position: 'absolute',
+    left: '-9999px',
+    top: 0,
+  }}
+>
 ```
 
-### Create New Page (`src/pages/community/SupportMutualAid.tsx`)
-
-Uses InfoPageLayout with organized sections for:
-- National Organizations (United We Dream, RAICES, Make the Road, NDLON)
-- Minnesota (MIRAC, Minnesota's Fund to Rebuild, CLUES)
-- Bond Funds (National Bail Fund Network, Envision Freedom Fund)
-- Find Local Groups (Mutual Aid Hub, Win Without War)
-
-**Styling pattern per organization:**
-```tsx
-<div className="mb-4">
-  <p className="font-bold">United We Dream</p>
-  <a href="https://unitedwedream.org" target="_blank" rel="noopener noreferrer" 
-     className="text-sm underline hover:text-muted-foreground transition-colors">
-    unitedwedream.org
-  </a>
-  <p className="text-sm text-muted-foreground">Largest immigrant youth-led network</p>
-</div>
-```
-
-### Add Route (`src/App.tsx`)
+To:
 
 ```tsx
-import SupportMutualAid from "./pages/community/SupportMutualAid";
-// ...
-<Route path="/community/support" element={<SupportMutualAid />} />
+<div 
+  style={{
+    position: 'fixed',
+    left: '-9999px',
+    top: 0,
+    pointerEvents: 'none',
+  }}
+>
 ```
 
----
+Using `position: fixed` removes the element entirely from the document flow, so its 2400px height won't create scroll. The `pointerEvents: none` ensures it never interferes with interactions.
 
-## Files to Modify
+## Why This Works
 
-| File | Changes |
-|------|---------|
-| `src/pages/Index.tsx` | Move hotlines link into footer disclaimer, make side-by-side with About |
-| `src/pages/HelpCommunity.tsx` | Add "Support & Mutual Aid" to sections array |
-| `src/pages/community/SupportMutualAid.tsx` | **NEW FILE** - Full page with all organizations |
-| `src/App.tsx` | Add route for `/community/support` |
+| Property | `absolute` | `fixed` |
+|----------|-----------|---------|
+| Positioned relative to | Nearest positioned ancestor | Viewport |
+| Affects document scroll | Yes (extends parent) | No |
+| Stays in place on scroll | No | Yes |
 
----
-
-## Full Page Content
-
-### National Organizations
-- **United We Dream** - unitedwedream.org - Largest immigrant youth-led network
-- **RAICES (Texas)** - raicestexas.org - Legal services and bond fund
-- **Make the Road (NYC)** - maketheroadny.org - Legal aid, community programs, advocacy
-- **National Day Laborer Organizing Network** - ndlon.org - Support for day laborers and migrants
-
-### Minnesota
-- **Minnesota Immigrant Rights Action Committee (MIRAC)** - miracmn.com - Rapid response, resources, advocacy
-- **Minnesota's Fund to Rebuild** - workingpartnerships.betterworld.org/campaigns/supportminnesotans
-- **CLUES** - clues.org - Services for Latino communities
-
-### Bond Funds
-- **National Bail Fund Network** - communityjusticeexchange.org/nbfn-directory
-- **Envision Freedom Fund** - envisionfreedom.org
-
-### Find Local Groups
-- **Mutual Aid Hub** - mutualaidhub.org
-- **Win Without War Resource List** - winwithoutwar.org/policy/immigration-mutual-aid (Organized by state)
+Since we only use this element for generating an image with `html-to-image`, `position: fixed` works perfectly - the library captures the element regardless of its positioning.
 
