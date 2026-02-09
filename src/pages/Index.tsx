@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { FocusFrameCard } from '@/components/FocusFrameCard';
-
 export default function Index() {
   return <div className="min-h-screen bg-background flex flex-col">
       {/* Hero Section */}
@@ -41,11 +40,12 @@ export default function Index() {
         <div className="max-w-md mx-auto text-center">
           <p className="text-sm text-muted-foreground mb-3">If you need help now:</p>
           
-          <p className="text-xs font-bold uppercase tracking-widest mb-1">United We Dream Hotline</p>
+          <p className="text-xs font-bold uppercase tracking-widest mb-1">
+        </p>
           <a href="tel:1-844-363-1423" className="text-hotline font-bold text-xl block mb-1">
             1-844-363-1423
           </a>
-          <p className="text-xs text-muted-foreground mb-4">24/7 · Free · Confidential</p>
+          <p className="text-xs text-muted-foreground mb-4">United We Dream Hotline. 24/7 · Free · Confidential</p>
           
           <Link to="/hotlines" className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors block mb-6">
             All hotlines & resources →
