@@ -30,13 +30,10 @@ export default function HelpCommunity() {
       <main className="px-6 pb-12">
         <div className="max-w-md mx-auto">
           {/* Stacked title */}
-          <h1 className="headline-stacked headline-section mb-6">
+          <h1 className="headline-stacked headline-section mb-8">
             <span className="block">Help Your</span>
             <span className="block">Community</span>
           </h1>
-
-          {/* Divider */}
-          <div className="section-divider mb-8" />
 
           {/* Section list */}
           <nav className="nav-list">
