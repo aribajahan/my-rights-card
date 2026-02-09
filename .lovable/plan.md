@@ -1,146 +1,109 @@
 
-# Audio Practice Feature Implementation
 
-## Overview
-Create an interactive audio-guided practice flow where users listen to constitutional rights phrases and repeat them out loud. The feature transforms the existing static "Practice Your Rights" page into a guided 30-second exercise.
+# Stay Ready — Navigation, Contextual Tips, and Homepage Cleanup
 
-## Files to Create
+Three interconnected updates to improve discoverability, add contextual guidance to every rights page, and streamline the homepage.
 
-| File | Purpose |
-|------|---------|
-| `public/audio/rights_practice_audio.mp3` | Audio file (copy from upload) |
-| `src/pages/tips/PracticeRights.tsx` | Complete rewrite with landing page + practice flow |
+---
 
-## Files to Modify
+## What's Changing
 
-| File | Change |
-|------|--------|
-| `src/pages/PrepareCard.tsx` | Update "Practice saying your rights" link text |
+### 1. Hamburger Navigation Menu (Every Page)
+A minimal hamburger icon (three lines) in the top-right corner of every page. Tapping it opens a full-screen overlay with the main navigation links, styled to match the app's editorial aesthetic.
 
-## User Flow
+**Menu items:**
+- Prepare My Card
+- Review My Rights
+- Help Your Community
+- Tips
+- Hotlines and Resources
+- About
 
-```text
-Landing Page                Practice Flow
-─────────────              ──────────────
-                           
-← Stay Ready Tips          [Intro Screen]
-                           "We'll go through 4 phrases..."
-PRACTICE                   [BEGIN]
-YOUR RIGHTS                     │
-                                ▼
-Takes about 30 seconds.    [Phrase 1] ─► Audio plays
-                           "Your turn" ─► 5s countdown
-[START PRACTICE →]              │
-                                ▼
-                           [Phrase 2] ─► Audio plays
-                           "Your turn" ─► 5s countdown
-                                │
-                                ▼
-                           ... (phrases 3-4)
-                                │
-                                ▼
-                           [Done Screen]
-                           "Nice work."
-                           [PRACTICE AGAIN]
-                           [← Back to Tips]
-```
+**Design details:**
+- Cream background, bold uppercase black text, left-aligned, stacked vertically
+- Large tap targets (48px+)
+- X close button in same position as hamburger
+- No icons or decorations
 
-## Component Architecture
+### 2. Contextual Tips + Hotline Footer on Every Rights Page
+After the main content on each rights page (Universal, Door, Car, Street, etc.), a quiet "Stay Ready" sign-off section replaces the existing footer. It includes two contextually relevant tip links and the hotline.
 
-### State Machine
-```text
-┌─────────┐    BEGIN    ┌──────────┐
-│ landing │ ──────────► │  intro   │
-└─────────┘             └────┬─────┘
-                             │ BEGIN
-                             ▼
-                        ┌──────────┐
-                        │ playing  │◄──┐
-                        │ phrase N │   │ next phrase
-                        └────┬─────┘   │
-                             │ audio ends
-                             ▼
-                        ┌──────────┐   │
-                        │ countdown│───┘
-                        │ (5 sec)  │
-                        └────┬─────┘
-                             │ last phrase done
-                             ▼
-                        ┌──────────┐    AGAIN   ┌─────────┐
-                        │  done    │ ─────────► │  intro  │
-                        └──────────┘            └─────────┘
-```
+**Layout:**
+- Thin gray line separator
+- "STAY READY" small gray uppercase label
+- Two tip links (dark gray text, arrow right-aligned, no boxes or borders)
+- Hotline number in brick red with "United We Dream" tagline
+- "Not legal advice." disclaimer at the bottom
 
-### Controls (During Practice)
-- **Pause/Play**: Toggle button, pauses audio and countdown
-- **Replay**: Restart current phrase from beginning
-- **Back/Next**: Skip between phrases
-- **Voice Off**: Text-only mode (skips audio, just shows text + countdown)
+**Tip assignments per page (as specified in the document):**
+- Universal Rights: Practice rights + Lock screen
+- At Your Door: Practice rights + One-tap audio
+- In Your Car: One-tap audio + Emergency text
+- On the Street: Practice rights + Location sharing
+- At Work: Emergency text + Emergency contacts
+- At a Checkpoint: One-tap audio + Lock screen
+- If You're Detained: Memorize a number + Emergency contacts
+- Warrants: Lock screen + Practice rights
+- Recording and Reporting: Privacy settings + Location sharing
+- Practice Your Rights: One-tap audio + Lock screen
 
-## Technical Implementation
+### 3. Homepage Cleanup
+- **Add** subtitle under "Stay Ready": *"Know what to say if ICE comes to your door, your car, or your work."*
+- **Remove** the "Stay Ready Tips" section and "All tips" link (now accessible via nav)
+- **Remove** "Hotlines and Resources" and "About" footer links (now in nav)
+- **Keep** the hotline number, United We Dream tagline, and "Not legal advice / No data stored" disclaimer
 
-### Audio Timestamp Data
-```typescript
-const PRACTICE_DATA = {
-  audioFile: "/audio/rights_practice_audio.mp3",
-  phrases: [
-    { id: 1, text: "I am exercising my constitutional rights.", startTime: 0, endTime: 3.5, pauseSeconds: 5 },
-    { id: 2, text: "I do not consent to a search of my person, my belongings, my vehicle, or my home.", startTime: 3.5, endTime: 10.2, pauseSeconds: 5 },
-    { id: 3, text: "I am choosing to remain silent.", startTime: 10.2, endTime: 12.5, pauseSeconds: 5 },
-    { id: 4, text: "I want to speak with a lawyer before answering any questions.", startTime: 12.5, endTime: 16.8, pauseSeconds: 5 }
-  ]
-};
-```
+---
 
-### Audio Playback Logic
-1. On phrase start: `audio.currentTime = startTime`, then `audio.play()`
-2. Monitor `timeupdate` event - when `currentTime >= endTime`, pause audio and start countdown
-3. After countdown completes, advance to next phrase and repeat
-4. User must tap "Begin" to start (mobile autoplay restrictions require user interaction)
+## Technical Plan
 
-### Voice Off Mode
-- Skip audio playback entirely
-- Show text for 3 seconds (simulating listen time)
-- Then show "Your turn" with 5-second countdown
-- Useful for practicing in public/quiet environments
+### New Components
 
-## Visual Design
+**`src/components/HamburgerMenu.tsx`**
+- Full-screen overlay component using React state for open/close
+- Hamburger icon (three horizontal lines) rendered as simple spans or SVG
+- Uses `NavListItem` or plain `Link` components for menu items
+- X close button
+- Cream background matching `--background` CSS variable
 
-### Landing Page (Cream background)
-- Standard `InfoPageLayout` structure with back navigation
-- Large stacked headline: "PRACTICE YOUR RIGHTS"
-- Subtitle explaining the purpose
-- Single prominent CTA button: "START PRACTICE →"
+**`src/components/RightsPageFooter.tsx`**
+- Accepts an array of tip objects (`{ label, to }`) as props
+- Renders the "STAY READY" label, tip links, hotline, and disclaimer
+- Styled to be visually quiet: small gray label, dark gray (#444) tip text, no boxes
+- Hotline in brick red (`text-hotline`)
 
-### Practice Screens (Inverted - Black background, cream text)
-- Fullscreen takeover - no header, no footer
-- Large centered phrase text (easy to read under stress)
-- Calm, minimal - not gamified
-- Subtle countdown (small numbers or progress indicator)
-- Minimal controls fixed at bottom
+### Modified Files
 
-### Color Tokens
-- Practice background: `#1A1A1A` (foreground color)
-- Practice text: `#FAF9F6` (background color)
+**`src/components/InfoPageLayout.tsx`**
+- Add `HamburgerMenu` to the header (top-right)
+- Replace existing footer with `RightsPageFooter` when contextual tips are provided
+- Add optional `tips` prop to pass contextual tip data
+- Keep existing `showFullHotline` behavior as fallback for non-rights pages
 
-## Accessibility Considerations
-- All phrase text visible for hearing-impaired users
-- Voice Off mode for those who can't use audio
-- Clear visual countdown indicators
-- Pause functionality for users who need more time
+**`src/pages/Index.tsx`**
+- Add `HamburgerMenu` to the top-right
+- Add subtitle line under "Stay Ready" heading
+- Remove the "Stay Ready Tips" section entirely
+- Remove "Hotlines and Resources" and "About" links from footer
+- Keep hotline block and simplify disclaimer to one line
 
-## Edge Cases
-- User navigates away mid-practice: Audio stops, state resets on return
-- Audio fails to load: Show error message with retry option
-- User presses back during practice: Return to landing page
-- Browser doesn't support audio: Fallback to Voice Off mode
+**`src/pages/ReviewRights.tsx`**
+- Add `HamburgerMenu` to the header
 
-## Testing Checklist
-- [ ] Audio plays correctly on iOS Safari
-- [ ] Audio plays correctly on Android Chrome
-- [ ] Mobile autoplay restrictions handled (requires user tap)
-- [ ] Countdown timing accurate
-- [ ] Voice Off mode works without audio
-- [ ] Controls (pause/play, replay, skip) function correctly
-- [ ] Back navigation works from all states
-- [ ] Link from PrepareCard works
+**`src/pages/PrepareCard.tsx`, `src/pages/HelpCommunity.tsx`, `src/pages/StayReadyTips.tsx`, `src/pages/Hotlines.tsx`, `src/pages/About.tsx`**
+- Add `HamburgerMenu` to the header of each top-level page
+
+**All 10 rights pages** (UniversalRights, IceAtDoor, StoppedCar, StoppedStreet, IceWorkplace, AtCheckpoint, IfDetained, Warrants, RecordingReporting, PracticeRights):
+- Pass contextual `tips` prop to `InfoPageLayout` with the assigned tip links
+
+### Tip Route Mapping
+The tips will link to existing routes:
+- Practice saying your rights: `/rights/practice`
+- Set up your lock screen: `/tips/lock-screen`
+- Set up one-tap audio: `/tips/audio`
+- Set up emergency text shortcut: `/tips/emergency-text`
+- Set up location sharing: `/tips/location-sharing`
+- Set up emergency contacts: `/tips/emergency-contacts`
+- Memorize a number: `/tips/memorize-number`
+- Review privacy settings: `/tips/privacy`
+
