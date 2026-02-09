@@ -55,8 +55,8 @@ export default function ReviewRights() {
           </h2>
           <FocusFrameCard
             to="/rights/practice"
-            headline="Practice Your Rights"
-            subhead="Say them out loud · 30 seconds"
+            headline="Practice Saying Your Rights Out Loud"
+            subhead="Get comfortable saying these words"
           />
         </div>
       </main>
