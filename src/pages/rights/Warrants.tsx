@@ -2,69 +2,59 @@ import { InfoPageLayout } from '@/components/InfoPageLayout';
 
 export default function Warrants() {
   return (
-    <InfoPageLayout title="Warrants: Know the Difference">
-      <p className="text-lg text-muted-foreground mb-8">
-        Not all warrants are the same. Only a judicial warrant signed by a judge allows officers to enter your home.
-      </p>
-
+    <InfoPageLayout 
+      title="Warrants" 
+      subtitle="Not all warrants are the same. Knowing the difference protects you."
+      backTo="/rights"
+      backLabel="Rights"
+    >
+      {/* JUDICIAL WARRANT - VALID */}
       <section>
-        <h2>Judicial Warrant</h2>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Signed by a judge
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Lists your name and address
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Allows officers to enter
-          </li>
+        <h2>Judicial Warrant — Valid</h2>
+        <p className="mb-2">A judicial warrant is signed by a judge and allows officers to enter your home.</p>
+        <p className="font-bold mb-2">Look for:</p>
+        <ul className="list-none space-y-1 text-sm mb-3">
+          <li>✓ Judge's signature at the bottom</li>
+          <li>✓ Your correct name</li>
+          <li>✓ Your correct address</li>
+          <li>✓ Issued by a court</li>
         </ul>
+        <p className="text-sm">If ICE has a valid judicial warrant, they can legally enter.</p>
       </section>
 
+      {/* ICE WARRANT - NOT VALID */}
       <section>
-        <h2>ICE Administrative Warrant (Form I-200 or I-205)</h2>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Signed by an immigration officer, not a judge
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Does not allow officers to enter your home
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            You do not have to open the door
-          </li>
+        <h2>ICE Warrant — Not Valid for Entry</h2>
+        <p className="mb-2">ICE warrants (Form I-200, I-205) are signed by immigration officials, not judges. They do NOT give ICE the right to enter your home.</p>
+        <p className="font-bold mb-2">Look for:</p>
+        <ul className="list-none space-y-1 text-sm mb-3">
+          <li>✗ "Department of Homeland Security" header</li>
+          <li>✗ Signed by a DHS official (not a judge)</li>
         </ul>
+        <p className="font-bold">You don't have to let them in with this.</p>
       </section>
 
+      {/* HOW TO CHECK */}
       <section>
-        <h2>What to Do</h2>
-        <p>Ask to see the warrant. If they claim to have one, ask them to slide it under the door. Check for:</p>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            A judge's signature (not just an immigration officer's)
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Your correct name and address
-          </li>
-        </ul>
-        <div className="callout-minimal my-4">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What to say</p>
-          <p className="text-base italic">"Please slide the warrant under the door so I can review it."</p>
+        <h2>How to Check</h2>
+        <p className="mb-2">If someone claims to have a warrant:</p>
+        <div className="phrase-box">
+          <span className="phrase-box-label">Say This</span>
+          <p>"Please slide it under the door."</p>
+        </div>
+        <p className="text-sm text-muted-foreground mt-2">Don't open the door to look at it.</p>
+        <p className="font-bold mt-3 mb-2">Check:</p>
+        <ol className="list-decimal list-inside space-y-1 text-sm mb-3">
+          <li>Is there a judge's signature?</li>
+          <li>Is your name correct?</li>
+          <li>Is your address correct?</li>
+        </ol>
+        <p className="text-sm text-muted-foreground mb-2">If it's not a judicial warrant:</p>
+        <div className="phrase-box">
+          <span className="phrase-box-label">Say This</span>
+          <p>"This is not a valid judicial warrant. I do not consent to your entry."</p>
         </div>
       </section>
-
-      <p className="text-center text-muted-foreground mt-12 pt-8 border-t border-border/50">
-        Know the difference. A valid warrant has a judge's signature.
-      </p>
     </InfoPageLayout>
   );
 }

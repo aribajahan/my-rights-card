@@ -1,19 +1,16 @@
 import { useState, useRef } from 'react';
-import { flushSync } from 'react-dom';
 import { useNavigate, Link } from 'react-router-dom';
 import { toPng } from 'html-to-image';
 import { StatusSelector } from '@/components/StatusSelector';
 import { DocumentForm } from '@/components/DocumentForm';
-import { EmergencyContactForm } from '@/components/EmergencyContactForm';
-import { RightsPreview } from '@/components/RightsPreview';
 import { RightsCard } from '@/components/RightsCard';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
-import { FocusFrameCard } from '@/components/FocusFrameCard';
-import { ImmigrationStatus, EmergencyContact, DocumentInfo } from '@/types/card';
-import { ChevronLeft, Download, BookOpen, RotateCcw, Volume2 } from 'lucide-react';
+import { ImmigrationStatus, DocumentInfo } from '@/types/card';
+import { ChevronLeft, Download, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
+import { NavListItem } from '@/components/NavListItem';
 
-type Step = 'status' | 'documents' | 'contacts' | 'preview' | 'card';
+type Step = 'status' | 'documents' | 'card';
 
 export default function PrepareCard() {
   const navigate = useNavigate();
@@ -22,60 +19,31 @@ export default function PrepareCard() {
   const [step, setStep] = useState<Step>('status');
   const [status, setStatus] = useState<ImmigrationStatus>(null);
   const [documentInfo, setDocumentInfo] = useState<DocumentInfo>({ type: null, number: '' });
-  const [contacts, setContacts] = useState<EmergencyContact[]>([]);
-  const [isGenerating, setIsGenerating] = useState(false);
-  
-  // Pending contact state (lifted from EmergencyContactForm for auto-save)
-  const [pendingContactName, setPendingContactName] = useState('');
-  const [pendingContactPhone, setPendingContactPhone] = useState('');
 
-  const steps: Step[] = ['status', 'documents', 'contacts', 'preview', 'card'];
-  const currentStepIndex = steps.indexOf(step);
-
-  const formatPhoneDisplay = (phone: string): string => {
-    const digits = phone.replace(/\D/g, '');
-    if (digits.length === 10) {
-      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  // Determine steps dynamically based on status selection
+  const getSteps = (): Step[] => {
+    if (status === 'preferNot') {
+      return ['status', 'card'];
     }
-    return phone;
+    return ['status', 'documents', 'card'];
   };
 
-  const isValidPhone = (phone: string): boolean => {
-    const cleaned = phone.replace(/[^\d+]/g, '');
-    const digitCount = cleaned.replace(/\D/g, '').length;
-    return digitCount >= 10 && digitCount <= 15;
+  const steps = getSteps();
+  const currentStepIndex = steps.indexOf(step);
+
+  const handleStatusSelect = (selectedStatus: ImmigrationStatus) => {
+    setStatus(selectedStatus);
+    // If "preferNot", skip to card
+    if (selectedStatus === 'preferNot') {
+      setTimeout(() => setStep('card'), 150);
+    } else {
+      setTimeout(() => setStep('documents'), 150);
+    }
   };
 
   const goNext = () => {
-    // Debug: trace current state
-    console.log('[goNext] Step:', step);
-    console.log('[goNext] documentInfo:', documentInfo);
-    console.log('[goNext] Current contacts:', contacts);
-    console.log('[goNext] Pending contact:', { pendingContactName, pendingContactPhone });
-    
-    // Auto-save pending contact data when leaving contacts step
-    if (step === 'contacts' && pendingContactName.trim() && pendingContactPhone.trim()) {
-      if (isValidPhone(pendingContactPhone.trim()) && contacts.length < 3) {
-        const newContact: EmergencyContact = {
-          id: Date.now().toString(),
-          name: pendingContactName.trim(),
-          phone: formatPhoneDisplay(pendingContactPhone.trim()),
-        };
-        
-        // Use flushSync to force synchronous state update before navigation
-        flushSync(() => {
-          setContacts(prev => [...prev, newContact]);
-        });
-        
-        console.log('[goNext] Added contact:', newContact);
-        setPendingContactName('');
-        setPendingContactPhone('');
-      }
-    }
-    
     const nextIndex = currentStepIndex + 1;
     if (nextIndex < steps.length) {
-      console.log('[goNext] Navigating to step:', steps[nextIndex]);
       setStep(steps[nextIndex]);
     }
   };
@@ -87,17 +55,6 @@ export default function PrepareCard() {
     } else {
       navigate('/');
     }
-  };
-
-  const skipStep = () => {
-    goNext();
-  };
-
-  const generateCard = async () => {
-    setIsGenerating(true);
-    await new Promise(resolve => setTimeout(resolve, 100));
-    setStep('card');
-    setIsGenerating(false);
   };
 
   const saveCard = async () => {
@@ -112,7 +69,7 @@ export default function PrepareCard() {
       // Convert to blob/file for sharing
       const response = await fetch(dataUrl);
       const blob = await response.blob();
-      const file = new File([blob], 'know-your-rights-card.png', { 
+      const file = new File([blob], 'stay-ready-card.png', { 
         type: 'image/png' 
       });
 
@@ -120,13 +77,13 @@ export default function PrepareCard() {
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
           files: [file],
-          title: 'Know Your Rights Card',
+          title: 'Stay Ready Card',
         });
-        toast.success('Card shared successfully!');
+        toast.success('Card saved!');
       } else {
         // Fallback: standard download
         const link = document.createElement('a');
-        link.download = 'know-your-rights-card.png';
+        link.download = 'stay-ready-card.png';
         link.href = dataUrl;
         link.click();
         toast.success('Card saved to your device!');
@@ -134,48 +91,10 @@ export default function PrepareCard() {
     } catch (error) {
       // Handle user cancellation gracefully
       if ((error as Error).name === 'AbortError') {
-        return; // User cancelled, no error message needed
+        return;
       }
       console.error('Failed to save card:', error);
       toast.error('Failed to save card. Please try again.');
-    }
-  };
-
-  const downloadAudio = () => {
-    const link = document.createElement('a');
-    link.href = '/audio/rights-statement-en.mp3';
-    link.download = 'rights-statement.mp3';
-    link.click();
-    toast.success('Audio statement downloaded!');
-  };
-
-  const shareCard = async () => {
-    if (!cardRef.current) return;
-
-    try {
-      const dataUrl = await toPng(cardRef.current, {
-        quality: 1,
-        pixelRatio: 2,
-      });
-
-      const response = await fetch(dataUrl);
-      const blob = await response.blob();
-      const file = new File([blob], 'know-your-rights-card.png', { type: 'image/png' });
-
-      if (navigator.share && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          files: [file],
-          title: 'Know Your Rights Card',
-          text: 'My rights card from Know Your Rights app',
-        });
-      } else {
-        toast.info('Sharing not supported. Downloading instead.');
-        saveCard();
-      }
-    } catch (error) {
-      console.error('Failed to share:', error);
-      toast.error('Failed to share. Downloading instead.');
-      saveCard();
     }
   };
 
@@ -183,7 +102,6 @@ export default function PrepareCard() {
     setStep('status');
     setStatus(null);
     setDocumentInfo({ type: null, number: '' });
-    setContacts([]);
   };
 
   const renderStepContent = () => {
@@ -191,60 +109,42 @@ export default function PrepareCard() {
       case 'status':
         return (
           <div className="max-w-md mx-auto">
-            {/* Stacked title */}
             <h1 className="headline-stacked headline-page text-center mb-2">
               <span className="block">Prepare</span>
               <span className="block">My Card</span>
             </h1>
-            <StatusSelector value={status} onChange={setStatus} onSelect={() => goNext()} />
+            <StatusSelector 
+              value={status} 
+              onChange={setStatus} 
+              onSelect={() => {
+                if (status === 'preferNot') {
+                  setStep('card');
+                } else {
+                  setStep('documents');
+                }
+              }} 
+            />
           </div>
         );
       case 'documents':
         return (
           <div className="max-w-md mx-auto">
             <h2 className="headline-stacked headline-page text-center mb-6">
-              <span className="block">Document</span>
-              <span className="block">Info</span>
+              <span className="block">Prepare</span>
+              <span className="block">My Card</span>
             </h2>
-            <DocumentForm value={documentInfo} onChange={setDocumentInfo} />
-          </div>
-        );
-      case 'contacts':
-        return (
-          <div className="max-w-md mx-auto">
-            <h2 className="headline-stacked headline-page text-center mb-6">
-              <span className="block">Emergency</span>
-              <span className="block">Contacts</span>
-            </h2>
-            <EmergencyContactForm 
-              contacts={contacts} 
-              onChange={setContacts}
-              pendingName={pendingContactName}
-              onPendingNameChange={setPendingContactName}
-              pendingPhone={pendingContactPhone}
-              onPendingPhoneChange={setPendingContactPhone}
-            />
-          </div>
-        );
-      case 'preview':
-        return (
-          <div className="max-w-md mx-auto">
-            <h2 className="headline-stacked headline-page text-center mb-6">
-              <span className="block">Your</span>
-              <span className="block">Rights</span>
-            </h2>
-            <RightsPreview />
+            <DocumentForm value={documentInfo} onChange={setDocumentInfo} status={status} />
           </div>
         );
       case 'card':
         return (
-          <div className="flex flex-col items-center gap-3 max-w-md mx-auto">
-            {/* Compact title */}
-            <h2 className="text-xl font-bold uppercase tracking-wider text-center">
-              Your Card Is Ready
+          <div className="flex flex-col items-center gap-4 max-w-md mx-auto">
+            <h2 className="headline-stacked headline-page text-center">
+              <span className="block">Your Card</span>
+              <span className="block">Is Ready</span>
             </h2>
 
-            {/* Hidden card for image generation - positioned off-screen */}
+            {/* Hidden card for image generation */}
             <div 
               style={{
                 position: 'absolute',
@@ -256,13 +156,12 @@ export default function PrepareCard() {
                 ref={cardRef} 
                 status={status} 
                 documentInfo={documentInfo} 
-                contacts={contacts} 
+                contacts={[]} 
               />
             </div>
 
-            {/* Phone mockup container - smaller */}
+            {/* Phone mockup container */}
             <div className="relative">
-              {/* Phone frame */}
               <div 
                 className="relative bg-foreground overflow-hidden shadow-2xl"
                 style={{
@@ -272,7 +171,6 @@ export default function PrepareCard() {
                   padding: '6px',
                 }}
               >
-                {/* Screen area */}
                 <div 
                   className="relative overflow-hidden bg-background"
                   style={{
@@ -281,7 +179,6 @@ export default function PrepareCard() {
                     height: '100%',
                   }}
                 >
-                  {/* Scaled card preview */}
                   <div 
                     style={{
                       transform: 'scale(0.118)',
@@ -290,10 +187,9 @@ export default function PrepareCard() {
                       height: '2400px',
                     }}
                   >
-                    <RightsCard status={status} documentInfo={documentInfo} contacts={contacts} />
+                    <RightsCard status={status} documentInfo={documentInfo} contacts={[]} />
                   </div>
                 </div>
-                {/* Notch/dynamic island */}
                 <div 
                   className="absolute top-2 left-1/2 -translate-x-1/2 bg-foreground"
                   style={{
@@ -305,10 +201,37 @@ export default function PrepareCard() {
               </div>
             </div>
             
-            {/* Instruction text */}
             <p className="text-center text-xs text-muted-foreground">
-              This fits your lock screen.
+              1080 × 2400 — fits your lock screen
             </p>
+
+            {/* Lock screen instructions */}
+            <div className="w-full mt-4">
+              <div className="section-divider mb-4" />
+              <p className="text-xs uppercase tracking-widest text-muted-foreground text-center mb-3 font-bold">
+                How to Set as Lock Screen
+              </p>
+              
+              <div className="space-y-3 text-sm">
+                <div>
+                  <p className="font-bold mb-1">iPhone</p>
+                  <p className="text-muted-foreground">Settings → Wallpaper → Add New → Photos → Select your card</p>
+                </div>
+                <div>
+                  <p className="font-bold mb-1">Android</p>
+                  <p className="text-muted-foreground">Long press home → Wallpaper → My photos → Select your card</p>
+                </div>
+              </div>
+
+              <div className="section-divider my-4" />
+              <p className="text-xs uppercase tracking-widest text-muted-foreground text-center mb-3 font-bold">
+                Next Steps
+              </p>
+              <nav className="nav-list">
+                <NavListItem to="/tips/emergency-contacts" label="Set up emergency contacts" />
+                <NavListItem to="/tips/practice" label="Practice saying your rights" />
+              </nav>
+            </div>
           </div>
         );
       default:
@@ -325,30 +248,8 @@ export default function PrepareCard() {
             className="w-full flex items-center justify-center gap-2 p-3 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
           >
             <Download size={18} />
-            Download Card Image
+            Save to Photos
           </button>
-          <button
-            onClick={downloadAudio}
-            className="w-full flex items-center justify-center gap-2 p-2.5 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
-          >
-            <Volume2 size={16} />
-            Download Audio Statement
-          </button>
-          <div className="flex items-center justify-center gap-4 text-xs">
-            <Link
-              to="/tips/audio-shortcut"
-              className="underline underline-offset-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Set up shortcuts
-            </Link>
-            <span className="text-muted-foreground/40">·</span>
-            <Link
-              to="/rights"
-              className="underline underline-offset-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Review rights
-            </Link>
-          </div>
           <button
             onClick={startOver}
             className="w-full flex items-center justify-center gap-1 p-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
@@ -360,42 +261,25 @@ export default function PrepareCard() {
       );
     }
 
-    // Show skip for documents and contacts, show next for documents
-    const showSkip = step === 'documents' || step === 'contacts';
-    const showNext = step === 'documents' || step === 'contacts';
-    const showGenerate = step === 'preview';
-
-    return (
-      <div className="space-y-2">
-        {showGenerate && (
-          <button
-            onClick={generateCard}
-            disabled={isGenerating}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90 disabled:opacity-50"
-          >
-            Generate My Card
-          </button>
-        )}
-
-        {showNext && (
+    // Show Next button on documents step
+    if (step === 'documents') {
+      // Only require document number if a document type is selected (and not "none")
+      const canProceed = documentInfo.type === 'none' || (documentInfo.type && documentInfo.number.trim());
+      
+      return (
+        <div className="space-y-2">
           <button
             onClick={goNext}
-            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90"
+            disabled={!documentInfo.type}
+            className="w-full flex items-center justify-center gap-2 p-4 text-base font-bold uppercase tracking-wider bg-primary text-primary-foreground transition-all duration-200 hover:opacity-90 disabled:opacity-50"
           >
             Next
           </button>
-        )}
+        </div>
+      );
+    }
 
-        {showSkip && (
-          <button
-            onClick={skipStep}
-            className="w-full p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Skip
-          </button>
-        )}
-      </div>
-    );
+    return null;
   };
 
   return (

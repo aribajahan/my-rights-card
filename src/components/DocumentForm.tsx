@@ -1,21 +1,18 @@
-import { DocumentInfo, DocumentType } from '@/types/card';
+import { DocumentInfo, DocumentType, ImmigrationStatus, documentOptionsByStatus } from '@/types/card';
+import { NavListOption } from '@/components/NavListItem';
 
 interface DocumentFormProps {
   value: DocumentInfo;
   onChange: (doc: DocumentInfo) => void;
+  status: ImmigrationStatus;
 }
 
-const documentOptions: { key: Exclude<DocumentType, null>; label: string }[] = [
-  { key: 'greenCard', label: 'Green Card' },
-  { key: 'workPermit', label: 'Work Permit (EAD)' },
-  { key: 'visaI94', label: 'Visa / I-94' },
-  { key: 'dacaApproval', label: 'DACA Approval Notice' },
-  { key: 'tpsCard', label: 'TPS Card' },
-  { key: 'passportVisa', label: 'Passport (with visa)' },
-  { key: 'other', label: 'None / Prefer not to say' },
-];
+export function DocumentForm({ value, onChange, status }: DocumentFormProps) {
+  // Get document options based on status
+  const documentOptions = status && status !== 'preferNot' 
+    ? documentOptionsByStatus[status] 
+    : [];
 
-export function DocumentForm({ value, onChange }: DocumentFormProps) {
   const handleTypeSelect = (type: DocumentType) => {
     onChange({ ...value, type });
   };
@@ -24,43 +21,47 @@ export function DocumentForm({ value, onChange }: DocumentFormProps) {
     onChange({ ...value, number });
   };
 
+  // Show number input if type is selected and not "none"
+  const showNumberInput = value.type && value.type !== 'none';
+
   return (
     <div className="w-full max-w-sm mx-auto">
+      <p className="text-xs uppercase tracking-widest text-muted-foreground text-center mb-2 font-bold">
+        Document Type
+      </p>
+      <div className="section-divider mb-6" />
 
       {/* Document type selection */}
-      <div className="space-y-2 mb-6">
+      <div className="nav-list mb-6">
         {documentOptions.map((option) => (
-          <button
+          <NavListOption
             key={option.key}
+            label={option.label}
             onClick={() => handleTypeSelect(option.key)}
-            className={`
-              w-full p-4 text-left text-base font-medium transition-all duration-200
-              ${value.type === option.key 
-                ? 'bg-primary text-primary-foreground shadow-button' 
-                : 'bg-card text-foreground shadow-card hover:shadow-card-hover'
-              }
-            `}
-          >
-            {option.label}
-          </button>
+            isSelected={value.type === option.key}
+          />
         ))}
       </div>
 
-      {/* Document number input - only show if type selected and not "other" */}
-      {value.type && value.type !== 'other' && (
+      {/* Document number input - only show if type selected and not "none" */}
+      {showNumberInput && (
         <div className="space-y-3 animate-fade-in">
-          <label className="text-sm font-medium text-muted-foreground">
-            Document Number (optional)
-          </label>
+          <div className="section-divider mb-4" />
+          <p className="text-xs uppercase tracking-widest text-muted-foreground text-center mb-2 font-bold">
+            Your Document Number
+          </p>
+          <p className="text-sm text-muted-foreground text-center mb-4">
+            Enter your document number so it's always on your lock screen.
+          </p>
           <input
             type="text"
-            placeholder="A-number or document ID"
+            placeholder="A-number, passport number, or document ID"
             value={value.number}
             onChange={(e) => handleNumberChange(e.target.value)}
             className="w-full p-4 text-base bg-card shadow-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-b-4 focus:border-foreground transition-all"
           />
           <p className="text-xs text-muted-foreground text-center">
-            This is only stored on your phone, never shared.
+            This stays on your phone only. We never see or store it.
           </p>
         </div>
       )}

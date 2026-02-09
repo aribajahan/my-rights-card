@@ -3,72 +3,77 @@ import { Link } from 'react-router-dom';
 
 export default function PrepareFamily() {
   return (
-    <InfoPageLayout title="Prepare Your Family">
-      <p className="text-lg text-muted-foreground mb-8">
-        Help your family members be prepared with cards, plans, and knowledge.
-      </p>
-
+    <InfoPageLayout 
+      title="Prepare Your Family" 
+      subtitle="Having a plan reduces panic."
+      backTo="/community"
+      backLabel="Community"
+    >
+      {/* MAKE CARDS FOR EVERYONE */}
       <section>
-        <h2>Make Cards for Others</h2>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            <Link to="/prepare" className="underline hover:text-muted-foreground transition-colors">
-              Create cards
-            </Link> for parents, grandparents, or elders
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Help family members set up lock screens
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Make sure everyone has emergency contacts memorized
-          </li>
+        <h2>Make Cards for Everyone</h2>
+        <ul className="list-none space-y-1 text-sm">
+          <li>— Parents and grandparents</li>
+          <li>— Older children (if appropriate)</li>
+          <li>— Other household members</li>
         </ul>
+        <Link 
+          to="/prepare"
+          className="inline-block mt-3 text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+        >
+          Create a card →
+        </Link>
       </section>
 
+      {/* CREATE A FAMILY PLAN */}
       <section>
         <h2>Create a Family Plan</h2>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+        <ul className="list-none space-y-2 text-sm">
+          <li className="flex items-start gap-2">
+            <span className="text-muted-foreground">☐</span>
             Who will care for children?
           </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Where are important documents stored?
+          <li className="flex items-start gap-2">
+            <span className="text-muted-foreground">☐</span>
+            Where are important documents?
           </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+          <li className="flex items-start gap-2">
+            <span className="text-muted-foreground">☐</span>
             Who has power of attorney?
           </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
+          <li className="flex items-start gap-2">
+            <span className="text-muted-foreground">☐</span>
             Who is the emergency contact?
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-muted-foreground">☐</span>
+            What's the plan for pets?
           </li>
         </ul>
       </section>
 
+      {/* TALK TO YOUR KIDS */}
       <section>
-        <h2>Teach Children</h2>
-        <ul className="list-none space-y-2 my-4">
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Do not open the door for strangers
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            Memorize one trusted adult's phone number
-          </li>
-          <li className="flex items-start gap-3 text-sm">
-            <span className="w-1 h-1 mt-2 bg-foreground flex-shrink-0 rounded-full"></span>
-            "You have done nothing wrong"
-          </li>
+        <h2>Talk to Your Kids</h2>
+        <ul className="list-none space-y-1 text-sm">
+          <li>— "Don't open the door for strangers."</li>
+          <li>— "Memorize this number: ___________"</li>
+          <li>— "You have done nothing wrong."</li>
+          <li>— "We have a plan. You'll be taken care of."</li>
         </ul>
-        <p className="text-sm text-muted-foreground mt-4">
-          For more detailed guidance, see <Link to="/tips/kids" className="underline hover:text-foreground transition-colors">What to Tell Your Kids</Link>.
-        </p>
+      </section>
+
+      {/* KEEP DOCUMENTS SAFE */}
+      <section>
+        <h2>Keep Documents Safe</h2>
+        <p className="text-sm mb-2">Store originals in a safe place:</p>
+        <ul className="list-none space-y-1 text-sm mb-3">
+          <li>— Birth certificates</li>
+          <li>— Passports</li>
+          <li>— Immigration documents</li>
+          <li>— Medical records</li>
+        </ul>
+        <p className="text-sm font-bold">Give copies to a trusted person.</p>
       </section>
     </InfoPageLayout>
   );

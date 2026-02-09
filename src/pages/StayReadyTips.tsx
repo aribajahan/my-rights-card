@@ -1,17 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { NavListItem } from '@/components/NavListItem';
-
-const tips = [
-  { key: 'lock-screen', label: 'Lock Screen Setup', path: '/tips/lock-screen' },
-  { key: 'audio-shortcut', label: 'One-Tap Audio', path: '/tips/audio-shortcut' },
-  { key: 'emergency-text', label: 'Emergency Text', path: '/tips/emergency-text' },
-  { key: 'recording', label: 'One-Tap Recording', path: '/tips/recording' },
-  { key: 'location-sharing', label: 'Location Sharing', path: '/tips/location-sharing' },
-  { key: 'trackers', label: 'Tracker Tips', path: '/tips/trackers' },
-  { key: 'kids', label: 'Tell Your Kids', path: '/tips/kids' },
-];
 
 export default function StayReadyTips() {
   return (
@@ -39,26 +28,58 @@ export default function StayReadyTips() {
           {/* Divider */}
           <div className="section-divider mb-8" />
 
-          {/* Tips list as simple nav items */}
-          <nav className="nav-list">
-            {tips.map((tip) => (
-              <NavListItem
-                key={tip.key}
-                to={tip.path}
-                label={tip.label}
-              />
-            ))}
-          </nav>
+          {/* ESSENTIALS */}
+          <section className="mb-8">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
+              Essentials (5 min)
+            </h2>
+            <nav className="nav-list">
+              <NavListItem to="/tips/lock-screen" label="Lock Screen Setup" />
+              <NavListItem to="/tips/emergency-contacts" label="Emergency Contacts" />
+              <NavListItem to="/tips/memorize-number" label="Memorize a Number" />
+              <NavListItem to="/tips/emergency-text" label="Emergency Text Shortcut" />
+            </nav>
+          </section>
+
+          {/* PRACTICE */}
+          <section className="mb-8">
+            <div className="section-divider mb-4" />
+            <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
+              Practice
+            </h2>
+            <nav className="nav-list">
+              <NavListItem to="/tips/practice" label="Practice Saying Your Rights" />
+              <NavListItem to="/tips/audio" label="One-Tap Audio Setup" />
+            </nav>
+          </section>
+
+          {/* ADVANCED */}
+          <section>
+            <div className="section-divider mb-4" />
+            <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
+              Advanced
+            </h2>
+            <nav className="nav-list">
+              <NavListItem to="/tips/location-sharing" label="Location Sharing" />
+              <NavListItem to="/tips/privacy" label="Privacy Settings" />
+            </nav>
+          </section>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="px-6 pb-8 space-y-3">
-        <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
-          This tool provides general information about your constitutional rights. 
-          It is not legal advice.
-        </p>
-        <PrivacyNotice />
+      <footer className="px-6 pb-8 border-t border-foreground/10 pt-6">
+        <div className="max-w-sm mx-auto text-center space-y-3">
+          <Link 
+            to="/hotlines" 
+            className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+          >
+            Hotlines & Resources →
+          </Link>
+          <p className="text-xs text-muted-foreground">
+            This is not legal advice.
+          </p>
+        </div>
       </footer>
     </div>
   );

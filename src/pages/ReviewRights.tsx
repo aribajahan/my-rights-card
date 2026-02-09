@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { NavListItem } from '@/components/NavListItem';
 
 const sections = [
@@ -9,11 +8,10 @@ const sections = [
   { key: 'car', label: 'In Your Car', path: '/rights/car' },
   { key: 'street', label: 'On the Street', path: '/rights/street' },
   { key: 'workplace', label: 'At Work', path: '/rights/workplace' },
+  { key: 'checkpoint', label: 'At a Checkpoint', path: '/rights/checkpoint' },
+  { key: 'detained', label: "If You're Detained", path: '/rights/detained' },
   { key: 'warrants', label: 'Warrants', path: '/rights/warrants' },
-  { key: 'carry', label: 'What to Carry', path: '/rights/carry' },
-  { key: 'report', label: 'Report & Record', path: '/rights/report' },
-  { key: 'state', label: 'State Rights', path: '/rights/state' },
-  { key: 'hotlines', label: 'Hotlines', path: '/rights/hotlines' },
+  { key: 'recording', label: 'Recording & Reporting', path: '/rights/recording' },
 ];
 
 export default function ReviewRights() {
@@ -42,7 +40,7 @@ export default function ReviewRights() {
           {/* Divider */}
           <div className="section-divider mb-8" />
 
-          {/* Section list as simple nav items */}
+          {/* Section list */}
           <nav className="nav-list">
             {sections.map((section) => (
               <NavListItem
@@ -56,12 +54,18 @@ export default function ReviewRights() {
       </main>
 
       {/* Footer */}
-      <footer className="px-6 pb-8 space-y-3">
-        <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
-          This tool provides general information about your constitutional rights. 
-          It is not legal advice.
-        </p>
-        <PrivacyNotice />
+      <footer className="px-6 pb-8 border-t border-foreground/10 pt-6">
+        <div className="max-w-sm mx-auto text-center space-y-3">
+          <Link 
+            to="/hotlines" 
+            className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+          >
+            Hotlines & Resources →
+          </Link>
+          <p className="text-xs text-muted-foreground">
+            This is not legal advice.
+          </p>
+        </div>
       </footer>
     </div>
   );

@@ -4,58 +4,59 @@ import { FocusFrameCard } from '@/components/FocusFrameCard';
 
 export default function Index() {
   return <div className="min-h-screen bg-background flex flex-col">
-      {/* Hero Section - Compact mobile-first */}
+      {/* Hero Section */}
       <section className="flex flex-col items-center justify-center px-6 pt-12 pb-8">
         <div className="text-center">
-          {/* Eyebrow label */}
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-            Know Your Rights
-          </p>
-          
           <h1 className="headline-stacked headline-hero">
             <span className="block">Stay</span>
             <span className="block">Ready</span>
           </h1>
-          
-          {/* Subheadline */}
-          <p className="text-sm text-muted-foreground mt-4 max-w-[280px] mx-auto">
-            Know what to say if ICE comes to your door, car, or workplace.
-          </p>
         </div>
       </section>
 
       {/* Three Paths Section */}
       <section className="px-6 py-[15px]">
         <div className="max-w-md mx-auto space-y-4">
-          <FocusFrameCard to="/prepare" headline="Prepare My Card" subhead="Save a rights card for your lock screen" />
+          <FocusFrameCard to="/prepare" headline="Prepare My Card" subhead="Save to your lock screen" />
           <FocusFrameCard to="/rights" headline="Review My Rights" subhead="Door / Car / Street / Work" />
-          <FocusFrameCard to="/community" headline="Help Your Community" subhead="Witness / Support / Prepare" />
+          <FocusFrameCard to="/community" headline="Help Your Community" subhead="Support / Witness / Prepare" />
         </div>
       </section>
 
-      {/* Tips Section - Secondary */}
+      {/* Tips Section */}
       <section className="px-6 border-t border-foreground/10 py-[15px]">
         <div className="max-w-md mx-auto">
           <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
             Stay Ready Tips
           </h2>
-          <p className="text-sm text-muted-foreground mb-4">Memorize a number · Record your statement · Talk to your family · Know your exits  · Find a hotline</p>
+          <p className="text-sm text-muted-foreground mb-4">Lock screen · Emergency contacts · Practice your rights · Audio setup</p>
           <Link to="/tips" className="text-sm font-semibold underline underline-offset-4 decoration-1 hover:decoration-2 transition-all">
             All tips →
           </Link>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Hotline Footer */}
       <footer className="px-6 border-t border-foreground/10 py-6">
-        <div className="max-w-md mx-auto text-center space-y-2">
-          <p className="text-xs text-muted-foreground">
-            This is not legal advice.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Built with love for our communities.
-          </p>
-          <PrivacyNotice />
+        <div className="max-w-md mx-auto text-center">
+          <p className="text-sm text-muted-foreground mb-3">If you need help now:</p>
+          
+          <p className="text-xs font-bold uppercase tracking-widest mb-1">United We Dream Hotline</p>
+          <a href="tel:1-844-363-1423" className="text-hotline font-bold text-xl block mb-1">
+            1-844-363-1423
+          </a>
+          <p className="text-xs text-muted-foreground mb-4">24/7 · Free · Confidential</p>
+          
+          <Link to="/hotlines" className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors block mb-6">
+            All hotlines & resources →
+          </Link>
+
+          <div className="border-t border-foreground/10 pt-4 space-y-2">
+            <p className="text-xs text-muted-foreground">
+              This is not legal advice.
+            </p>
+            <PrivacyNotice />
+          </div>
         </div>
       </footer>
     </div>;
