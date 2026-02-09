@@ -29,8 +29,10 @@ export default function PracticeRights() {
   const countdownRef = useRef<NodeJS.Timeout | null>(null);
   const voiceOffTimerRef = useRef<NodeJS.Timeout | null>(null);
   
-  const currentPhrase = PRACTICE_DATA.phrases[phraseIndex];
-  const isLastPhrase = phraseIndex === PRACTICE_DATA.phrases.length - 1;
+  // Ensure phraseIndex is always valid
+  const safeIndex = Math.min(phraseIndex, PRACTICE_DATA.phrases.length - 1);
+  const currentPhrase = PRACTICE_DATA.phrases[safeIndex];
+  const isLastPhrase = safeIndex === PRACTICE_DATA.phrases.length - 1;
 
   // Cleanup on unmount
   useEffect(() => {
@@ -80,18 +82,26 @@ export default function PracticeRights() {
   }, [screen, phraseIndex, voiceOff, currentPhrase]);
 
   const startCountdown = useCallback(() => {
+    const phrase = PRACTICE_DATA.phrases[phraseIndex];
+    if (!phrase) {
+      setScreen('done');
+      return;
+    }
+    
     setScreen('countdown');
-    setCountdown(currentPhrase.pauseSeconds);
+    setCountdown(phrase.pauseSeconds);
     
     countdownRef.current = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
           if (countdownRef.current) clearInterval(countdownRef.current);
           // Move to next phrase or done
-          if (isLastPhrase) {
+          const currentIdx = phraseIndex;
+          const lastIdx = PRACTICE_DATA.phrases.length - 1;
+          if (currentIdx >= lastIdx) {
             setScreen('done');
           } else {
-            setPhraseIndex(i => i + 1);
+            setPhraseIndex(i => Math.min(i + 1, lastIdx));
             setScreen('playing');
           }
           return 5;
@@ -99,7 +109,7 @@ export default function PracticeRights() {
         return prev - 1;
       });
     }, 1000);
-  }, [currentPhrase.pauseSeconds, isLastPhrase]);
+  }, [phraseIndex]);
 
   // Auto-play phrase when entering 'playing' screen
   useEffect(() => {
@@ -143,16 +153,17 @@ export default function PracticeRights() {
       if (screen === 'playing' && audio && !voiceOff) {
         audio.play();
       }
-      // Resume countdown if in countdown screen
       if (screen === 'countdown') {
+        const lastIdx = PRACTICE_DATA.phrases.length - 1;
         countdownRef.current = setInterval(() => {
           setCountdown(prev => {
             if (prev <= 1) {
               if (countdownRef.current) clearInterval(countdownRef.current);
-              if (isLastPhrase) {
+              const currentIdx = phraseIndex;
+              if (currentIdx >= lastIdx) {
                 setScreen('done');
               } else {
-                setPhraseIndex(i => i + 1);
+                setPhraseIndex(i => Math.min(i + 1, lastIdx));
                 setScreen('playing');
               }
               return 5;
@@ -199,10 +210,11 @@ export default function PracticeRights() {
     if (voiceOffTimerRef.current) clearTimeout(voiceOffTimerRef.current);
     if (audioRef.current) audioRef.current.pause();
     
-    if (isLastPhrase) {
+    const lastIdx = PRACTICE_DATA.phrases.length - 1;
+    if (phraseIndex >= lastIdx) {
       setScreen('done');
     } else {
-      setPhraseIndex(i => i + 1);
+      setPhraseIndex(i => Math.min(i + 1, lastIdx));
       setIsPaused(false);
       setScreen('playing');
     }
