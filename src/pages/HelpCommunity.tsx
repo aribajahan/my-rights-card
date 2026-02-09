@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { NavListItem } from '@/components/NavListItem';
+import { HamburgerMenu } from '@/components/HamburgerMenu';
 
 const sections = [
   { key: 'make-card', label: 'Make a Card for Someone', path: '/community/make-card' },
@@ -16,7 +17,7 @@ export default function HelpCommunity() {
   return (
     <div className="min-h-screen bg-background animate-page-enter">
       {/* Header */}
-      <header className="px-6 py-6">
+      <header className="px-6 py-6 flex items-center justify-between">
         <Link
           to="/"
           className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -24,6 +25,7 @@ export default function HelpCommunity() {
           <ChevronLeft size={18} />
           Home
         </Link>
+        <HamburgerMenu />
       </header>
 
       {/* Main content */}

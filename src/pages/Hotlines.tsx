@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ChevronLeft, Home } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+import { HamburgerMenu } from '@/components/HamburgerMenu';
 
 export default function Hotlines() {
   return (
@@ -14,13 +15,7 @@ export default function Hotlines() {
             <ChevronLeft size={18} />
             Home
           </Link>
-          <Link
-            to="/"
-            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Home"
-          >
-            <Home size={18} />
-          </Link>
+          <HamburgerMenu />
         </div>
       </header>
 

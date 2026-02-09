@@ -7,6 +7,10 @@ export default function StoppedCar() {
       subtitle="Your rights in a car are similar to public spaces. Assert them even if officers ignore you — it can help your case later."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Set up one-tap audio', to: '/tips/audio' },
+        { label: 'Set up emergency text shortcut', to: '/tips/emergency-text' },
+      ]}
     >
       {/* DO THIS FIRST */}
       <div className="warning-box mb-6">

@@ -7,7 +7,10 @@ export default function IfDetained() {
       subtitle="You still have rights in detention."
       backTo="/rights"
       backLabel="Rights"
-      showFullHotline={true}
+      tips={[
+        { label: 'Memorize a number', to: '/tips/memorize-number' },
+        { label: 'Set up emergency contacts', to: '/tips/emergency-contacts' },
+      ]}
     >
       {/* DO THIS FIRST */}
       <div className="warning-box mb-6">

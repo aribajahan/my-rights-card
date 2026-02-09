@@ -7,6 +7,10 @@ export default function Warrants() {
       subtitle="Not all warrants are the same. Knowing the difference protects you."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Set up your lock screen', to: '/tips/lock-screen' },
+        { label: 'Practice saying your rights', to: '/rights/practice' },
+      ]}
     >
       {/* JUDICIAL WARRANT - VALID */}
       <section>

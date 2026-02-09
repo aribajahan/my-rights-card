@@ -7,6 +7,10 @@ export default function RecordingReporting() {
       subtitle="You have a First Amendment right to record law enforcement in public."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Review privacy settings', to: '/tips/privacy' },
+        { label: 'Set up location sharing', to: '/tips/location-sharing' },
+      ]}
     >
       {/* RECORDING YOUR OWN ENCOUNTER */}
       <section>

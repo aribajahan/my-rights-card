@@ -7,6 +7,10 @@ export default function AtCheckpoint() {
       subtitle="Border Patrol operates checkpoints within 100 miles of any U.S. border. You must stop, but you have rights."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Set up one-tap audio', to: '/tips/audio' },
+        { label: 'Set up your lock screen', to: '/tips/lock-screen' },
+      ]}
     >
       {/* DO THIS FIRST */}
       <div className="warning-box mb-6">

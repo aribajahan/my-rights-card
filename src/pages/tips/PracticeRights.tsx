@@ -280,6 +280,10 @@ export default function PracticeRights() {
         subtitle="Words you've only read are hard to say when you're scared. Practice out loud so they come easier."
         backTo="/rights"
         backLabel="Rights"
+        tips={[
+          { label: 'Set up one-tap audio', to: '/tips/audio' },
+          { label: 'Set up your lock screen', to: '/tips/lock-screen' },
+        ]}
       >
         <p className="text-sm text-muted-foreground mb-6">Takes about 30 seconds.</p>
         

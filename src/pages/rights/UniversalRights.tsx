@@ -7,6 +7,10 @@ export default function UniversalRights() {
       subtitle="Everyone in the United States has constitutional rights — regardless of immigration status."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Practice saying your rights', to: '/rights/practice' },
+        { label: 'Set up your lock screen', to: '/tips/lock-screen' },
+      ]}
     >
       {/* DO THIS FIRST */}
       <div className="warning-box mb-6">

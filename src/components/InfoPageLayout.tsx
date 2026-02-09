@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronLeft, Home } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+import { HamburgerMenu } from '@/components/HamburgerMenu';
+import { RightsPageFooter, TipLink } from '@/components/RightsPageFooter';
 
 interface InfoPageLayoutProps {
   title: string;
@@ -9,6 +11,7 @@ interface InfoPageLayoutProps {
   backLabel?: string;
   children: ReactNode;
   showFullHotline?: boolean;
+  tips?: TipLink[];
 }
 
 export function InfoPageLayout({ 
@@ -18,6 +21,7 @@ export function InfoPageLayout({
   backLabel = 'Back',
   children,
   showFullHotline = false,
+  tips,
 }: InfoPageLayoutProps) {
   const navigate = useNavigate();
 
@@ -54,13 +58,7 @@ export function InfoPageLayout({
             <ChevronLeft size={18} />
             {backLabel}
           </button>
-          <Link
-            to="/"
-            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Home"
-          >
-            <Home size={18} />
-          </Link>
+          <HamburgerMenu />
         </div>
       </header>
 
@@ -89,29 +87,33 @@ export function InfoPageLayout({
       </main>
 
       {/* Footer */}
-      <footer className="px-4 pb-6 border-t border-foreground/10 pt-6">
-        <div className="max-w-sm mx-auto text-center space-y-3">
-          {showFullHotline ? (
-            <>
-              <p className="text-xs text-muted-foreground mb-1">Need help right now?</p>
-              <a href="tel:1-844-363-1423" className="text-hotline font-bold text-lg block">
-                1-844-363-1423
-              </a>
-              <p className="text-xs text-muted-foreground">United We Dream — 24/7</p>
-            </>
-          ) : (
-            <Link 
-              to="/hotlines" 
-              className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
-            >
-              Hotlines & Resources →
-            </Link>
-          )}
-          <p className="text-xs text-muted-foreground">
-            This is not legal advice.
-          </p>
-        </div>
-      </footer>
+      {tips ? (
+        <RightsPageFooter tips={tips} />
+      ) : (
+        <footer className="px-4 pb-6 border-t border-foreground/10 pt-6">
+          <div className="max-w-sm mx-auto text-center space-y-3">
+            {showFullHotline ? (
+              <>
+                <p className="text-xs text-muted-foreground mb-1">Need help right now?</p>
+                <a href="tel:1-844-363-1423" className="text-hotline font-bold text-lg block">
+                  1-844-363-1423
+                </a>
+                <p className="text-xs text-muted-foreground">United We Dream — 24/7</p>
+              </>
+            ) : (
+              <Link 
+                to="/hotlines" 
+                className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+              >
+                Hotlines & Resources →
+              </Link>
+            )}
+            <p className="text-xs text-muted-foreground">
+              This is not legal advice.
+            </p>
+          </div>
+        </footer>
+      )}
     </div>
   );
 }

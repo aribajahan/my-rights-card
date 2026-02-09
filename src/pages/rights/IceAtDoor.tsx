@@ -7,6 +7,10 @@ export default function IceAtDoor() {
       subtitle="Your home has the strongest protections. ICE cannot enter without your consent or a valid judicial warrant."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Practice saying your rights', to: '/rights/practice' },
+        { label: 'Set up one-tap audio', to: '/tips/audio' },
+      ]}
     >
       {/* DO THIS FIRST */}
       <div className="warning-box mb-6">

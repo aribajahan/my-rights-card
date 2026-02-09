@@ -7,6 +7,10 @@ export default function IceWorkplace() {
       subtitle="Your workplace has some protections, but they depend on where you are."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Set up emergency text shortcut', to: '/tips/emergency-text' },
+        { label: 'Set up emergency contacts', to: '/tips/emergency-contacts' },
+      ]}
     >
       {/* DO THIS FIRST */}
       <div className="warning-box mb-6">

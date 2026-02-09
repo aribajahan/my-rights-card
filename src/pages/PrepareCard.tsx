@@ -6,7 +6,8 @@ import { DocumentForm } from '@/components/DocumentForm';
 import { RightsCard } from '@/components/RightsCard';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { ImmigrationStatus, DocumentInfo } from '@/types/card';
-import { ChevronLeft, Download, RotateCcw, Home } from 'lucide-react';
+import { ChevronLeft, Download, RotateCcw } from 'lucide-react';
+import { HamburgerMenu } from '@/components/HamburgerMenu';
 import { toast } from 'sonner';
 import { NavListItem } from '@/components/NavListItem';
 
@@ -262,8 +263,7 @@ export default function PrepareCard() {
             onClick={() => navigate('/')}
             className="w-full flex items-center justify-center gap-1 p-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Home size={12} />
-            Home
+            ← Home
           </button>
         </div>
       );
@@ -303,16 +303,19 @@ export default function PrepareCard() {
             Back
           </button>
 
-          {/* Progress dots */}
-          <div className="flex gap-1.5">
-            {steps.map((s, i) => (
-              <div
-                key={s}
-                className={`w-2 h-2 transition-colors ${
-                  i <= currentStepIndex ? 'bg-primary' : 'bg-muted'
-                }`}
-              />
-            ))}
+          {/* Progress dots + Menu */}
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1.5">
+              {steps.map((s, i) => (
+                <div
+                  key={s}
+                  className={`w-2 h-2 transition-colors ${
+                    i <= currentStepIndex ? 'bg-primary' : 'bg-muted'
+                  }`}
+                />
+              ))}
+            </div>
+            <HamburgerMenu />
           </div>
         </div>
       </header>

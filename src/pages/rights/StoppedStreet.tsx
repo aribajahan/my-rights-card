@@ -7,6 +7,10 @@ export default function StoppedStreet() {
       subtitle="ICE can approach you in public, but you still have rights."
       backTo="/rights"
       backLabel="Rights"
+      tips={[
+        { label: 'Practice saying your rights', to: '/rights/practice' },
+        { label: 'Set up location sharing', to: '/tips/location-sharing' },
+      ]}
     >
       {/* DO THIS FIRST */}
       <div className="warning-box mb-6">
