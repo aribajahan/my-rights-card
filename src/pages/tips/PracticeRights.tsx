@@ -8,10 +8,10 @@ import { NavListItem } from '@/components/NavListItem';
 const PRACTICE_DATA = {
   audioFile: "/audio/rights_practice_audio.mp3",
   phrases: [
-    { id: 1, text: "I am exercising my constitutional rights.", startTime: 0, endTime: 3.5, pauseSeconds: 5 },
-    { id: 2, text: "I do not consent to a search of my person, my belongings, my vehicle, or my home.", startTime: 3.5, endTime: 10.2, pauseSeconds: 5 },
+    { id: 1, text: "I am exercising my constitutional rights.", startTime: 0, endTime: 3.5, pauseSeconds: 7 },
+    { id: 2, text: "I do not consent to a search of my person, my belongings, my vehicle, or my home.", startTime: 3.5, endTime: 10.2, pauseSeconds: 10 },
     { id: 3, text: "I am choosing to remain silent.", startTime: 10.2, endTime: 12.5, pauseSeconds: 5 },
-    { id: 4, text: "I want to speak with a lawyer before answering any questions.", startTime: 12.5, endTime: 16.8, pauseSeconds: 5 }
+    { id: 4, text: "I want to speak with a lawyer before answering any questions.", startTime: 12.5, endTime: 16.8, pauseSeconds: 7 }
   ]
 };
 
@@ -28,6 +28,12 @@ export default function PracticeRights() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const countdownRef = useRef<NodeJS.Timeout | null>(null);
   const voiceOffTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const phraseIndexRef = useRef(phraseIndex);
+  
+  // Keep ref in sync with state
+  useEffect(() => {
+    phraseIndexRef.current = phraseIndex;
+  }, [phraseIndex]);
   
   // Ensure phraseIndex is always valid
   const safeIndex = Math.min(phraseIndex, PRACTICE_DATA.phrases.length - 1);
@@ -66,12 +72,18 @@ export default function PracticeRights() {
   }, []);
 
   // Handle audio timeupdate to detect phrase end
+  const hasTriggeredCountdown = useRef(false);
+  
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || screen !== 'playing' || voiceOff) return;
+    if (!audio || screen !== 'playing' || voiceOff) {
+      hasTriggeredCountdown.current = false;
+      return;
+    }
 
     const handleTimeUpdate = () => {
-      if (audio.currentTime >= currentPhrase.endTime) {
+      if (!hasTriggeredCountdown.current && audio.currentTime >= currentPhrase.endTime) {
+        hasTriggeredCountdown.current = true;
         audio.pause();
         startCountdown();
       }
@@ -82,7 +94,14 @@ export default function PracticeRights() {
   }, [screen, phraseIndex, voiceOff, currentPhrase]);
 
   const startCountdown = useCallback(() => {
-    const phrase = PRACTICE_DATA.phrases[phraseIndex];
+    // Clear any existing interval first
+    if (countdownRef.current) {
+      clearInterval(countdownRef.current);
+      countdownRef.current = null;
+    }
+    
+    const idx = phraseIndexRef.current;
+    const phrase = PRACTICE_DATA.phrases[idx];
     if (!phrase) {
       setScreen('done');
       return;
@@ -95,21 +114,23 @@ export default function PracticeRights() {
       setCountdown(prev => {
         if (prev <= 1) {
           if (countdownRef.current) clearInterval(countdownRef.current);
+          countdownRef.current = null;
           // Move to next phrase or done
-          const currentIdx = phraseIndex;
+          const currentIdx = phraseIndexRef.current;
           const lastIdx = PRACTICE_DATA.phrases.length - 1;
           if (currentIdx >= lastIdx) {
             setScreen('done');
           } else {
+            hasTriggeredCountdown.current = false;
             setPhraseIndex(i => Math.min(i + 1, lastIdx));
             setScreen('playing');
           }
-          return 5;
+          return phrase.pauseSeconds;
         }
         return prev - 1;
       });
     }, 1000);
-  }, [phraseIndex]);
+  }, []);
 
   // Auto-play phrase when entering 'playing' screen
   useEffect(() => {
@@ -154,15 +175,22 @@ export default function PracticeRights() {
         audio.play();
       }
       if (screen === 'countdown') {
+        // Clear any existing interval first
+        if (countdownRef.current) {
+          clearInterval(countdownRef.current);
+          countdownRef.current = null;
+        }
         const lastIdx = PRACTICE_DATA.phrases.length - 1;
         countdownRef.current = setInterval(() => {
           setCountdown(prev => {
             if (prev <= 1) {
               if (countdownRef.current) clearInterval(countdownRef.current);
-              const currentIdx = phraseIndex;
+              countdownRef.current = null;
+              const currentIdx = phraseIndexRef.current;
               if (currentIdx >= lastIdx) {
                 setScreen('done');
               } else {
+                hasTriggeredCountdown.current = false;
                 setPhraseIndex(i => Math.min(i + 1, lastIdx));
                 setScreen('playing');
               }
