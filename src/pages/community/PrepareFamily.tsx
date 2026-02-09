@@ -29,26 +29,11 @@ export default function PrepareFamily() {
       <section>
         <h2>Create a Family Plan</h2>
         <ul className="list-none space-y-2 text-sm">
-          <li className="flex items-start gap-2">
-            <span className="text-muted-foreground">☐</span>
-            Who will care for children?
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-muted-foreground">☐</span>
-            Where are important documents?
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-muted-foreground">☐</span>
-            Who has power of attorney?
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-muted-foreground">☐</span>
-            Who is the emergency contact?
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-muted-foreground">☐</span>
-            What's the plan for pets?
-          </li>
+          <li>— Who will care for children?</li>
+          <li>— Where are important documents?</li>
+          <li>— Who has power of attorney?</li>
+          <li>— Who is the emergency contact?</li>
+          <li>— What's the plan for pets?</li>
         </ul>
       </section>
 

@@ -31,10 +31,9 @@ export function StatusSelector({ value, onChange, onSelect }: StatusSelectorProp
       <p className="text-xs uppercase tracking-widest text-muted-foreground text-center mb-2 font-bold">
         Select Your Status
       </p>
-      <p className="text-muted-foreground text-center text-sm mb-8">
+      <p className="text-muted-foreground text-center text-sm mb-6">
         We'll customize your card based on your status.
       </p>
-      <div className="section-divider mb-6" />
       <div className="nav-list">
         {statusOptions.map((option) => (
           <NavListOption

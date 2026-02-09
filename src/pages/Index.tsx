@@ -6,6 +6,9 @@ export default function Index() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center px-6 pt-12 pb-8">
         <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
+            Know Your Rights
+          </p>
           <h1 className="headline-stacked headline-hero">
             <span className="block">Stay</span>
             <span className="block">Ready</span>
@@ -51,11 +54,12 @@ export default function Index() {
             All hotlines & resources →
           </Link>
 
-          <div className="border-t border-foreground/10 pt-4 space-y-2">
-            <p className="text-xs text-muted-foreground">
-              This is not legal advice.
-            </p>
+          <div className="border-t border-foreground/10 pt-4 space-y-0.5">
+            <p className="text-xs text-muted-foreground">This is not legal advice.</p>
             <PrivacyNotice />
+            <Link to="/about" className="text-xs text-muted-foreground underline hover:text-foreground transition-colors block pt-1">
+              About
+            </Link>
           </div>
         </div>
       </footer>

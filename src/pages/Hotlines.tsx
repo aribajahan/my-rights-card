@@ -156,9 +156,9 @@ export default function Hotlines() {
             </h2>
             
             <ul className="list-none space-y-1 text-sm">
-              <li>— ACLU Know Your Rights</li>
-              <li>— ILRC Red Cards</li>
-              <li>— NILC Know Your Rights</li>
+              <li>— <a href="https://www.aclu.org/know-your-rights/page/2" target="_blank" rel="noopener noreferrer" className="underline hover:text-muted-foreground transition-colors">ACLU Know Your Rights</a></li>
+              <li>— <a href="https://www.ilrc.org/redcards" target="_blank" rel="noopener noreferrer" className="underline hover:text-muted-foreground transition-colors">ILRC Red Cards</a></li>
+              <li>— <a href="https://www.nilc.org/resources/everyone-has-certain-basic-rights/" target="_blank" rel="noopener noreferrer" className="underline hover:text-muted-foreground transition-colors">NILC Know Your Rights</a></li>
             </ul>
           </section>
 

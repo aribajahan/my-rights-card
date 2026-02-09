@@ -6,7 +6,7 @@ import { DocumentForm } from '@/components/DocumentForm';
 import { RightsCard } from '@/components/RightsCard';
 import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { ImmigrationStatus, DocumentInfo } from '@/types/card';
-import { ChevronLeft, Download, RotateCcw } from 'lucide-react';
+import { ChevronLeft, Download, RotateCcw, Home } from 'lucide-react';
 import { toast } from 'sonner';
 import { NavListItem } from '@/components/NavListItem';
 
@@ -257,6 +257,13 @@ export default function PrepareCard() {
             <RotateCcw size={12} />
             Start Over
           </button>
+          <button
+            onClick={() => navigate('/')}
+            className="w-full flex items-center justify-center gap-1 p-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Home size={12} />
+            Home
+          </button>
         </div>
       );
     }
@@ -310,7 +317,7 @@ export default function PrepareCard() {
       </header>
 
       {/* Content */}
-      <main className="container py-6 px-4 pb-32">
+      <main className="container py-6 px-4 pb-24">
         <div className="animate-fade-in">
           {renderStepContent()}
         </div>

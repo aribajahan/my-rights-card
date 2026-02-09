@@ -10,6 +10,7 @@ import ReviewRights from "./pages/ReviewRights";
 import HelpCommunity from "./pages/HelpCommunity";
 import StayReadyTips from "./pages/StayReadyTips";
 import Hotlines from "./pages/Hotlines";
+import About from "./pages/About";
 
 // Rights pages
 import UniversalRights from "./pages/rights/UniversalRights";
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/prepare" element={<PrepareCard />} />
             <Route path="/hotlines" element={<Hotlines />} />
+            <Route path="/about" element={<About />} />
             
             {/* Rights */}
             <Route path="/rights" element={<ReviewRights />} />

@@ -10,12 +10,9 @@ export type ImmigrationStatus =
 
 export type DocumentType = 
   | 'usPassport'
-  | 'usPassportCard'
   | 'naturalizationCertificate'
-  | 'birthCertificate'
   | 'greenCard'
   | 'visaI94'
-  | 'passportVisa'
   | 'dacaApproval'
   | 'workPermit'
   | 'tpsCard'
@@ -64,9 +61,7 @@ export const statusGuidance: Record<Exclude<ImmigrationStatus, null>, string> = 
 export const documentOptionsByStatus: Record<Exclude<ImmigrationStatus, null | 'preferNot'>, { key: Exclude<DocumentType, null>; label: string }[]> = {
   citizen: [
     { key: 'usPassport', label: 'U.S. Passport' },
-    { key: 'usPassportCard', label: 'U.S. Passport Card' },
     { key: 'naturalizationCertificate', label: 'Naturalization Certificate' },
-    { key: 'birthCertificate', label: 'Birth Certificate' },
     { key: 'none', label: 'None / Prefer Not to Say' },
   ],
   greenCard: [
@@ -75,7 +70,6 @@ export const documentOptionsByStatus: Record<Exclude<ImmigrationStatus, null | '
   ],
   visa: [
     { key: 'visaI94', label: 'Visa / I-94' },
-    { key: 'passportVisa', label: 'Passport (with visa)' },
     { key: 'none', label: 'None / Prefer Not to Say' },
   ],
   daca: [
@@ -97,12 +91,9 @@ export const documentOptionsByStatus: Record<Exclude<ImmigrationStatus, null | '
 
 export const documentLabels: Record<Exclude<DocumentType, null>, string> = {
   usPassport: 'U.S. Passport',
-  usPassportCard: 'U.S. Passport Card',
   naturalizationCertificate: 'Naturalization Certificate',
-  birthCertificate: 'Birth Certificate',
   greenCard: 'Green Card',
   visaI94: 'Visa / I-94',
-  passportVisa: 'Passport (with visa)',
   dacaApproval: 'DACA Approval Notice',
   workPermit: 'Work Permit (EAD)',
   tpsCard: 'TPS Card',
