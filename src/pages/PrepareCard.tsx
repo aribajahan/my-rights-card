@@ -230,7 +230,7 @@ export default function PrepareCard() {
               </p>
               <nav className="nav-list">
                 <NavListItem to="/tips/emergency-contacts" label="Set up emergency contacts" />
-                <NavListItem to="/tips/practice" label="Practice saying your rights" />
+                <NavListItem to="/tips/practice" label="Practice your rights (30 sec)" />
               </nav>
             </div>
           </div>
