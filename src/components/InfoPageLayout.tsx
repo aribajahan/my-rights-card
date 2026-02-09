@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, Home } from 'lucide-react';
-import { PrivacyNotice } from '@/components/PrivacyNotice';
 
 interface InfoPageLayoutProps {
   title: string;
@@ -9,6 +8,7 @@ interface InfoPageLayoutProps {
   backTo?: string;
   backLabel?: string;
   children: ReactNode;
+  showFullHotline?: boolean;
 }
 
 export function InfoPageLayout({ 
@@ -16,11 +16,12 @@ export function InfoPageLayout({
   subtitle,
   backTo,
   backLabel = 'Back',
-  children 
+  children,
+  showFullHotline = false,
 }: InfoPageLayoutProps) {
   const navigate = useNavigate();
 
-  // Split title into lines for stacked display (e.g., "At Your Door" -> ["At Your", "Door"])
+  // Split title into lines for stacked display
   const titleWords = title.split(' ');
   let titleLines: string[] = [];
   
@@ -29,7 +30,6 @@ export function InfoPageLayout({
   } else if (titleWords.length === 3) {
     titleLines = [titleWords.slice(0, 2).join(' '), titleWords[2]];
   } else {
-    // Split roughly in half
     const mid = Math.ceil(titleWords.length / 2);
     titleLines = [titleWords.slice(0, mid).join(' '), titleWords.slice(mid).join(' ')];
   }
@@ -90,17 +90,26 @@ export function InfoPageLayout({
 
       {/* Footer */}
       <footer className="px-4 pb-6 border-t border-foreground/10 pt-6">
-        <div className="max-w-sm mx-auto text-center space-y-4">
-          {/* Quick hotline access */}
-          <div>
-            <p className="text-xs text-muted-foreground mb-1">Need help right now?</p>
-            <a href="tel:1-844-363-1423" className="text-hotline font-bold text-lg">
-              1-844-363-1423
-            </a>
-            <p className="text-xs text-muted-foreground">United We Dream — 24/7</p>
-          </div>
-          
-          <PrivacyNotice />
+        <div className="max-w-sm mx-auto text-center space-y-3">
+          {showFullHotline ? (
+            <>
+              <p className="text-xs text-muted-foreground mb-1">Need help right now?</p>
+              <a href="tel:1-844-363-1423" className="text-hotline font-bold text-lg block">
+                1-844-363-1423
+              </a>
+              <p className="text-xs text-muted-foreground">United We Dream — 24/7</p>
+            </>
+          ) : (
+            <Link 
+              to="/hotlines" 
+              className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+            >
+              Hotlines & Resources →
+            </Link>
+          )}
+          <p className="text-xs text-muted-foreground">
+            This is not legal advice.
+          </p>
         </div>
       </footer>
     </div>

@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { PrivacyNotice } from '@/components/PrivacyNotice';
 import { NavListItem } from '@/components/NavListItem';
 
 const sections = [
-  { key: 'witness', label: 'Be a Good Witness', path: '/community/witness' },
-  { key: 'bystander', label: 'Bystander Rights', path: '/community/bystander' },
-  { key: 'arrest', label: 'If You See an Arrest', path: '/community/arrest' },
+  { key: 'make-card', label: 'Make a Card for Someone', path: '/community/make-card' },
+  { key: 'setup-phone', label: 'Set Up Their Phone', path: '/community/setup-phone' },
+  { key: 'witness', label: 'If You Witness an Encounter', path: '/community/witness' },
+  { key: 'detained', label: 'If Someone Is Detained', path: '/community/detained' },
   { key: 'family', label: 'Prepare Your Family', path: '/community/family' },
-  { key: 'rapid-response', label: 'Rapid Response', path: '/community/rapid-response' },
-  { key: 'mutual-aid', label: 'Mutual Aid', path: '/community/mutual-aid' },
+  { key: 'share', label: 'Share Safely', path: '/community/share' },
 ];
 
 export default function HelpCommunity() {
@@ -38,7 +37,7 @@ export default function HelpCommunity() {
           {/* Divider */}
           <div className="section-divider mb-8" />
 
-          {/* Section list as simple nav items */}
+          {/* Section list */}
           <nav className="nav-list">
             {sections.map((section) => (
               <NavListItem
@@ -52,12 +51,18 @@ export default function HelpCommunity() {
       </main>
 
       {/* Footer */}
-      <footer className="px-6 pb-8 space-y-3">
-        <p className="text-xs text-muted-foreground text-center max-w-sm mx-auto">
-          This tool provides general information about your constitutional rights. 
-          It is not legal advice.
-        </p>
-        <PrivacyNotice />
+      <footer className="px-6 pb-8 border-t border-foreground/10 pt-6">
+        <div className="max-w-sm mx-auto text-center space-y-3">
+          <Link 
+            to="/hotlines" 
+            className="text-sm font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+          >
+            Hotlines & Resources →
+          </Link>
+          <p className="text-xs text-muted-foreground">
+            This is not legal advice.
+          </p>
+        </div>
       </footer>
     </div>
   );
