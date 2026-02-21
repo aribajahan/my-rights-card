@@ -1,0 +1,16 @@
+# Netlify build configuration
+# Lovable doesn't manage this file, so these settings persist.
+
+[build]
+  command = "node scripts/apply-security-patches.js && npm run build"
+  publish = "dist"
+
+# CSP and security headers — applied as HTTP headers (more secure than meta tags)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self'; script-src 'self'; frame-ancestors 'none';"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

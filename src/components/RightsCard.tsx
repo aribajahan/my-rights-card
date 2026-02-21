@@ -32,10 +32,6 @@ const statementText = `I am exercising my constitutional rights. I do not wish t
 
 export const RightsCard = forwardRef<HTMLDivElement, RightsCardProps>(
   ({ status, documentInfo, contacts }, ref) => {
-    // Debug: trace what props are received
-    console.log('[RightsCard] documentInfo:', documentInfo);
-    console.log('[RightsCard] contacts:', contacts);
-    
     const showDocument = documentInfo.type && documentLabels[documentInfo.type];
     const statusBadge = getStatusBadge(status);
 
